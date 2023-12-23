@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,25 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model file {
+  FileId    Int      @id @default(autoincrement())
+  Name      String   @db.VarChar(200)
+  Extension String   @db.VarChar(10)
+  Content   Bytes
+  Location  String   @db.VarChar(50)
+  CreatedOn DateTime @db.DateTime(0)
+}
+
+model nav {
+  NavId       Int      @id @default(autoincrement())
+  Name        String   @db.VarChar(50)
+  Url         String?  @db.VarChar(500)
+  ParentNavId Int?
+  CreatedOn   DateTime @db.DateTime(0)
+  nav         nav?     @relation("navTonav", fields: [ParentNavId], references: [NavId], onUpdate: NoAction, map: "FK_ParentNavId_FileId")
+  other_nav   nav[]    @relation("navTonav")
+
+  @@index([ParentNavId], map: "FK_ParentNavId_FileId")
 }
