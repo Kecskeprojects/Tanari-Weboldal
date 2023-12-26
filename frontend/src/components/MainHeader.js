@@ -18,22 +18,18 @@ export default function MainHeader({ setUser = (username) => { }, isLoggedIn = f
 
     const onLogOut = useCallback((e) => {
         authService.removeUser();
-        if (setUser) {
-            setUser(new UserData());
-        }
+        setUser(new UserData());
     }, [setUser]);
 
     const Login = useCallback((username) => {
-        if (setUser) {
-            UserService.Login(username)
-                .then((res) => res.json())
-                .then((user) => {
-                    const userData = new UserData(user);
-                    authService.setUser(JSON.stringify(user));
-                    setUser(userData);
-                })
-                .catch((error) => console.log(error));
-        }
+        UserService.Login(username)
+            .then((res) => res.json())
+            .then((user) => {
+                const userData = new UserData(user);
+                authService.setUser(JSON.stringify(user));
+                setUser(userData);
+            })
+            .catch((error) => console.log(error));
     }, [setUser]);
 
     return (

@@ -10,7 +10,7 @@ export default class authService {
     }
 
     static removeUser() {
-      localStorage.removeItem(this.USER_KEY);
+        localStorage.removeItem(this.USER_KEY);
     }
 
     static isLoggedIn() {

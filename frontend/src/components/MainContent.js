@@ -1,3 +1,3 @@
-export default function MainContent(){
+export default function MainContent() {
     return <div>Content</div>
 }

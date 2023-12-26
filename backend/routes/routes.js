@@ -7,15 +7,15 @@ import NavController from "../controller/NavController.js";
 export default function getRoutes() {
     const routers = express.Router();
 
-    routers.get('/File/', FileController.getAll);
-    routers.get('/File/:id', FileController.getById);
-    routers.post('/File/', checkUser, FileController.create);
-    routers.delete('/File/:id', checkUser, FileController.delete);
-    routers.post('/User/', UserController.login);
-    routers.get('/Nav/', NavController.getAll);
-    routers.get('/Nav/ForNavbar', NavController.getAllForNav);
-    routers.post('/Nav/', checkUser, NavController.create);
-    routers.delete('/Nav/:id', checkUser, NavController.delete);
+    routers.get('/File/GetAll/', FileController.getAll);
+    routers.get('/File/GetById/:id', FileController.getById);
+    routers.post('/File/Create/', checkUser, FileController.create);
+    routers.delete('/File/Delete/:id', checkUser, FileController.delete);
+    routers.post('/User/Login/', UserController.login);
+    routers.get('/Nav/GetAll/', NavController.getAll);
+    routers.get('/Nav/GetAllForNavbar/', NavController.getAllForNav);
+    routers.post('/Nav/Create/', checkUser, NavController.create);
+    routers.delete('/Nav/Delete/:id', checkUser, NavController.delete);
 
     return routers;
 }

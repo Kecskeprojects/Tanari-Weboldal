@@ -10,8 +10,8 @@ export default class UserService {
                 headers: new Headers({ 'content-type': 'application/json'/*, Authorization: `Bearer ${token}`*/ }),
             })
             .then((res) => {
-                if(res.status === 401){
-                    authService.removeToken();
+                if (res.status === 401) {
+                    authService.removeUser();
                 }
                 return res;
             });

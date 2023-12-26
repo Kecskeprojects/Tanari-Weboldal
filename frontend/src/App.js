@@ -10,15 +10,15 @@ export default function App() {
 
 	useEffect(() => {
 		//Load user from local storage if it exists and nothing is currently stored in state
-		if(authService.isLoggedIn()){
+		if (authService.isLoggedIn()) {
 			if (userData.isEmpty()) {
 				const cachedUser = JSON.parse(authService.getUser());
 				setUserData(new UserData(cachedUser));
 				return;
 			}
-	
+
 			//Empty local storage if login expired
-			if(!userData.isLoggedIn()){
+			if (!userData.isLoggedIn()) {
 				authService.removeUser();
 				setUserData(new UserData());
 				return;
@@ -32,7 +32,7 @@ export default function App() {
 				setUser={setUserData.bind(this)}
 				isLoggedIn={userData.isLoggedIn()}
 			/>
-			<MainContent/>
+			<MainContent />
 		</div>
 	);
 }

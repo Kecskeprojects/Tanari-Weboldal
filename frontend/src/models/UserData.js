@@ -1,6 +1,6 @@
-export default class UserData{
-    constructor(user){
-        if(user){
+export default class UserData {
+    constructor(user) {
+        if (user) {
             this.expiresOn = new Date(user.expiresOn);
             this.token = user.accessToken;
             this.id = user.id;
@@ -11,11 +11,11 @@ export default class UserData{
         this.id = null;
     }
 
-    isLoggedIn(){
+    isLoggedIn() {
         return this.token && this.expiresOn && this.expiresOn > new Date();
     }
 
-    isEmpty(){
+    isEmpty() {
         return !this.token;
     }
 }

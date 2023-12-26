@@ -14,7 +14,7 @@ export default class UserController extends BaseController {
 
             const uuid = crypto.randomUUID();
             const token = jwt.sign({ id: uuid }, process.env.SECRET, { expiresIn: '7d' });
-            this.handleResponse(res, { accessToken: token , id: uuid, expiresOn: DateHelper.addDays(new Date(), 7) });
+            this.handleResponse(res, { accessToken: token, id: uuid, expiresOn: DateHelper.addDays(new Date(), 7) });
         } catch (err) {
             this.handleError(res, err, 500, "Internal error occured.");
         }
