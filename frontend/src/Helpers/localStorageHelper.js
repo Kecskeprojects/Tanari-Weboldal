@@ -1,4 +1,4 @@
-export default class authService {
+export default class localStorageHelper {
     static USER_KEY = 'user';
 
     static setUser(user) {

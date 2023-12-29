@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import UserService from '../Services/userService';
-import authService from '../Services/authService';
+import localStorageHelper from '../Helpers/localStorageHelper';
 import UserData from '../models/UserData';
 
-export default function MainHeader({ setUser = (username) => { }, isLoggedIn = false }) {
+export default function MainHeader({ setUser = () => { }, isLoggedIn = false }) {
     const handleEnter = (e) => {
         //13 is the key code for Enter
         if (e.keyCode === 13) {
@@ -17,7 +17,7 @@ export default function MainHeader({ setUser = (username) => { }, isLoggedIn = f
     };
 
     const onLogOut = useCallback((e) => {
-        authService.removeUser();
+        localStorageHelper.removeUser();
         setUser(new UserData());
     }, [setUser]);
 
@@ -25,8 +25,9 @@ export default function MainHeader({ setUser = (username) => { }, isLoggedIn = f
         UserService.Login(username)
             .then((res) => res.json())
             .then((user) => {
+                //console.log(user);
                 const userData = new UserData(user);
-                authService.setUser(JSON.stringify(user));
+                localStorageHelper.setUser(JSON.stringify(user));
                 setUser(userData);
             })
             .catch((error) => console.log(error));
@@ -35,8 +36,7 @@ export default function MainHeader({ setUser = (username) => { }, isLoggedIn = f
     return (
         <header>
             <a href="/" className="main-link px-3 mx-4">
-                <img className="me-2" src="https://placehold.co/64" alt="profile" width="64"
-                    height="64" />
+                <img className="me-2" src="https://placehold.co/64" alt="profile" width="64" height="64" />
                 Home
             </a>
             {
@@ -44,10 +44,14 @@ export default function MainHeader({ setUser = (username) => { }, isLoggedIn = f
                     ?
                     <div>
                         <input className="mx-2" type="password" id="username" onKeyUp={(e) => handleEnter(e)} />
-                        <button className="me-2" type="button" onClick={(e) => onLogin(e)}>Log In</button>
+                        <button className="me-2" type="button" onClick={(e) => onLogin(e)}>
+                            Log In
+                        </button>
                     </div>
                     :
-                    <button className="me-2" type="button" onClick={(e) => onLogOut(e)}>Log Out</button>
+                    <button className="me-2" type="button" onClick={(e) => onLogOut(e)}>
+                        Log Out
+                    </button>
             }
         </header>
     );

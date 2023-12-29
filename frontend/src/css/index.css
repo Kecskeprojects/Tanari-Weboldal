@@ -15,4 +15,6 @@ code {
 :root {
   --main-background-color: #ffffff;
   --main-color: #000000;
+  --secondary-background-color: #ffffff;
+  --secondary-color: #000000;
 }

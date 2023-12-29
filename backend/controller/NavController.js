@@ -1,31 +1,32 @@
-import { PrismaClient } from '@prisma/client';
 import BaseController from './BaseController.js';
+import { Prisma } from '../prisma/PrismaClient.js';
 
 export default class NavController extends BaseController {
     static getAll = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
-            const prisma = new PrismaClient();
+            await prisma.$connect();
             prisma.nav.findMany({ select: { NavId: true, Name: true, Url: true, ParentNavId: true } })
                 .then(async (result) => {
                     const completeList = [];
                     if (result) {
                         completeList.push(result);
                     }
-                    await prisma.$disconnect()
                     this.handleResponse(res, completeList);
                 })
                 .catch(async (e) => {
-                    await prisma.$disconnect();
                     this.handleError(res, e);
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 
     static getAllForNav = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
-            const prisma = new PrismaClient();
+            await prisma.$connect();
             prisma.nav.findMany({
                 where: { ParentNavId: null },
                 include: {
@@ -57,21 +58,21 @@ export default class NavController extends BaseController {
                     if (result) {
                         completeList.push(result);
                     }
-                    await prisma.$disconnect()
                     this.handleResponse(res, completeList);
                 })
                 .catch(async (e) => {
-                    await prisma.$disconnect();
                     this.handleError(res, e);
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 
     static create = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
-            const prisma = new PrismaClient();
+            await prisma.$connect();
             prisma.nav.create({
                 data:
                 {
@@ -82,38 +83,37 @@ export default class NavController extends BaseController {
                 }
             })
                 .then(async () => {
-                    await prisma.$disconnect()
                     this.handleResponse(res, { result: "Nav added to database." });
                 })
                 .catch(async (e) => {
-                    await prisma.$disconnect();
                     this.handleError(res, e);
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 
     static delete = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
+            await prisma.$connect();
             const id = parseInt(req.params.id);
             if (!id || Number.isNaN(id)) {
                 this.handleError(res, null, 500, "Id is not a number");
                 return;
             }
 
-            const prisma = new PrismaClient();
             prisma.nav.delete({ where: { NavId: id } })
                 .then(async () => {
-                    await prisma.$disconnect()
                     this.handleResponse(res, { result: "Nav removed from database." });
                 })
                 .catch(async (e) => {
-                    await prisma.$disconnect();
                     this.handleError(res, e);
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 }

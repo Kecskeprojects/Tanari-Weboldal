@@ -1,8 +1,8 @@
-import authService from "./authService";
+import localStorageHelper from "../Helpers/localStorageHelper";
 
 export default class UserService {
     static async Login(username) {
-        const route = `${process.env.REACT_APP_BACKEND_URL}/User`;
+        const route = `${process.env.REACT_APP_BACKEND_URL}/User/Login`;
         return fetch(route,
             {
                 body: JSON.stringify({ username: username }),
@@ -11,7 +11,7 @@ export default class UserService {
             })
             .then((res) => {
                 if (res.status === 401) {
-                    authService.removeUser();
+                    localStorageHelper.removeUser();
                 }
                 return res;
             });

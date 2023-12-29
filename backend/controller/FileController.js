@@ -1,11 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import BaseController from './BaseController.js';
+import { Prisma } from '../prisma/PrismaClient.js';
 
 export default class FileController extends BaseController {
     static getAll = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
-            const prisma = new PrismaClient();
-
+            await prisma.$connect();
             var where;
             if (req.query?.location) {
                 where = { Location: req.query.location };
@@ -17,19 +18,19 @@ export default class FileController extends BaseController {
                     if (result) {
                         completeList.push(result);
                     }
-                    await prisma.$disconnect()
                     this.handleResponse(res, completeList);
                 })
                 .catch(async (e) => {
-                    await prisma.$disconnect();
                     this.handleError(res, e);
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 
     static getById = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
             const id = parseInt(req.params.id);
             if (!id || Number.isNaN(id)) {
@@ -37,28 +38,28 @@ export default class FileController extends BaseController {
                 return;
             }
 
-            const prisma = new PrismaClient();
+            await prisma.$connect();
             prisma.file.findFirst({ where: { FileId: id } })
                 .then(async (result) => {
                     let entity;
                     if (result) {
                         entity = result;
                     }
-                    await prisma.$disconnect()
                     this.handleResponse(res, entity);
                 })
                 .catch(async (e) => {
-                    await prisma.$disconnect();
                     this.handleError(res, e);
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 
     static create = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
-            const prisma = new PrismaClient();
+            await prisma.$connect();
             prisma.file.create({
                 data:
                 {
@@ -70,38 +71,37 @@ export default class FileController extends BaseController {
                 }
             })
                 .then(async () => {
-                    await prisma.$disconnect()
                     this.handleResponse(res, { result: "File added to database." });
                 })
                 .catch(async (e) => {
                     this.handleError(res, e);
-                    await prisma.$disconnect();
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 
     static delete = async (req, res) => {
+        const prisma = Prisma.getPrisma();
         try {
+            await prisma.$connect();
             const id = parseInt(req.params.id);
             if (!id || Number.isNaN(id)) {
                 this.handleError(res, null, 500, "Id is not a number");
                 return;
             }
 
-            const prisma = new PrismaClient();
             prisma.file.delete({ where: { FileId: id } })
                 .then(async () => {
-                    await prisma.$disconnect()
                     this.handleResponse(res, { result: "File removed from database." });
                 })
                 .catch(async (e) => {
                     this.handleError(res, e);
-                    await prisma.$disconnect();
                 })
         } catch (e) {
             this.handleError(res, e);
         }
+        await prisma.$disconnect();
     };
 }
