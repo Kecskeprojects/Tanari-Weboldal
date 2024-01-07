@@ -16,6 +16,7 @@ export default function getRoutes() {
 	routers.get('/Nav/GetAllForNavbar/', NavController.getAllForNav);
 	routers.post('/Nav/Create/', checkUser, NavController.create);
 	routers.delete('/Nav/Delete/:id', checkUser, NavController.delete);
+	//Todo: Create link backend endpoints similarly to file endpoints, also create them in postman
 
 	return routers;
 }

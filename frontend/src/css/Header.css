@@ -1,0 +1,20 @@
+header {
+	height: 300px;
+	width: 100%;
+	background-color: var(--main-background-color);
+	color: var(--main-color);
+	border-bottom: 1px solid gray;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	background-position: bottom;
+	background-size: contain;
+	padding-top: 10px;
+}
+
+.main-link {
+	color: var(--main-color);
+	text-decoration: none;
+	font-size: 30px;
+	display: inline-block;
+}

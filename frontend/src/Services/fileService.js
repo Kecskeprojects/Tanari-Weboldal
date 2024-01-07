@@ -1,4 +1,6 @@
-export default class fileService {
+import BaseService from './BaseService';
+
+export default class fileService extends BaseService {
 	static async GetAll(location) {
 		var route = `${process.env.REACT_APP_BACKEND_URL}/File/GetAll/`;
 		if (location) {

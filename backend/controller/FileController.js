@@ -13,7 +13,7 @@ export default class FileController extends BaseController {
 				where = { NavId: nav?.NavId };
 			}
 
-			prisma.file
+			prisma.file //Todo: Files should get ordered by upload date, then name
 				.findMany({
 					where: where,
 					select: {

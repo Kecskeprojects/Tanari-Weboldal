@@ -1,3 +1,5 @@
+import '../css/Footer.css';
+
 export default function MainFooter() {
 	return (
 		<footer>
@@ -44,6 +46,8 @@ export default function MainFooter() {
 				</li>
 			</ul>
 			<p>© 2022 Company, Inc</p>
+			{/*Todo: Replace with contact icons (gmail, facebook, etc.)(email opens up email app)*/}
 		</footer>
 	);
+	//Todo: Add a visitor counter and a backend logic, and another table to count visitors, by ip or device? db request counts entries
 }

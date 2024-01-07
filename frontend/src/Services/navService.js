@@ -1,16 +1,34 @@
-export default class navService {
+import BaseService from './BaseService';
+
+export default class navService extends BaseService {
 	static async GetAllForNavbar() {
-		const route = `${process.env.REACT_APP_BACKEND_URL}/Nav/GetAllForNavbar/`;
-		return fetch(route, {
-			method: 'GET',
-		});
+		var navList = null;
+		try {
+			const route = `${process.env.REACT_APP_BACKEND_URL}/Nav/GetAllForNavbar/`;
+
+			const res = await this.Get(route);
+			const body = await res.json();
+			//console.log(body);
+			navList = body[0];
+		} catch (e) {
+			console.log(e);
+		}
+		return navList;
 	}
 
 	static async GetAll() {
-		const route = `${process.env.REACT_APP_BACKEND_URL}/Nav/GetAll/`;
-		return fetch(route, {
-			method: 'GET',
-		});
+		var navList = null;
+		try {
+			const route = `${process.env.REACT_APP_BACKEND_URL}/Nav/GetAll/`;
+
+			const res = await this.Get(route);
+			const body = await res.json();
+			//console.log(body);
+			navList = body[0];
+		} catch (e) {
+			console.log(e);
+		}
+		return navList;
 	}
 
 	static async Create(formData, token) {

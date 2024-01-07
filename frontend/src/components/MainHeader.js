@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import '../css/Header.css';
 import UserService from '../Services/userService';
 import localStorageHelper from '../Helpers/localStorageHelper';
 import UserData from '../models/UserData';
@@ -26,15 +27,9 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 
 	const Login = useCallback(
 		(username) => {
-			UserService.Login(username)
-				.then((res) => res.json())
-				.then((user) => {
-					//console.log(user);
-					const userData = new UserData(user);
-					localStorageHelper.setUser(JSON.stringify(user));
-					setUser(userData);
-				})
-				.catch((error) => console.log(error));
+			UserService.Login(username).then((userData) => {
+				setUser(userData);
+			});
 		},
 		[setUser]
 	);
@@ -54,6 +49,7 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 				/>
 				Home
 			</a>
+			{/*Todo: Place a new button here for adding new nav elements*/}
 			{!isLoggedIn ? (
 				<div>
 					<input

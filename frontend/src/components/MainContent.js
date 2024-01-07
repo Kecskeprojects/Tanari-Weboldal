@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
+import '../css/Content.css';
 import fileService from '../Services/fileService';
-import { FileIcon, defaultStyles } from 'react-file-icon';
+import FileContainer from './FileContainer';
 
 export default function MainContent({
 	setNavigationListenersAttached = () => {},
@@ -59,23 +60,6 @@ export default function MainContent({
 		});
 	}
 
-	function onDownload(e, fileId, name, extension) {
-		fileService
-			.GetById(fileId)
-			.then((res) => res.blob())
-			.then((blob) => {
-				const file = new File([blob], `${name}.${extension}`);
-				const url = window.URL.createObjectURL(file);
-				const link = document.createElement('a');
-				link.setAttribute('download', `${name}.${extension}`);
-				link.setAttribute('href', url);
-				document.body.appendChild(link);
-				link.click();
-				document.body.removeChild(document.body.lastChild);
-			})
-			.catch((error) => console.log(error));
-	}
-
 	function onSubmit(e) {
 		e.preventDefault();
 		const data = new FormData(e.target);
@@ -88,6 +72,9 @@ export default function MainContent({
 			.catch((error) => console.log(error));
 	}
 
+	//Todo: Split into HomePage and NavigatePage, which one will be rendered depends on if the location is empty/no files and links were retrived
+	//Todo: Home page should contain a list on it's right/left side with a list of newly uploaded links/files
+	//Todo: NavigatePage will contain two lists, one for links, one for files, in this order
 	return (
 		<div className='content-container'>
 			<div className='file-upload-container'>
@@ -107,32 +94,12 @@ export default function MainContent({
 			<br />
 			<br />
 			<div>
-				{files.map((file, index) => {
-					return (
-						<div
-							key={index}
-							className='file-container'
-							onClick={(e) =>
-								onDownload(
-									e,
-									file.FileId,
-									file.Name,
-									file.Extension
-								)
-							}
-						>
-							<div className='file-icon'>
-								<FileIcon
-									extension={file.Extension}
-									{...defaultStyles[file.Extension]}
-								/>
-							</div>
-							<span>
-								{file.Name}.{file.Extension}
-							</span>
-						</div>
-					);
-				})}
+				{files.map((file, index) => (
+					<FileContainer
+						file={file}
+						key={'file' + index}
+					/>
+				))}
 			</div>
 		</div>
 	);
