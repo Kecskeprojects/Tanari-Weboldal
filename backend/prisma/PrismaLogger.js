@@ -23,7 +23,7 @@ export default class PrismaLogger {
 	static async LogQuery(e) {
 		if (process.env.ENVIRONMENT === 'development') {
 			console.debug(
-				`Query: ${e.query}\nParams: ${e.params}\n Duration: ${e.duration} ms`
+				`Query: ${e.query}\nParams: ${e.params}\nDuration: ${e.duration} ms`
 			);
 		}
 	}

@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import PrismaLogger from './PrismaLogger';
+import PrismaLogger from './PrismaLogger.js';
 
 export class Prisma {
 	static Prisma;
