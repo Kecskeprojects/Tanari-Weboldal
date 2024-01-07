@@ -51,7 +51,7 @@ header {
 
 .relative-container {
 	position: relative;
-	min-width: 12vw;
+	min-width: 5vw;
 	max-width: 25vw;
 	height: 0;
 }
