@@ -48,7 +48,7 @@ export default class FileController extends BaseController {
 			}
 
 			prisma.file
-				.findFirst({ where: { FileId: id } })
+				.findFirst({ where: { FileId: id }, select: { Content: true } })
 				.then(async (result) => {
 					this.handleFileResponse(res, result.Content);
 				})
