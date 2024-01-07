@@ -13,10 +13,10 @@ model file {
   Extension String   @db.VarChar(10)
   Content   Bytes
   NavId     Int
-  CreatedOn DateTime @db.DateTime(0)
+  CreatedOn DateTime @default(now()) @db.DateTime(0)
   nav       nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_NavId_Nav")
 
-  @@index([NavId], map: "FK_NavId_Nav")
+  @@index([NavId], map: "Index_FileNavId")
 }
 
 model nav {
@@ -24,10 +24,22 @@ model nav {
   Name        String   @db.VarChar(50)
   Url         String?  @db.VarChar(500)
   ParentNavId Int?
-  CreatedOn   DateTime @db.DateTime(0)
+  CreatedOn   DateTime @default(now()) @db.DateTime(0)
   file        file[]
+  link        link[]
   nav         nav?     @relation("navTonav", fields: [ParentNavId], references: [NavId], onUpdate: NoAction, map: "FK_ParentNavId_FileId")
   other_nav   nav[]    @relation("navTonav")
 
-  @@index([ParentNavId], map: "FK_ParentNavId_FileId")
+  @@index([ParentNavId], map: "Index_ParentNavId")
+}
+
+model link {
+  LinkId    Int      @id @default(autoincrement())
+  Url       String   @db.VarChar(500)
+  Title     String   @db.VarChar(100)
+  NavId     Int
+  CreatedOn DateTime @default(now()) @db.DateTime(0)
+  nav       nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
+
+  @@index([NavId], map: "Index_LinkNavId")
 }
