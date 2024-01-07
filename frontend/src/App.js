@@ -9,8 +9,9 @@ import MainFooter from './components/MainFooter';
 
 export default function App() {
 	const [userData, setUserData] = useState(new UserData());
-	const [pushListenerAttached, setPushListenerAttached] = useState(false);
-	
+	const [navigationListenersAttached, setNavigationListenersAttached] =
+		useState(false);
+
 	useEffect(() => {
 		//Load user from local storage if it exists and nothing is currently stored in state
 		if (localStorageHelper.isLoggedIn()) {
@@ -27,18 +28,20 @@ export default function App() {
 				return;
 			}
 		}
-	}, [userData])
+	}, [userData]);
 
 	return (
-		<div className="container-box">
+		<div className='container-box'>
 			<MainHeader
 				setUser={setUserData.bind(this)}
 				isLoggedIn={userData.isLoggedIn()}
 			/>
 			<MainNavBar />
-			<MainContent 
-				pushListenerAttached={pushListenerAttached}
-				setPushListenerAttached={setPushListenerAttached.bind(this)}
+			<MainContent
+				navigationListenersAttached={navigationListenersAttached}
+				setNavigationListenersAttached={setNavigationListenersAttached.bind(
+					this
+				)}
 				userData={userData}
 			/>
 			<MainFooter />
