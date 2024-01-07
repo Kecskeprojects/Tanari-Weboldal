@@ -12,8 +12,11 @@ model file {
   Name      String   @db.VarChar(200)
   Extension String   @db.VarChar(10)
   Content   Bytes
-  Location  String   @db.VarChar(50)
+  NavId     Int
   CreatedOn DateTime @db.DateTime(0)
+  nav       nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_NavId_Nav")
+
+  @@index([NavId], map: "FK_NavId_Nav")
 }
 
 model nav {
@@ -22,6 +25,7 @@ model nav {
   Url         String?  @db.VarChar(500)
   ParentNavId Int?
   CreatedOn   DateTime @db.DateTime(0)
+  file        file[]
   nav         nav?     @relation("navTonav", fields: [ParentNavId], references: [NavId], onUpdate: NoAction, map: "FK_ParentNavId_FileId")
   other_nav   nav[]    @relation("navTonav")
 
