@@ -36,14 +36,9 @@ export default function MainContent({
 		}
 
 		if (locationData.location) {
-			fileService
-				.GetAll(locationData.location)
-				.then((res) => res.json())
-				.then((files) => {
-					//console.log(files);
-					setFiles(files[0]);
-				})
-				.catch((error) => console.log(error));
+			fileService.GetAll(locationData.location).then((files) => {
+				setFiles(files);
+			});
 		}
 	}, [
 		navigationListenersAttached,
@@ -64,12 +59,10 @@ export default function MainContent({
 		e.preventDefault();
 		const data = new FormData(e.target);
 		data.append('navName', locationData.location);
-		fileService
-			.Create(data, userData.token)
-			.then(() => {
-				setLocationData({ ...locationData });
-			})
-			.catch((error) => console.log(error));
+		fileService.Create(data, userData.token).then((result) => {
+			setLocationData({ ...locationData });
+			console.log(result);
+		});
 	}
 
 	//Todo: Split into HomePage and NavigatePage, which one will be rendered depends on if the location is empty/no files and links were retrived

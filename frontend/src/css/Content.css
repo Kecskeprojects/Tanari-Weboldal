@@ -11,11 +11,15 @@
 	margin: 8px;
 	border: 1px solid gray;
 	border-radius: 6px;
-	padding: 5px;
 	text-align: center;
 	float: left;
 	cursor: pointer;
 	background-color: white;
+	position: relative;
+}
+
+.file-container > div {
+	padding: 5px;
 }
 
 .file-container:hover {

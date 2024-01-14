@@ -6,9 +6,7 @@ export default class UserService extends BaseService {
 	static async Login(username) {
 		var userData = new UserData();
 		try {
-			const route = `${process.env.REACT_APP_BACKEND_URL}/User/Login`;
-
-			const res = await this.BaseLogin(route, username);
+			const res = await this.BaseLogin('/User/Login', username);
 			const body = await res.json();
 			//console.log(body);
 			localStorageHelper.setUser(JSON.stringify(body));
