@@ -5,6 +5,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function FileContainer({
 	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },
+	userData = {},
+	refresh = () => {},
 }) {
 	function onDownload(e, fileId, name, extension) {
 		fileService.GetById(fileId).then((blob) => {
@@ -21,13 +23,13 @@ export default function FileContainer({
 
 	function onDelete() {
 		if (window.confirm('Biztosan törölni szeretnéd?')) {
-			alert('törölve');
-		} else {
-			alert('visszavonva');
+			fileService.Remove(file.FileId, userData.token).then((result) => {
+				refresh();
+				console.log(result);
+			});
 		}
 	}
 
-	//Todo: Add a delete icon on the top right corner that deletes file from db
 	return (
 		<div className='file-container'>
 			<span

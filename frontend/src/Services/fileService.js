@@ -44,7 +44,7 @@ export default class fileService extends BaseService {
 		return result;
 	}
 
-	static async Delete(id, token) {
+	static async Remove(id, token) {
 		var result = null;
 		try {
 			const res = await this.Delete(`/File/Delete/${id}`, token);

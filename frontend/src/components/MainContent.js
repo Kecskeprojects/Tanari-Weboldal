@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import '../css/Content.css';
-import fileService from '../Services/fileService';
-import FileContainer from './FileContainer';
+import DetailPage from '../pages/DetailPage';
+import HomePage from '../pages/HomePage';
 
 export default function MainContent({
 	setNavigationListenersAttached = () => {},
@@ -12,7 +11,6 @@ export default function MainContent({
 		location: window.location.pathname.replace('/', ''),
 		locationName: '',
 	});
-	const [files, setFiles] = useState([]);
 
 	const observeUrlChange = useCallback(
 		(e) => {
@@ -34,17 +32,10 @@ export default function MainContent({
 			window.addEventListener('popstate', observeUrlChange);
 			setNavigationListenersAttached(true);
 		}
-
-		if (locationData.location) {
-			fileService.GetAll(locationData.location).then((files) => {
-				setFiles(files);
-			});
-		}
 	}, [
 		navigationListenersAttached,
 		setNavigationListenersAttached,
 		observeUrlChange,
-		locationData,
 	]);
 
 	function onNavigation(e) {
@@ -55,45 +46,17 @@ export default function MainContent({
 		});
 	}
 
-	function onSubmit(e) {
-		e.preventDefault();
-		const data = new FormData(e.target);
-		data.append('navName', locationData.location);
-		fileService.Create(data, userData.token).then((result) => {
-			setLocationData({ ...locationData });
-			console.log(result);
-		});
+	function refresh() {
+		setLocationData({ ...locationData });
 	}
 
-	//Todo: Split into HomePage and NavigatePage, which one will be rendered depends on if the location is empty/no files and links were retrived
-	//Todo: Home page should contain a list on it's right/left side with a list of newly uploaded links/files
-	//Todo: NavigatePage will contain two lists, one for links, one for files, in this order
-	return (
-		<div className='content-container'>
-			<div className='file-upload-container'>
-				<form onSubmit={onSubmit}>
-					<input
-						name='file'
-						type='file'
-					/>
-					<br />
-					<button type='submit'>Fájl Feltöltés</button>
-				</form>
-			</div>
-			<span>
-				This page's content, location: {locationData.location}, Name:{' '}
-				{locationData.locationName}
-			</span>
-			<br />
-			<br />
-			<div>
-				{files.map((file, index) => (
-					<FileContainer
-						file={file}
-						key={'file' + index}
-					/>
-				))}
-			</div>
-		</div>
+	return locationData && locationData.location ? (
+		<DetailPage
+			locationData={locationData}
+			refresh={refresh}
+			userData={userData}
+		/>
+	) : (
+		<HomePage />
 	);
 }

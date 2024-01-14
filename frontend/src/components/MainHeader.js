@@ -47,7 +47,7 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 					width='64'
 					height='64'
 				/>
-				Home
+				Főoldal
 			</a>
 			{/*Todo: Place a new button here for adding new nav elements*/}
 			{!isLoggedIn ? (
@@ -63,7 +63,7 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 						type='button'
 						onClick={(e) => onLogin(e)}
 					>
-						Log In
+						Belépés
 					</button>
 				</div>
 			) : (
@@ -72,7 +72,7 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 					type='button'
 					onClick={(e) => onLogOut(e)}
 				>
-					Log Out
+					Kilépés
 				</button>
 			)}
 		</header>
