@@ -2,33 +2,6 @@ import BaseController from './BaseController.js';
 import { Prisma } from '../prisma/PrismaClient.js';
 
 export default class NavController extends BaseController {
-	static getAll = async (req, res) => {
-		const prisma = Prisma.getPrisma();
-		try {
-			prisma.nav
-				.findMany({
-					select: {
-						NavId: true,
-						Name: true,
-						Url: true,
-						ParentNavId: true,
-					},
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
-		} catch (e) {
-			this.handleError(res, e);
-		}
-	};
-
 	static getAllForNav = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {

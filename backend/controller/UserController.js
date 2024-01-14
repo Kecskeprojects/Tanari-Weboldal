@@ -17,7 +17,7 @@ export default class UserController extends BaseController {
 
 			const uuid = crypto.randomUUID();
 			const token = jwt.sign({ id: uuid }, process.env.SECRET, {
-				expiresIn: '14d',
+				expiresIn: '7d',
 			});
 			this.handleResponse(res, {
 				accessToken: token,

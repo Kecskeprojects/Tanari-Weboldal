@@ -13,7 +13,7 @@ export default class FileController extends BaseController {
 				where = { NavId: nav?.NavId };
 			}
 
-			prisma.file //Todo: Files should get ordered by upload date, then name
+			prisma.file
 				.findMany({
 					where: where,
 					select: {
@@ -22,6 +22,7 @@ export default class FileController extends BaseController {
 						Extension: true,
 						NavId: true,
 					},
+					orderBy: [{ CreatedOn: 'desc' }, { Name: 'asc' }],
 				})
 				.then(async (result) => {
 					const completeList = [];
