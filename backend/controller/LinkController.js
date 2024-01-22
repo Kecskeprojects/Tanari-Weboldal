@@ -6,11 +6,13 @@ export default class LinkController extends BaseController {
 		const prisma = Prisma.getPrisma();
 		try {
 			var where;
-			if (req.query?.navName) {
-				const nav = await prisma.nav.findFirst({
-					where: { Name: req.query.navName },
-				});
-				where = { NavId: nav?.NavId };
+			if (req.query.navId) {
+				const id = parseInt(req.query.navId);
+				if (!id || Number.isNaN(id)) {
+					this.handleError(res, null, 500, 'Id is not a number');
+					return;
+				}
+				where = { NavId: id };
 			}
 
 			prisma.link

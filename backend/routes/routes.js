@@ -20,6 +20,7 @@ export default function getRoutes() {
 	routers.post('/User/Login/', UserController.login);
 
 	routers.get('/Nav/GetAllForNavbar/', NavController.getAllForNav);
+	routers.get('/Nav/GetById/:url', NavController.getByUrl);
 	routers.post('/Nav/Create/', checkUser, NavController.create);
 	routers.delete('/Nav/Delete/:id', checkUser, NavController.delete);
 

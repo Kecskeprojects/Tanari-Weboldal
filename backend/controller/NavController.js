@@ -47,6 +47,25 @@ export default class NavController extends BaseController {
 		}
 	};
 
+	static getByUrl = async (req, res) => {
+		const prisma = Prisma.getPrisma();
+		try {
+			prisma.nav
+				.findFirst({
+					where: { Url: req.params.url },
+					select: { NavId: true, Url: true, Name: true },
+				})
+				.then(async (result) => {
+					this.handleResponse(res, result);
+				})
+				.catch(async (e) => {
+					this.handleError(res, e);
+				});
+		} catch (e) {
+			this.handleError(res, e);
+		}
+	};
+
 	static create = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
