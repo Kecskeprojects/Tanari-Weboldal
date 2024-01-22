@@ -52,6 +52,7 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 				Főoldal
 			</a>
 			{/*Todo: Place a new button here for adding new nav elements*/}
+			{/*Todo: It should only appear if user is logged in*/}
 			{!isLoggedIn ? (
 				<div>
 					<input

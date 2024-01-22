@@ -30,6 +30,7 @@ export default function FileContainer({
 		}
 	}
 
+	//Todo: Put delete icon into separate component, it should only appear when logged in
 	return (
 		<div className='file-container'>
 			<span

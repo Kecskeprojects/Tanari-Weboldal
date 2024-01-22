@@ -13,6 +13,7 @@ export default function NavButton({
 		pushStateWithEvent(null, title, url);
 	}
 
+	//Todo: Put delete icon into separate component, it should only appear when logged in
 	//Todo: Add a delete icon on the right end of navbar that deletes nav from db
 	function renderButton(nav, index, isInner = false) {
 		const dropdown = isDropdown(nav);

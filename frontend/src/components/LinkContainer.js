@@ -16,6 +16,7 @@ export default function LinkContainer({
 		}
 	}
 
+	//Todo: Put delete icon into separate component, it should only appear when logged in
 	return (
 		<div className='link-container'>
 			<a href={link.Url}>{link.Title}</a>
