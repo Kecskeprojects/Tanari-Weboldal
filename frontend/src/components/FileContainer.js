@@ -1,7 +1,6 @@
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import fileService from '../Services/fileService';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import DeleteIcon from './DeleteIcon';
 
 export default function FileContainer({
 	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },
@@ -21,24 +20,15 @@ export default function FileContainer({
 		});
 	}
 
-	function onDelete() {
-		if (window.confirm('Biztosan törölni szeretnéd?')) {
-			fileService.Remove(file.FileId, userData.token).then((result) => {
-				refresh();
-				console.log(result);
-			});
-		}
-	}
-
-	//Todo: Put delete icon into separate component, it should only appear when logged in
 	return (
 		<div className='file-container'>
-			<span
-				className='delete-icon text-danger'
-				onClick={onDelete}
-			>
-				<FontAwesomeIcon icon={faTrash} />
-			</span>
+			<DeleteIcon
+				onDeleteFunction={() =>
+					fileService.Remove(file.FileId, userData.token)
+				}
+				afterDeleteFunction={refresh}
+				show={userData.isLoggedIn()}
+			/>
 			<div
 				onClick={(e) =>
 					onDownload(e, file.FileId, file.Name, file.Extension)

@@ -3,7 +3,7 @@ import '../css/Nav.css';
 import navService from '../Services/navService';
 import NavButton from './NavButton';
 
-export default function MainNavBar() {
+export default function MainNavBar({ userData = {} }) {
 	const [navJSON, setNavJSON] = useState(null);
 
 	useEffect(() => {
@@ -21,6 +21,7 @@ export default function MainNavBar() {
 								nav={nav}
 								index={index}
 								key={nav.Name + index}
+								userData={userData}
 							/>
 					  ))
 					: null}

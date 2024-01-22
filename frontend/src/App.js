@@ -8,7 +8,7 @@ import MainNavBar from './components/MainNavBar';
 import MainFooter from './components/MainFooter';
 
 export default function App() {
-	const [userData, setUserData] = useState(new UserData());
+	const [userData, setUserData] = useState(new UserData()); //Todo: Consider if user should be stored in useContext
 	const [navigationListenersAttached, setNavigationListenersAttached] =
 		useState(false);
 
@@ -36,7 +36,7 @@ export default function App() {
 				setUser={setUserData.bind(this)}
 				isLoggedIn={userData.isLoggedIn()}
 			/>
-			<MainNavBar />
+			<MainNavBar userData={userData} />
 			<MainContent
 				navigationListenersAttached={navigationListenersAttached}
 				setNavigationListenersAttached={setNavigationListenersAttached.bind(
