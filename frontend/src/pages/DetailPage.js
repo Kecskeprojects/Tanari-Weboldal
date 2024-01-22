@@ -38,6 +38,8 @@ export default function DetailPage({
 
 	return (
 		<div className='content-container'>
+			{/*Todo: The buttons should also only appear in case the user is logged in*/}
+			{/*Todo: Add buttons for popups instead of constantly being there*/}
 			{/* <PopupBase /> */}
 			{/* <div className='file-upload-container'>
 				<form onSubmit={onSubmit}>

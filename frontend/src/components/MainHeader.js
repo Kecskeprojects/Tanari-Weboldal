@@ -34,6 +34,8 @@ export default function MainHeader({ setUser = () => {}, isLoggedIn = false }) {
 		[setUser]
 	);
 
+	//Todo: Make into individual components
+	//The Főoldal link should also be modified to use the event handler we use for navigation
 	return (
 		<header style={{ backgroundImage: 'url(./img/header-img.jpg)' }}>
 			<a

@@ -11,7 +11,7 @@ export default function MainContent({
 		location: window.location.pathname.replace('/', ''),
 		locationName: '',
 	});
-
+	//Todo: reconsider if the navigation works this way or if there is an easier solution (useContext), clean up code more
 	const observeUrlChange = useCallback(
 		(e) => {
 			const newLocation = window.location.pathname.replace('/', '');
