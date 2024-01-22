@@ -1,5 +1,5 @@
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
-import '../css/Footer.css';
+import '../../css/Footer.css';
 import FooterLinkRow from './FooterLinkRow';
 
 export default function MainFooter() {

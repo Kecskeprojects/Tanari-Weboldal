@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { pushStateWithEvent } from '../Helpers/pushStateHelper';
-import { UserContext } from '../Contexts';
-import navService from '../Services/navService';
-import DeleteIcon from './DeleteIcon';
+import { pushStateWithEvent } from '../../Helpers/pushStateHelper';
+import { UserContext } from '../../Contexts';
+import navService from '../../Services/navService';
+import DeleteIcon from '../DeleteIcon';
 
 export default function NavButton({
 	nav = { Name: 'unknown', Url: 'unknown', other_nav: [] },

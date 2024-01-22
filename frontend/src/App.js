@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import MainHeader from './components/Header/MainHeader';
 import './css/App.css';
-import MainContent from './components/MainContent';
+import MainContent from './components/Content/MainContent';
 import localStorageHelper from './Helpers/localStorageHelper';
 import UserData from './models/UserData';
-import MainNavBar from './components/MainNavBar';
-import MainFooter from './components/MainFooter';
+import MainNavBar from './components/Nav/MainNavBar';
+import MainFooter from './components/Footer/MainFooter';
 import { UserContext } from './Contexts';
 
 export default function App() {

@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import '../css/DetailPage.css';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
-import FileContainer from '../components/FileContainer';
+import FileContainer from '../components/Content/FileContainer';
 // import PopupBase from '../components/PopupBase';
-import LinkContainer from '../components/LinkContainer';
+import LinkContainer from '../components/Content/LinkContainer';
 import { LocationContext } from '../Contexts';
 
 export default function DetailPage() {

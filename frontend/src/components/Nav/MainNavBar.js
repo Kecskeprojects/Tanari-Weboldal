@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import '../css/Nav.css';
-import navService from '../Services/navService';
+import '../../css/Nav.css';
+import navService from '../../Services/navService';
 import NavButton from './NavButton';
 
 export default function MainNavBar() {

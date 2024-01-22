@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import DetailPage from '../pages/DetailPage';
-import HomePage from '../pages/HomePage';
-import { setNavigationListeners } from '../Helpers/pushStateHelper';
-import navService from '../Services/navService';
-import { LocationContext } from '../Contexts';
-import LocationData from '../models/LocationData';
+import DetailPage from '../../pages/DetailPage';
+import HomePage from '../../pages/HomePage';
+import { setNavigationListeners } from '../../Helpers/pushStateHelper';
+import navService from '../../Services/navService';
+import { LocationContext } from '../../Contexts';
+import LocationData from '../../models/LocationData';
 
 export default function MainContent() {
 	const [locationData, setLocationData] = useState(new LocationData());
