@@ -1,55 +1,22 @@
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import '../css/Footer.css';
+import FooterLinkRow from './FooterLinkRow';
 
 export default function MainFooter() {
 	return (
 		<footer>
 			<ul className='nav justify-content-center border-bottom'>
-				<li>
-					<a
-						href='/'
-						className='nav-link px-2'
-					>
-						Home
-					</a>
-				</li>
-				<li>
-					<a
-						href='/'
-						className='nav-link px-2'
-					>
-						Features
-					</a>
-				</li>
-				<li>
-					<a
-						href='/'
-						className='nav-link px-2'
-					>
-						Pricing
-					</a>
-				</li>
-				<li>
-					<a
-						href='/'
-						className='nav-link px-2'
-					>
-						FAQs
-					</a>
-				</li>
-				<li>
-					<a
-						href='/'
-						className='nav-link px-2'
-					>
-						About
-					</a>
-				</li>
+				<FooterLinkRow
+					itemList={[
+						{ title: 'Home', url: '/', icon: faHouse },
+						{ title: 'Features', url: '/', icon: faHouse },
+						{ title: 'Pricing', url: '/', icon: faHouse },
+						{ title: 'FAQs', url: '/', icon: faHouse },
+						{ title: 'About', url: '/', icon: faHouse },
+					]}
+				/>
 			</ul>
-			<p>© 2022 Company, Inc</p>
-			{
-				//Todo: Replace with contact icons (gmail, facebook, etc.)(email opens up email app)
-				//Todo: Make a generic link item
-			}
+			<p>Látogatások száma: 0</p>
 		</footer>
 	);
 	//Todo: Add a visitor counter and a backend logic, and another table to count visitors, by ip or device? db request counts entries

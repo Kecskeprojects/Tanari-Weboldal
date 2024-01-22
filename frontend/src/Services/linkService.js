@@ -1,12 +1,12 @@
 import BaseService from './BaseService';
 
 export default class linkService extends BaseService {
-	static async GetAll(location) {
+	static async GetAll(navId) {
 		var linkList = null;
 		try {
 			var route = '/Link/GetAll/';
-			if (location) {
-				route += `?navName=${location}`;
+			if (navId) {
+				route += `?navId=${navId}`;
 			}
 			const res = await this.Get(route);
 			const body = await res.json();

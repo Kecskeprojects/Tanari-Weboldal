@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import MainHeader from './components/MainHeader';
+import MainHeader from './components/Header/MainHeader';
 import './css/App.css';
 import MainContent from './components/MainContent';
 import localStorageHelper from './Helpers/localStorageHelper';
 import UserData from './models/UserData';
 import MainNavBar from './components/MainNavBar';
 import MainFooter from './components/MainFooter';
+import { UserContext } from './Contexts';
 
 export default function App() {
-	const [userData, setUserData] = useState(new UserData()); //Todo: Consider if user should be stored in useContext
-	const [navigationListenersAttached, setNavigationListenersAttached] =
-		useState(false);
+	const [userData, setUserData] = useState(new UserData());
 
 	useEffect(() => {
 		//Load user from local storage if it exists and nothing is currently stored in state
@@ -31,20 +30,13 @@ export default function App() {
 	}, [userData]);
 
 	return (
-		<div className='container-box'>
-			<MainHeader
-				setUser={setUserData.bind(this)}
-				isLoggedIn={userData.isLoggedIn()}
-			/>
-			<MainNavBar userData={userData} />
-			<MainContent
-				navigationListenersAttached={navigationListenersAttached}
-				setNavigationListenersAttached={setNavigationListenersAttached.bind(
-					this
-				)}
-				userData={userData}
-			/>
-			<MainFooter />
-		</div>
+		<UserContext.Provider value={{ userData, setUserData }}>
+			<div className='container-box'>
+				<MainHeader />
+				<MainNavBar />
+				<MainContent />
+				<MainFooter />
+			</div>
+		</UserContext.Provider>
 	);
 }

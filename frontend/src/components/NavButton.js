@@ -1,19 +1,17 @@
+import { useContext } from 'react';
 import { pushStateWithEvent } from '../Helpers/pushStateHelper';
+import { UserContext } from '../Contexts';
 import navService from '../Services/navService';
 import DeleteIcon from './DeleteIcon';
 
 export default function NavButton({
 	nav = { Name: 'unknown', Url: 'unknown', other_nav: [] },
 	index = 0,
-	userData = {},
 }) {
+	const context = useContext(UserContext);
+
 	function isDropdown(nav) {
 		return nav.other_nav && nav.other_nav.length > 0;
-	}
-
-	function onNavClick(e, title, url) {
-		e.preventDefault();
-		pushStateWithEvent(null, title, url);
 	}
 
 	function renderButton(nav, index, isInner = false) {
@@ -31,13 +29,16 @@ export default function NavButton({
 						(dropdown ? ' dropdown-toggle' : '')
 					}
 					href={nav.Url}
-					onClick={(e) => onNavClick(e, nav.Name, nav.Url)}
+					onClick={(e) =>
+						pushStateWithEvent(e, null, nav.Name, nav.Url)
+					}
 				>
 					<DeleteIcon
 						onDeleteFunction={() =>
-							navService.Remove(nav.NavId, userData.token)
+							navService.Remove(nav.NavId, context.userData.token)
 						}
-						show={userData.isLoggedIn()}
+						className='mt-2'
+						show={context.userData.isLoggedIn()}
 					/>
 					{nav.Name}
 				</a>

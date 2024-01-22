@@ -1,12 +1,15 @@
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import fileService from '../Services/fileService';
 import DeleteIcon from './DeleteIcon';
+import { useContext } from 'react';
+import { UserContext } from '../Contexts';
 
 export default function FileContainer({
 	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },
-	userData = {},
 	refresh = () => {},
 }) {
+	const context = useContext(UserContext);
+
 	function onDownload(e, fileId, name, extension) {
 		fileService.GetById(fileId).then((blob) => {
 			const file = new File([blob], `${name}.${extension}`);
@@ -24,10 +27,10 @@ export default function FileContainer({
 		<div className='file-container'>
 			<DeleteIcon
 				onDeleteFunction={() =>
-					fileService.Remove(file.FileId, userData.token)
+					fileService.Remove(file.FileId, context.userData.token)
 				}
 				afterDeleteFunction={refresh}
-				show={userData.isLoggedIn()}
+				show={context.userData.isLoggedIn()}
 			/>
 			<div
 				onClick={(e) =>

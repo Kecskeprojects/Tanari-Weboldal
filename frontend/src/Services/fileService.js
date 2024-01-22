@@ -1,12 +1,12 @@
 import BaseService from './BaseService';
 
 export default class fileService extends BaseService {
-	static async GetAll(location) {
+	static async GetAll(navId) {
 		var fileList = null;
 		try {
 			var route = '/File/GetAll/';
-			if (location) {
-				route += `?navName=${location}`;
+			if (navId) {
+				route += `?navId=${navId}`;
 			}
 			const res = await this.Get(route);
 			const body = await res.json();

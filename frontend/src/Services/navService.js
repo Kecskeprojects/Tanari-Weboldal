@@ -1,3 +1,4 @@
+import LocationData from '../models/LocationData';
 import BaseService from './BaseService';
 
 export default class navService extends BaseService {
@@ -12,6 +13,19 @@ export default class navService extends BaseService {
 			console.log(e);
 		}
 		return navList;
+	}
+
+	static async GetByUrl(url) {
+		var nav = new LocationData();
+		try {
+			const res = await this.Get(`/Nav/GetById/${url}`);
+			const body = await res.json();
+			//console.log(body);
+			nav = new LocationData(body);
+		} catch (e) {
+			console.log(e);
+		}
+		return nav;
 	}
 
 	static async Create(formData, token) {

@@ -1,62 +1,51 @@
 import { useCallback, useEffect, useState } from 'react';
 import DetailPage from '../pages/DetailPage';
 import HomePage from '../pages/HomePage';
+import { setNavigationListeners } from '../Helpers/pushStateHelper';
+import navService from '../Services/navService';
+import { LocationContext } from '../Contexts';
+import LocationData from '../models/LocationData';
 
-export default function MainContent({
-	setNavigationListenersAttached = () => {},
-	navigationListenersAttached = false,
-	userData,
-}) {
-	const [locationData, setLocationData] = useState({
-		location: window.location.pathname.replace('/', ''),
-		locationName: '',
-	});
-	//Todo: reconsider if the navigation works this way or if there is an easier solution (useContext), clean up code more
-	const observeUrlChange = useCallback(
-		(e) => {
-			const newLocation = window.location.pathname.replace('/', '');
-			if (locationData.location !== newLocation) {
-				setLocationData({ location: newLocation, locationName: '' });
+export default function MainContent() {
+	const [locationData, setLocationData] = useState(new LocationData());
+
+	const onNavigation = useCallback(
+		(e = {}) => {
+			const newLocation = (
+				e.detail?.url ? e.detail?.url : window.location.pathname
+			).replace('/', '');
+
+			if (locationData.Url !== newLocation) {
+				//console.log(newLocation);
+				if (newLocation) {
+					navService.GetByUrl(newLocation).then((locationData) => {
+						if (locationData.NavId) {
+							setLocationData(locationData);
+						}
+					});
+				} else {
+					setLocationData(new LocationData());
+				}
 			}
 		},
 		[locationData]
 	);
 
 	useEffect(() => {
-		if (!navigationListenersAttached) {
-			//Removing to avoid duplication, in the rare case that it may occur
-			document.removeEventListener('onpushstate', onNavigation);
-			document.addEventListener('onpushstate', onNavigation);
+		setNavigationListeners(onNavigation);
 
-			window.removeEventListener('popstate', observeUrlChange);
-			window.addEventListener('popstate', observeUrlChange);
-			setNavigationListenersAttached(true);
+		if (!locationData.Url && window.location.pathname) {
+			onNavigation();
 		}
-	}, [
-		navigationListenersAttached,
-		setNavigationListenersAttached,
-		observeUrlChange,
-	]);
+	}, [locationData, onNavigation]);
 
-	function onNavigation(e) {
-		//console.log(e.detail);
-		setLocationData({
-			location: e.detail.url,
-			locationName: e.detail.title,
-		});
-	}
-
-	function refresh() {
-		setLocationData({ ...locationData });
-	}
-
-	return locationData && locationData.location ? (
-		<DetailPage
-			locationData={locationData}
-			refresh={refresh}
-			userData={userData}
-		/>
-	) : (
-		<HomePage />
+	return (
+		<LocationContext.Provider value={{ locationData, setLocationData }}>
+			{window.location.pathname.replace('/', '') ? (
+				<DetailPage />
+			) : (
+				<HomePage />
+			)}
+		</LocationContext.Provider>
 	);
 }

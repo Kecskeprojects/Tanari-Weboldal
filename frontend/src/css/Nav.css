@@ -2,9 +2,9 @@
 	/*Minus header and footer height*/
 	height: calc(100vh - 30vh - 100px);
 	padding-left: 10px;
-	/*Minus left padding and border width*/
-	width: calc(12vw + 10px + 1px);
-	max-width: 25vw;
+	/*Minus left padding, right padding and border width*/
+	width: calc(14vw + 10px + 30px + 1px);
+	max-width: 160px;
 	border-right: 1px solid gray;
 	background-color: var(--main-background-color);
 	color: var(--main-color);
@@ -33,7 +33,8 @@
 	max-width: 25vw;
 }
 
-.dropdown-item {
+.dropdown-item,
+.nav-link {
 	padding-right: 30px;
 }
 
