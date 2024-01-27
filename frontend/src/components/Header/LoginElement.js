@@ -32,11 +32,20 @@ export default function LoginElement() {
 
 	return !context.userData.isLoggedIn() ? (
 		<div>
+			<label
+				htmlFor='username'
+				hidden={true}
+			>
+				Username
+			</label>
 			<input
 				className='me-2'
 				type='password'
 				id='username'
+				autoComplete='username'
 				onKeyUp={(e) => handleEnter(e)}
+				aria-label='Username'
+				title='Username'
 			/>
 			<button
 				className='me-2'
