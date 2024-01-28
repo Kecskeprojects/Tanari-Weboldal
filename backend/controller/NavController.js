@@ -69,10 +69,17 @@ export default class NavController extends BaseController {
 	static create = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
+			var nav = null;
+			if (req.body.parentNavUrl) {
+				nav = await prisma.nav.findFirst({
+					where: { Url: req.body.parentNavUrl },
+				});
+			}
+
 			prisma.nav
 				.create({
 					data: {
-						ParentNavId: req.body.parentId,
+						ParentNavId: nav?.NavId,
 						Name: req.body.name,
 						Url: req.body.url,
 						CreatedOn: new Date(),

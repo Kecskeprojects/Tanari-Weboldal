@@ -4,6 +4,7 @@ import FileController from '../controller/FileController.js';
 import UserController from '../controller/UserController.js';
 import NavController from '../controller/NavController.js';
 import LinkController from '../controller/LinkController.js';
+import VisitController from '../controller/VisitController.js';
 
 export default function getRoutes() {
 	const routers = express.Router();
@@ -23,6 +24,9 @@ export default function getRoutes() {
 	routers.get('/Nav/GetById/:url', NavController.getByUrl);
 	routers.post('/Nav/Create/', checkUser, NavController.create);
 	routers.delete('/Nav/Delete/:id', checkUser, NavController.delete);
+
+	routers.get('/Visit/Get/', VisitController.get);
+	routers.put('/Visit/Update/', VisitController.update);
 
 	return routers;
 }

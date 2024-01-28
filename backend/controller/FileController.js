@@ -53,7 +53,11 @@ export default class FileController extends BaseController {
 			prisma.file
 				.findFirst({ where: { FileId: id }, select: { Content: true } })
 				.then(async (result) => {
-					this.handleFileResponse(res, result.Content);
+					if (result) {
+						this.handleFileResponse(res, result.Content);
+						return;
+					}
+					this.handleError(res, null, 500, 'File not found');
 				})
 				.catch(async (e) => {
 					this.handleError(res, e);
@@ -71,28 +75,22 @@ export default class FileController extends BaseController {
 				return;
 			}
 
-			const nav = await prisma.nav.findFirst({
-				where: { Name: req.body.navName },
-			});
-			if (!nav) {
-				this.handleResponse(
-					res,
-					{ result: 'Location does not exist.' },
-					500
-				);
+			const navId = parseInt(req.body.navId);
+			if (!navId || Number.isNaN(navId)) {
+				this.handleError(res, null, 500, 'Id is not a number');
 				return;
 			}
 
-			const name = req.files.file.name.split('.')[0];
-			const extension = req.files.file.name.split('.')[1];
+			const name = req.files.mainfile.name.split('.')[0];
+			const extension = req.files.mainfile.name.split('.')[1];
 
 			prisma.file
 				.create({
 					data: {
-						Content: req.files.file.data,
+						Content: req.files.mainfile.data,
 						Name: name,
 						Extension: extension,
-						NavId: nav.NavId,
+						NavId: navId,
 						CreatedOn: new Date(),
 					},
 				})

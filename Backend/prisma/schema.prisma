@@ -34,12 +34,20 @@ model nav {
 }
 
 model link {
-  LinkId    Int      @id @default(autoincrement())
-  Url       String   @db.VarChar(500)
-  Title     String   @db.VarChar(100)
-  NavId     Int
-  CreatedOn DateTime @default(now()) @db.DateTime(0)
-  nav       nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
+  LinkId     Int      @id @default(autoincrement())
+  Url        String   @db.VarChar(500)
+  Title      String   @db.VarChar(100)
+  OpenNewTab Boolean  @default(dbgenerated("(b'0')")) @db.Bit(1)
+  NavId      Int
+  CreatedOn  DateTime @default(now()) @db.DateTime(0)
+  nav        nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
 
   @@index([NavId], map: "Index_LinkNavId")
+}
+
+model visit {
+  VisitorId  Int      @id @default(autoincrement())
+  VisitCount BigInt   @default(0) @db.UnsignedBigInt
+  CreatedOn  DateTime @default(now()) @db.DateTime(0)
+  ModifiedOn DateTime @default(now()) @db.DateTime(0)
 }

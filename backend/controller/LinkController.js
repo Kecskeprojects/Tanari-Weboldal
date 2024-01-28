@@ -22,6 +22,7 @@ export default class LinkController extends BaseController {
 						LinkId: true,
 						Url: true,
 						Title: true,
+						OpenNewTab: true,
 						NavId: true,
 					},
 					orderBy: [{ CreatedOn: 'desc' }, { Title: 'asc' }],
@@ -44,15 +45,9 @@ export default class LinkController extends BaseController {
 	static create = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
-			const nav = await prisma.nav.findFirst({
-				where: { Name: req.body.navName },
-			});
-			if (!nav) {
-				this.handleResponse(
-					res,
-					{ result: 'Location does not exist.' },
-					500
-				);
+			const navId = parseInt(req.body.navId);
+			if (!navId || Number.isNaN(navId)) {
+				this.handleError(res, null, 500, 'Id is not a number');
 				return;
 			}
 
@@ -61,7 +56,8 @@ export default class LinkController extends BaseController {
 					data: {
 						Url: req.body.url,
 						Title: req.body.title,
-						NavId: nav.NavId,
+						OpenNewTab: req.body.openNewTab === 'true',
+						NavId: navId,
 						CreatedOn: new Date(),
 					},
 				})
