@@ -36,6 +36,7 @@
 .dropdown-item,
 .nav-link {
 	padding-right: 30px;
+	position: relative;
 }
 
 .navbar-nav li:hover > div > ul.dropdown-menu {

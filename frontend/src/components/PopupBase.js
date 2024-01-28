@@ -12,7 +12,7 @@ export default function PopupBase({
 }) {
 	useEffect(() => {
 		function handleKeyDown(e) {
-			console.log(e.keyCode);
+			//console.log(e.keyCode);
 			//27 is the key code for Escape
 			if (e.keyCode === 27) {
 				onCancel(e);
@@ -42,6 +42,7 @@ export default function PopupBase({
 				className='form-input'
 				aria-label={input.label ? input.label : input.name}
 				title={input.label ? input.label : input.name}
+				name={input.name}
 			/>
 		);
 	}

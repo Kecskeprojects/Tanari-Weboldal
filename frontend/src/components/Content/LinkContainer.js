@@ -4,7 +4,7 @@ import DeleteIcon from '../DeleteIcon';
 import { UserContext } from '../../Contexts';
 
 export default function LinkContainer({
-	link = { LinkId: 0, Url: 'unknown', Title: 'txt' },
+	link = { LinkId: 0, Url: 'unknown', Title: 'txt', OpenNewTab: false },
 	refresh = () => {},
 }) {
 	const context = useContext(UserContext);
@@ -17,7 +17,13 @@ export default function LinkContainer({
 				afterDeleteFunction={refresh}
 				show={context.userData.isLoggedIn()}
 			/>
-			<a href={link.Url}>{link.Title}</a>
+			<a
+				href={link.Url}
+				target={link.OpenNewTab === true ? '_blank' : '_self'}
+				rel='noreferrer'
+			>
+				{link.Title}
+			</a>
 		</div>
 	);
 }

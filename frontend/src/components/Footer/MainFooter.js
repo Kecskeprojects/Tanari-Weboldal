@@ -1,8 +1,18 @@
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import '../../css/Footer.css';
 import FooterLinkRow from './FooterLinkRow';
+import { useEffect, useState } from 'react';
+import visitService from '../../Services/visitService';
 
 export default function MainFooter() {
+	const [visitCount, setVisitCount] = useState(0n);
+
+	useEffect(() => {
+		visitService.GetVisits().then((result) => {
+			setVisitCount(result);
+		});
+	}, []);
+
 	return (
 		<footer>
 			<ul className='nav justify-content-center border-bottom'>
@@ -16,8 +26,7 @@ export default function MainFooter() {
 					]}
 				/>
 			</ul>
-			<p>Látogatások száma: 0</p>
+			<p>Látogatások száma: {visitCount.toString()}</p>
 		</footer>
 	);
-	//Todo: Add a visitor counter and a backend logic, and another table to count visitors, by ip or device? db request counts entries
 }

@@ -3,7 +3,7 @@ export default class LinkPopupDetail {
 	static inputs = [
 		{ name: 'url', type: 'text', label: 'útvonal/teljes link' },
 		{ name: 'title', type: 'text', label: 'helyettesítő szöveg' },
-		{ name: 'target', type: 'checkbox', label: 'új lapon?' },
+		{ name: 'openNewTab', type: 'checkbox', label: 'új lapon?' },
 	];
 	static buttonLabel = 'Hozzáadás';
 }

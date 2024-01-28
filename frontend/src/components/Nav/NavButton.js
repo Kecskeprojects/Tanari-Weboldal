@@ -37,7 +37,7 @@ export default function NavButton({
 						onDeleteFunction={() =>
 							navService.Remove(nav.NavId, context.userData.token)
 						}
-						className='mt-2'
+						className='mt-1'
 						show={context.userData.isLoggedIn()}
 					/>
 					{nav.Name}

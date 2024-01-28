@@ -11,7 +11,6 @@ export default function DeleteIcon({
 		if (window.confirm('Biztosan törölni szeretnéd?')) {
 			onDeleteFunction().then((result) => {
 				afterDeleteFunction();
-				console.log(result);
 			});
 		}
 	}

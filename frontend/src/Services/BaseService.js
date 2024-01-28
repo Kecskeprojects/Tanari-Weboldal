@@ -26,7 +26,7 @@ export default class BaseService {
 		});
 	}
 
-	static async Put(route, token, body = {}, additionalHeaders = {}) {
+	static async Put(route, token = '', body = {}, additionalHeaders = {}) {
 		return fetch(`${process.env.REACT_APP_BACKEND_URL}${route}`, {
 			body: body,
 			method: 'PUT',

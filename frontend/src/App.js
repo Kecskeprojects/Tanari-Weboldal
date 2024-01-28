@@ -7,6 +7,7 @@ import UserData from './models/UserData';
 import MainNavBar from './components/Nav/MainNavBar';
 import MainFooter from './components/Footer/MainFooter';
 import { UserContext } from './Contexts';
+import visitService from './Services/visitService';
 
 export default function App() {
 	const [userData, setUserData] = useState(new UserData());
@@ -28,10 +29,14 @@ export default function App() {
 			}
 		}
 	}, [userData]);
+
 	//Todo: Implement loading screens where any sort of backend call happens
 	return (
 		<UserContext.Provider value={{ userData, setUserData }}>
-			<div className='container-box'>
+			<div
+				className='container-box'
+				onLoad={(e) => visitService.Update()}
+			>
 				<MainHeader />
 				<MainNavBar />
 				<MainContent />

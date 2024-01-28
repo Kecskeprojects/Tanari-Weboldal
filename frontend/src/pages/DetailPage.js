@@ -33,25 +33,29 @@ export default function DetailPage() {
 
 	function refresh() {
 		context.setLocationData({ ...context.locationData });
+		setPanel(PopupTypeEnum.None);
 	}
 
 	function linkOnSubmit(e) {
 		e.preventDefault();
 		const data = new FormData(e.target);
-		data.append('navName', context.locationData.location);
-		linkService.Create(data, userContext.userData.token).then((result) => {
+		data.append('navId', context.locationData.NavId);
+		if (data.has('openNewTab')) {
+			data.set('openNewTab', 'true');
+		} else {
+			data.append('openNewTab', 'true');
+		}
+		linkService.Create(data, userContext.userData.token).then(() => {
 			refresh();
-			console.log(result);
 		});
 	}
 
 	function fileOnSubmit(e) {
 		e.preventDefault();
 		const data = new FormData(e.target);
-		data.append('navName', context.locationData.location);
-		fileService.Create(data, userContext.userData.token).then((result) => {
+		data.append('navId', context.locationData.NavId);
+		fileService.Create(data, userContext.userData.token).then(() => {
 			refresh();
-			console.log(result);
 		});
 	}
 
@@ -102,7 +106,7 @@ export default function DetailPage() {
 			{links && links.length > 0 ? (
 				<>
 					<div className='content-header'>Linkek:</div>
-					<div className='overflow-hidden'>
+					<div className='overflow-hidden w-100'>
 						{links.map((link, index) => (
 							<LinkContainer
 								link={link}
@@ -116,7 +120,7 @@ export default function DetailPage() {
 			{files && files.length > 0 ? (
 				<>
 					<div className='content-header'>Fájlok:</div>
-					<div className='overflow-hidden'>
+					<div className='overflow-hidden w-100'>
 						{files.map((file, index) => (
 							<FileContainer
 								file={file}
