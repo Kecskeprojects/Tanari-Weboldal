@@ -3,15 +3,21 @@ import '../css/DetailPage.css';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
 import FileContainer from '../components/Content/FileContainer';
-// import PopupBase from '../components/PopupBase';
+import PopupBase from '../components/PopupBase';
 import LinkContainer from '../components/Content/LinkContainer';
-import { LocationContext } from '../Contexts';
+import { LocationContext, UserContext } from '../Contexts';
+import FilePopupDetail from '../components/Content/FilePopupDetail';
+import LinkPopupDetail from '../components/Content/LinkPopupDetail';
+import PopupTypeEnum from '../enum/PopupTypeEnum';
+import Button from '../components/Button';
 
 export default function DetailPage() {
 	const [files, setFiles] = useState([]);
 	const [links, setLinks] = useState([]);
+	const [panel, setPanel] = useState(PopupTypeEnum.None);
 
 	const context = useContext(LocationContext);
+	const userContext = useContext(UserContext);
 
 	useEffect(() => {
 		if (context.locationData?.Url) {
@@ -29,31 +35,70 @@ export default function DetailPage() {
 		context.setLocationData({ ...context.locationData });
 	}
 
-	// function onSubmit(e) {
-	// 	e.preventDefault();
-	// 	const data = new FormData(e.target);
-	// 	data.append('navName', locationData.location);
-	// 	fileService.Create(data, userData.token).then((result) => {
-	// 		refresh();
-	// 		console.log(result);
-	// 	});
-	// }
+	function linkOnSubmit(e) {
+		e.preventDefault();
+		const data = new FormData(e.target);
+		data.append('navName', context.locationData.location);
+		linkService.Create(data, userContext.userData.token).then((result) => {
+			refresh();
+			console.log(result);
+		});
+	}
+
+	function fileOnSubmit(e) {
+		e.preventDefault();
+		const data = new FormData(e.target);
+		data.append('navName', context.locationData.location);
+		fileService.Create(data, userContext.userData.token).then((result) => {
+			refresh();
+			console.log(result);
+		});
+	}
+
+	function renderPopups() {
+		switch (panel) {
+			case PopupTypeEnum.CreateFile: {
+				return (
+					<PopupBase
+						popupDetail={FilePopupDetail}
+						onSubmitFunction={fileOnSubmit}
+						onCancel={() => setPanel(PopupTypeEnum.None)}
+					/>
+				);
+			}
+			case PopupTypeEnum.CreateLink: {
+				return (
+					<PopupBase
+						popupDetail={LinkPopupDetail}
+						onSubmitFunction={linkOnSubmit}
+						onCancel={() => setPanel(PopupTypeEnum.None)}
+					/>
+				);
+			}
+			default:
+				return null;
+		}
+	}
+
+	function renderButtons() {
+		return (
+			<>
+				<Button
+					label='Fájl Hozzáadás'
+					onClickFunction={() => setPanel(PopupTypeEnum.CreateFile)}
+				/>
+				<Button
+					label='Link Hozzáadás'
+					onClickFunction={() => setPanel(PopupTypeEnum.CreateLink)}
+				/>
+			</>
+		);
+	}
 
 	return (
 		<div className='content-container'>
-			{/*Todo: Make popups for the add logics*/}
-			{/*Todo: Add buttons for popups instead of constantly being there, The buttons should also only appear in case the user is logged in*/}
-			{/* <PopupBase /> */}
-			{/* <div className='file-upload-container'>
-				<form onSubmit={onSubmit}>
-					<input
-						name='file'
-						type='file'
-					/>
-					<br />
-					<button type='submit'>Fájl Feltöltés</button>
-				</form>
-			</div> */}
+			{renderPopups()}
+			{renderButtons()}
 			{links && links.length > 0 ? (
 				<>
 					<div className='content-header'>Linkek:</div>

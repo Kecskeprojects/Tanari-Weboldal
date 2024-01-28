@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import DetailPage from '../../pages/DetailPage';
 import HomePage from '../../pages/HomePage';
-import { setNavigationListeners } from '../../Helpers/pushStateHelper';
 import navService from '../../Services/navService';
 import { LocationContext } from '../../Contexts';
 import LocationData from '../../models/LocationData';
@@ -32,11 +31,17 @@ export default function MainContent() {
 	);
 
 	useEffect(() => {
-		setNavigationListeners(onNavigation);
+		document.addEventListener('pushstate', onNavigation);
+		window.addEventListener('popstate', onNavigation);
 
 		if (!locationData.Url && window.location.pathname) {
 			onNavigation();
 		}
+
+		return function cleanup() {
+			document.removeEventListener('pushstate', onNavigation);
+			window.removeEventListener('popstate', onNavigation);
+		};
 	}, [locationData, onNavigation]);
 
 	return (
