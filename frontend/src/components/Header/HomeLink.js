@@ -9,7 +9,7 @@ export default function HomeLink() {
 		>
 			<img
 				className='me-2'
-				src='https://placehold.co/64'
+				src='https://placehold.co/64' //Todo: Switch out with proper file
 				alt='profile'
 				width='64'
 				height='64'

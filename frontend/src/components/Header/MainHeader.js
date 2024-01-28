@@ -4,7 +4,7 @@ import PopupTypeEnum from '../../enum/PopupTypeEnum';
 import Button from '../Button';
 import HomeLink from './HomeLink';
 import LoginElement from './LoginElement';
-import NavPopupDetail from '../Content/NavPopupDetail';
+import NavPopupDetail from './NavPopupDetail';
 import PopupBase from '../PopupBase';
 import navService from '../../Services/navService';
 import { UserContext } from '../../Contexts';

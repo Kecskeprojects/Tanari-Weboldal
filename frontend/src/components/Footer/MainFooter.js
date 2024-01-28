@@ -16,7 +16,7 @@ export default function MainFooter() {
 	return (
 		<footer>
 			<ul className='nav justify-content-center border-bottom'>
-				<FooterLinkRow
+				<FooterLinkRow //Todo: Get the right footer links
 					itemList={[
 						{ title: 'Home', url: '/', icon: faHouse },
 						{ title: 'Features', url: '/', icon: faHouse },
