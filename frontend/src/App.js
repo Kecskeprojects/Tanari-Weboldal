@@ -3,7 +3,7 @@ import MainHeader from './components/Header/MainHeader';
 import './css/App.css';
 import MainContent from './components/Content/MainContent';
 import localStorageHelper from './Helpers/localStorageHelper';
-import UserData from './models/UserData';
+import UserData from './Models/UserData';
 import MainNavBar from './components/Nav/MainNavBar';
 import MainFooter from './components/Footer/MainFooter';
 import { UserContext } from './Contexts';

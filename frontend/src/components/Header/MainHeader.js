@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import '../../css/Header.css';
-import PopupTypeEnum from '../../enum/PopupTypeEnum';
+import PopupTypeEnum from '../../Enum/PopupTypeEnum';
 import Button from '../Button';
 import HomeLink from './HomeLink';
 import LoginElement from './LoginElement';

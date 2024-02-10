@@ -8,7 +8,7 @@ import LinkContainer from '../components/Content/LinkContainer';
 import { LocationContext, UserContext } from '../Contexts';
 import FilePopupDetail from '../components/Content/FilePopupDetail';
 import LinkPopupDetail from '../components/Content/LinkPopupDetail';
-import PopupTypeEnum from '../enum/PopupTypeEnum';
+import PopupTypeEnum from '../Enum/PopupTypeEnum';
 import Button from '../components/Button';
 
 export default function DetailPage() {

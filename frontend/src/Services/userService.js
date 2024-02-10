@@ -1,5 +1,5 @@
 import localStorageHelper from '../Helpers/localStorageHelper';
-import UserData from '../models/UserData';
+import UserData from '../Models/UserData';
 import BaseService from './BaseService';
 
 export default class UserService extends BaseService {

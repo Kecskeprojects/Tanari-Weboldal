@@ -1,4 +1,4 @@
-import LocationData from '../models/LocationData';
+import LocationData from '../Models/LocationData';
 import BaseService from './BaseService';
 
 export default class navService extends BaseService {

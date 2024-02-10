@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import UserData from './models/UserData';
-import LocationData from './models/LocationData';
+import UserData from './Models/UserData';
+import LocationData from './Models/LocationData';
 
 export const UserContext = createContext({
 	userData: new UserData(),

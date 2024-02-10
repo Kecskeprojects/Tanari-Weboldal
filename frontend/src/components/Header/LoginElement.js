@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import UserService from '../../Services/userService';
 import localStorageHelper from '../../Helpers/localStorageHelper';
-import UserData from '../../models/UserData';
+import UserData from '../../Models/UserData';
 import { UserContext } from '../../Contexts';
 
 export default function LoginElement() {
