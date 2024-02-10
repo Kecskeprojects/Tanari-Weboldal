@@ -125,3 +125,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+*/build/img
+*/build/static
+*/build/asset-manifest.json
+*/build/index.html
+*/build/manifest.json
+*/build/robots.txt
