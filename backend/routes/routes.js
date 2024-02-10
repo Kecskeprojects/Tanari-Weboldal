@@ -9,6 +9,12 @@ import VisitController from '../controller/VisitController.js';
 export default function getRoutes() {
 	const routers = express.Router();
 
+	routers.get('/Status', (req, res) => {
+		res.status(200).json(
+			`Server in '${process.env.ENVIRONMENT}' environtment is running on port '${process.env.PORT}'`
+		);
+	});
+
 	routers.get('/File/GetAll/', FileController.getAll);
 	routers.get('/File/GetById/:id', FileController.getById);
 	routers.post('/File/Create/', checkUser, FileController.create);
