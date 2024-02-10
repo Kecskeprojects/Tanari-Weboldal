@@ -9,7 +9,7 @@ export default function MainFooter() {
 
 	useEffect(() => {
 		visitService.GetVisits().then((result) => {
-			setVisitCount(result);
+			setVisitCount(result ?? 0);
 		});
 	}, []);
 
