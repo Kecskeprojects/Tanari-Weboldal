@@ -6,7 +6,10 @@ import fileUpload from 'express-fileupload';
 import fs from 'fs';
 import util from 'util';
 
-const log_file = fs.createWriteStream('debug.log', { flags: 'w' });
+const __dirname = new URL('.', import.meta.url).pathname;
+const log_file = fs.createWriteStream(__dirname.split('/')[1] + 'debug.log', {
+	flags: 'w',
+});
 const log_stdout = process.stdout;
 
 console.log = function (d) {
