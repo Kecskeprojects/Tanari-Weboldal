@@ -16,7 +16,7 @@ export default class BaseController {
 		message = 'Database error occurred.'
 	) {
 		if (err) {
-			console.error(err);
+			console.log(err);
 		}
 		res.status(status).json({ error: message });
 	}

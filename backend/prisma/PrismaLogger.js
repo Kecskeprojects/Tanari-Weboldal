@@ -22,7 +22,7 @@ export default class PrismaLogger {
 
 	static async LogQuery(e) {
 		if (process.env.ENVIRONMENT === 'development') {
-			console.debug(
+			console.log(
 				`Query: ${e.query}\nParams: ${e.params}\nDuration: ${e.duration} ms`
 			);
 		}
@@ -30,19 +30,19 @@ export default class PrismaLogger {
 
 	static async LogInfo(e) {
 		if (process.env.ENVIRONMENT === 'development') {
-			console.info(e);
+			console.log(e);
 		}
 	}
 
 	static async LogWarn(e) {
 		if (process.env.ENVIRONMENT === 'development') {
-			console.warn(e);
+			console.log(e);
 		}
 	}
 
 	static async LogError(e) {
 		if (process.env.ENVIRONMENT === 'development') {
-			console.error(e);
+			console.log(e);
 		}
 	}
 }

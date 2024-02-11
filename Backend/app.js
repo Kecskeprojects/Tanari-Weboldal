@@ -3,6 +3,16 @@ import { handleAuthorizationError } from './routes/protect-routes.js';
 import getRoutes from './routes/routes.js';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import fs from 'fs';
+import util from 'util';
+
+const log_file = fs.createWriteStream('debug.log', { flags: 'w' });
+const log_stdout = process.stdout;
+
+console.log = function (d) {
+	log_file.write(util.format(d) + '\n');
+	log_stdout.write(util.format(d) + '\n');
+};
 
 const app = express();
 app.use(express.json());
