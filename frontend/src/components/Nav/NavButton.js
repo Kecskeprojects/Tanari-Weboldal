@@ -37,6 +37,13 @@ export default function NavButton({
 						onDeleteFunction={() =>
 							navService.Remove(nav.NavId, context.userData.token)
 						}
+						afterDeleteFunction={(result) => {
+							if (result.error) {
+								window.alert(result.error);
+								return;
+							}
+							window.location.reload();
+						}}
 						className='mt-1'
 						show={context.userData.isLoggedIn()}
 					/>

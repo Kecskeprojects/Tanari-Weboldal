@@ -10,7 +10,7 @@ export default function DeleteIcon({
 	function onDelete() {
 		if (window.confirm('Biztosan törölni szeretnéd?')) {
 			onDeleteFunction().then((result) => {
-				afterDeleteFunction();
+				afterDeleteFunction(result);
 			});
 		}
 	}
