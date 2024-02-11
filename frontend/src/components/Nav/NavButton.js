@@ -5,13 +5,13 @@ import navService from '../../Services/navService';
 import DeleteIcon from '../DeleteIcon';
 
 export default function NavButton({
-	nav = { Name: 'unknown', Url: 'unknown', other_nav: [] },
+	nav = { Name: 'unknown', Url: 'unknown', other_Nav: [] },
 	index = 0,
 }) {
 	const context = useContext(UserContext);
 
 	function isDropdown(nav) {
-		return nav.other_nav && nav.other_nav.length > 0;
+		return nav.other_Nav && nav.other_Nav.length > 0;
 	}
 
 	function renderButton(nav, index, isInner = false) {
@@ -45,7 +45,7 @@ export default function NavButton({
 				{dropdown ? (
 					<div className='relative-container'>
 						<ul className='dropdown-menu'>
-							{nav.other_nav.map((inner_nav, inner_index) =>
+							{nav.other_Nav.map((inner_nav, inner_index) =>
 								renderButton(inner_nav, inner_index, true)
 							)}
 						</ul>

@@ -3,51 +3,45 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlserver"
   url      = env("DATABASE_URL")
 }
 
-model file {
-  FileId    Int      @id @default(autoincrement())
-  Name      String   @db.VarChar(200)
-  Extension String   @db.VarChar(10)
+model File {
+  FileId    Int      @id(map: "PK_FileId") @default(autoincrement())
+  Name      String   @db.NVarChar(200)
+  Extension String   @db.NVarChar(10)
   Content   Bytes
   NavId     Int
-  CreatedOn DateTime @default(now()) @db.DateTime(0)
-  nav       nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_NavId_Nav")
-
-  @@index([NavId], map: "Index_FileNavId")
+  CreatedOn DateTime @default(now(), map: "DF_File_CreatedOn") @db.DateTime
+  Nav       Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_FileNavId_Nav")
 }
 
-model nav {
-  NavId       Int      @id @default(autoincrement())
-  Name        String   @db.VarChar(50)
-  Url         String?  @db.VarChar(500)
+model Nav {
+  NavId       Int      @id(map: "PK_NavId") @default(autoincrement())
+  Name        String   @db.NVarChar(50)
+  Url         String?  @db.NVarChar(500)
   ParentNavId Int?
-  CreatedOn   DateTime @default(now()) @db.DateTime(0)
-  file        file[]
-  link        link[]
-  nav         nav?     @relation("navTonav", fields: [ParentNavId], references: [NavId], onUpdate: NoAction, map: "FK_ParentNavId_FileId")
-  other_nav   nav[]    @relation("navTonav")
-
-  @@index([ParentNavId], map: "Index_ParentNavId")
+  CreatedOn   DateTime @default(now(), map: "DF_Nav_CreatedOn") @db.DateTime
+  File        File[]
+  Link        Link[]
+  Nav         Nav?     @relation("NavToNav", fields: [ParentNavId], references: [NavId], onDelete: NoAction, onUpdate: NoAction, map: "FK_ParentNavId_NavId")
+  other_Nav   Nav[]    @relation("NavToNav")
 }
 
-model link {
-  LinkId     Int      @id @default(autoincrement())
-  Url        String   @db.VarChar(500)
-  Title      String   @db.VarChar(100)
-  OpenNewTab Boolean  @default(dbgenerated("(b'0')")) @db.Bit(1)
+model Link {
+  LinkId     Int      @id(map: "PK_LinkId") @default(autoincrement())
+  Url        String   @db.NVarChar(500)
+  Title      String   @db.NVarChar(100)
+  OpenNewTab Boolean  @default(false, map: "DF_Link_OpenNewTab")
   NavId      Int
-  CreatedOn  DateTime @default(now()) @db.DateTime(0)
-  nav        nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
-
-  @@index([NavId], map: "Index_LinkNavId")
+  CreatedOn  DateTime @default(now(), map: "DF_Link_CreatedOn") @db.DateTime
+  Nav        Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
 }
 
-model visit {
-  VisitorId  Int      @id @default(autoincrement())
-  VisitCount BigInt   @default(0) @db.UnsignedBigInt
-  CreatedOn  DateTime @default(now()) @db.DateTime(0)
-  ModifiedOn DateTime @default(now()) @db.DateTime(0)
+model Visit {
+  VisitorId  Int      @id(map: "PK_VisitorId") @default(autoincrement())
+  VisitCount BigInt   @default(0, map: "DF_Visit_VisitCount")
+  CreatedOn  DateTime @default(now(), map: "DF_Visit_CreatedOn") @db.DateTime
+  ModifiedOn DateTime @default(now(), map: "DF_Visit_ModifiedOn") @db.DateTime
 }

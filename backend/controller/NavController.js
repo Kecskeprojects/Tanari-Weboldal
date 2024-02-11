@@ -9,17 +9,17 @@ export default class NavController extends BaseController {
 				.findMany({
 					where: { ParentNavId: null },
 					include: {
-						other_nav: {
+						other_Nav: {
 							include: {
-								other_nav: {
+								other_Nav: {
 									include: {
-										other_nav: {
+										other_Nav: {
 											include: {
-												other_nav: {
+												other_Nav: {
 													include: {
-														other_nav: {
+														other_Nav: {
 															include: {
-																other_nav: true,
+																other_Nav: true,
 															},
 														},
 													},
