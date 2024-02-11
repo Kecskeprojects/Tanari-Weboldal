@@ -1,0 +1,31 @@
+0. It is strongly advised for the Github folder to be at the root of the drive it is located in
+it will make later steps easier
+
+1. Download and install node.js, IIS Express, IIS Node, URL Rewrite
+
+2. In Control Panel => Programs => Turn Windows features on or off
+Tick Internet Information Services
+within Internet Information Services => World Wide Web Services
+=> Application Development Features => Tick every checkbox except CGI
+
+3. rewrite in C:\Program Files\iisnode\interceptor.js last line
+require(process.argv[1]) => require('child_process').spawn(process.argv[0], process.argv.slice(1));
+
+4. Create new site in IIS named TanariWeb, the location should be where the frontend/build folder is located
+5. Within the new site, make a sub-application named api, the location should be the backend folder
+
+6. Add the IUSR access to the folders where the projects are located, and also to the route leading to it
+
+7. In SQL Server, within security, add a login for the default applicationpool user
+(IIS APPPool\DefaultAppPool)
+8. In the database, within security, add a user for the default applicationpool user,
+during creation, in the owned schemas and membership tabs, give db_owner rights
+
+9. npm ci in both frontend and backend folders 
+
+10. run the "build frontend.bat" file
+
+11. run npx prisma generate in the backend folder
+
+12. The project should be ready to go, if anything is missing from this list,
+add it the next time it is needed
