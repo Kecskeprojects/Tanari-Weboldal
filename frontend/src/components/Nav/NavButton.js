@@ -49,7 +49,7 @@ export default function NavButton({
 							window.location.reload();
 						}}
 						className='mt-1'
-						show={context.userData.isLoggedIn()}
+						show={!isDropdown(nav) && context.userData.isLoggedIn()}
 					/>
 					{nav.Name}
 				</a>
