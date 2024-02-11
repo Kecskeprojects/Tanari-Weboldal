@@ -38,7 +38,7 @@ export default function NavButton({
 							navService.Remove(nav.NavId, context.userData.token)
 						}
 						afterDeleteFunction={(result) => {
-							if (result.error) {
+							if (result?.error) {
 								window.alert(result.error);
 								return;
 							}

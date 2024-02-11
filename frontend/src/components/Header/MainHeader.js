@@ -53,7 +53,7 @@ export default function MainHeader() {
 					label='Navigáció Hozzáadás'
 					onClickFunction={() => setPanel(PopupTypeEnum.CreateNav)}
 					afterDeleteFunction={(result) => {
-						if (result.error) {
+						if (result?.error) {
 							window.alert(result.error);
 							return;
 						}

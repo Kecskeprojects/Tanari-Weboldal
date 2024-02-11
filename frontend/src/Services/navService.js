@@ -47,7 +47,11 @@ export default class navService extends BaseService {
 			const res = await this.Delete(`/Nav/Delete/${id}`, token);
 			const body = await res.json();
 			//console.log(body);
-			result = body.result;
+			if (body.error) {
+				result = body;
+			} else {
+				result = body.result;
+			}
 		} catch (e) {
 			console.log(e);
 		}
