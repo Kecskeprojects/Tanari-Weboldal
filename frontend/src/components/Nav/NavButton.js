@@ -29,9 +29,13 @@ export default function NavButton({
 						(dropdown ? ' dropdown-toggle' : '')
 					}
 					href={nav.Url}
-					onClick={(e) =>
-						pushStateWithEvent(e, null, nav.Name, nav.Url)
-					}
+					onClick={(e) => {
+						if (e.target.tagName.toLowerCase() == 'a') {
+							pushStateWithEvent(e, null, nav.Name, nav.Url);
+							return;
+						}
+						e.preventDefault();
+					}}
 				>
 					<DeleteIcon
 						onDeleteFunction={() =>
