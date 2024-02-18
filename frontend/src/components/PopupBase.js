@@ -14,7 +14,10 @@ export default function PopupBase({
 
 	useEffect(() => {
 		function handleKeyDown(e) {
-			//console.log(e.keyCode);
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(e.keyCode);
+			}
+
 			//27 is the key code for Escape
 			if (e.keyCode === 27) {
 				onCancel(e);

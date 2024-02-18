@@ -6,7 +6,11 @@ export default class visitService extends BaseService {
 		try {
 			const res = await this.Get(`/Visit/Get`);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			visitCount = BigInt(body?.count);
 		} catch (e) {
 			console.log(e);
@@ -19,7 +23,11 @@ export default class visitService extends BaseService {
 		try {
 			const res = await this.Put('/Visit/Update/');
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			result = body.result;
 		} catch (e) {
 			console.log(e);

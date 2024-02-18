@@ -11,7 +11,11 @@ export default class UserService extends BaseService {
 		try {
 			const res = await this.BaseLogin('/User/Login', username);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			if (!body?.error) {
 				localStorageHelper.setUser(JSON.stringify(body));
 				userData = new UserData(body);

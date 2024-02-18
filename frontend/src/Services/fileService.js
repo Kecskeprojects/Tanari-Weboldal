@@ -14,7 +14,11 @@ export default class fileService extends BaseService {
 			}
 			const res = await this.Get(route);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			fileList = body[0];
 		} catch (e) {
 			console.log(e);
@@ -30,7 +34,11 @@ export default class fileService extends BaseService {
 		try {
 			const res = await this.Get(`/File/GetById/${id}`);
 			const body = await res.blob();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			file = body;
 		} catch (e) {
 			console.log(e);
@@ -48,7 +56,11 @@ export default class fileService extends BaseService {
 		try {
 			const res = await this.Post('/File/Create/', token, formData);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			result = body.result;
 		} catch (e) {
 			console.log(e);
@@ -66,7 +78,11 @@ export default class fileService extends BaseService {
 		try {
 			const res = await this.Delete(`/File/Delete/${id}`, token);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			result = body.result;
 		} catch (e) {
 			console.log(e);

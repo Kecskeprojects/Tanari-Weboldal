@@ -10,7 +10,11 @@ export default class navService extends BaseService {
 		try {
 			const res = await this.Get('/Nav/GetAllForNavbar/');
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			navList = body[0];
 		} catch (e) {
 			console.log(e);
@@ -27,7 +31,11 @@ export default class navService extends BaseService {
 		try {
 			const res = await this.Get(`/Nav/GetById/${url}`);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			nav = new LocationData(body);
 		} catch (e) {
 			console.log(e);
@@ -45,7 +53,11 @@ export default class navService extends BaseService {
 		try {
 			const res = await this.Post('/Nav/Create/', token, formData);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			result = body.result;
 		} catch (e) {
 			console.log(e);
@@ -63,7 +75,11 @@ export default class navService extends BaseService {
 		try {
 			const res = await this.Delete(`/Nav/Delete/${id}`, token);
 			const body = await res.json();
-			//console.log(body);
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
 			if (body.error) {
 				result = body;
 			} else {

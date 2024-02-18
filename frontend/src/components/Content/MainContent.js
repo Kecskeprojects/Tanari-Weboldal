@@ -15,7 +15,9 @@ export default function MainContent() {
 			).replace('/', '');
 
 			if (locationData.Url !== newLocation) {
-				//console.log(newLocation);
+				if (process.env.NODE_ENV !== 'production') {
+					console.log(newLocation);
+				}
 				if (newLocation) {
 					navService
 						.GetByUrl(newLocation) /*No loading*/
