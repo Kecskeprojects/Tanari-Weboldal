@@ -5,6 +5,12 @@ export const checkUser = expressjwt({
 	algorithms: ['HS256'],
 });
 
+/**
+ * @param {Error} err
+ * @param {Request} req
+ * @param {Response} res
+ * @param {import('express').NextFunction} next
+ */
 export function handleAuthorizationError(err, req, res, next) {
 	if (err.name === 'UnauthorizedError') {
 		res.status(401).send({

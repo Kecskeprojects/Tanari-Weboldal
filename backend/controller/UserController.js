@@ -4,9 +4,13 @@ import bcrypt from 'bcrypt';
 import DateHelper from '../helpers/DateHelper.js';
 
 export default class UserController extends BaseController {
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static login = async (req, res) => {
 		try {
-			const userMatches = await bcrypt.compare(
+			const userMatches = bcrypt.compareSync(
 				req.body.username,
 				process.env.ENCRYPTED_USERNAME
 			);

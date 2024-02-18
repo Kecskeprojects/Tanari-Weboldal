@@ -35,14 +35,10 @@ export default class PrismaLogger {
 	}
 
 	static async LogWarn(e) {
-		if (process.env.ENVIRONMENT === 'development') {
-			console.log(e);
-		}
+		console.log(e);
 	}
 
 	static async LogError(e) {
-		if (process.env.ENVIRONMENT === 'development') {
-			console.log(e);
-		}
+		console.log(e);
 	}
 }

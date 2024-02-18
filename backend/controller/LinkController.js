@@ -2,6 +2,10 @@ import BaseController from './BaseController.js';
 import { Prisma } from '../prisma/PrismaClient.js';
 
 export default class LinkController extends BaseController {
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static getAll = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
@@ -42,6 +46,10 @@ export default class LinkController extends BaseController {
 		}
 	};
 
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static create = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
@@ -74,6 +82,10 @@ export default class LinkController extends BaseController {
 		}
 	};
 
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static delete = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {

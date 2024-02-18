@@ -9,8 +9,12 @@ export default class UserService extends BaseService {
 			const res = await this.BaseLogin('/User/Login', username);
 			const body = await res.json();
 			//console.log(body);
-			localStorageHelper.setUser(JSON.stringify(body));
-			userData = new UserData(body);
+			if (!body?.error) {
+				localStorageHelper.setUser(JSON.stringify(body));
+				userData = new UserData(body);
+			} else {
+				window.alert(body.error);
+			}
 		} catch (e) {
 			console.log(e);
 		}
