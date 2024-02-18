@@ -51,11 +51,13 @@ export default function MainContent() {
 
 	return (
 		<LocationContext.Provider value={{ locationData, setLocationData }}>
-			{window.location.pathname.replace('/', '') ? (
-				<DetailPage />
-			) : (
-				<HomePage />
-			)}
+			<div className='content-container'>
+				{window.location.pathname.replace('/', '') ? (
+					<DetailPage />
+				) : (
+					<HomePage />
+				)}
+			</div>
 		</LocationContext.Provider>
 	);
 }

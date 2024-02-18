@@ -104,7 +104,7 @@ export default function DetailPage() {
 	}
 
 	return (
-		<div className='content-container'>
+		<>
 			{renderPopups()}
 			{renderButtons()}
 			{links && links.length > 0 ? (
@@ -135,6 +135,6 @@ export default function DetailPage() {
 					</div>
 				</>
 			) : null}
-		</div>
+		</>
 	);
 }

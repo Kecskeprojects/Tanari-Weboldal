@@ -49,6 +49,39 @@ export default class FileController extends BaseController {
 	 * @param {Request} req
 	 * @param {Response} res
 	 */
+	static getRecent = async (req, res) => {
+		const prisma = Prisma.getPrisma();
+		try {
+			prisma.file
+				.findMany({
+					select: {
+						FileId: true,
+						Name: true,
+						Extension: true,
+						NavId: true,
+					},
+					orderBy: [{ CreatedOn: 'desc' }, { Name: 'asc' }],
+					take: 5,
+				})
+				.then(async (result) => {
+					const completeList = [];
+					if (result) {
+						completeList.push(result);
+					}
+					this.handleResponse(res, completeList);
+				})
+				.catch(async (e) => {
+					this.handleError(res, e);
+				});
+		} catch (e) {
+			this.handleError(res, e);
+		}
+	};
+
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static getById = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
@@ -105,7 +138,7 @@ export default class FileController extends BaseController {
 				return;
 			}
 
-			const extension = '';
+			var extension = '';
 			if (fileNameParts.length > 1) {
 				extension = fileNameParts[fileNameParts.length - 1];
 			}

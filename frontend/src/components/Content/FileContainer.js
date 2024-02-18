@@ -9,6 +9,8 @@ import DeleteIcon from '../DeleteIcon';
 export default function FileContainer({
 	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },
 	refresh = () => {},
+	showDelete = true,
+	className = '',
 }) {
 	const [loading, setLoading] = useState(false);
 
@@ -30,14 +32,16 @@ export default function FileContainer({
 	}
 
 	return (
-		<div className='file-container'>
-			<DeleteIcon
-				onDeleteFunction={() =>
-					fileService.Remove(file.FileId, context.userData.token)
-				}
-				afterDeleteFunction={refresh}
-				show={context.userData.isLoggedIn()}
-			/>
+		<div className={'file-container ' + className}>
+			{showDelete ? (
+				<DeleteIcon
+					onDeleteFunction={() =>
+						fileService.Remove(file.FileId, context.userData.token)
+					}
+					afterDeleteFunction={refresh}
+					show={context.userData.isLoggedIn()}
+				/>
+			) : null}
 			<div
 				onClick={(e) =>
 					onDownload(e, file.FileId, file.Name, file.Extension)

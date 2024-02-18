@@ -1,0 +1,10 @@
+.vertical-list {
+	height: max-content;
+	max-width: 200px;
+	text-align: right;
+	margin-left: auto;
+}
+
+.float-right {
+	float: right;
+}

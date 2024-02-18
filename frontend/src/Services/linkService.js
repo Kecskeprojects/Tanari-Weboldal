@@ -27,6 +27,26 @@ export default class linkService extends BaseService {
 	}
 
 	/**
+	 * @returns {Array}
+	 */
+	static async GetRecent() {
+		var linkList = null;
+		try {
+			const res = await this.Get('/Link/GetRecent/');
+			const body = await res.json();
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
+			linkList = body[0];
+		} catch (e) {
+			console.log(e);
+		}
+		return linkList;
+	}
+
+	/**
 	 * @param {FormData} formData
 	 * @param {String} token
 	 * @returns {Object}

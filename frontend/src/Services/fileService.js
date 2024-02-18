@@ -27,6 +27,26 @@ export default class fileService extends BaseService {
 	}
 
 	/**
+	 * @returns {Array}
+	 */
+	static async GetRecent() {
+		var fileList = null;
+		try {
+			const res = await this.Get('/File/GetRecent/');
+			const body = await res.json();
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
+			fileList = body[0];
+		} catch (e) {
+			console.log(e);
+		}
+		return fileList;
+	}
+
+	/**
 	 * @param {Number} id
 	 */
 	static async GetById(id) {
