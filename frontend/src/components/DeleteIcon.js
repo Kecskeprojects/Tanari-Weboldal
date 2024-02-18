@@ -1,5 +1,6 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
 export default function DeleteIcon({
 	onDeleteFunction = () => {},
@@ -7,11 +8,15 @@ export default function DeleteIcon({
 	show = true,
 	className = '',
 }) {
+	const [loading, setLoading] = useState(false);
+
 	function onDelete() {
 		if (window.confirm('Biztosan törölni szeretnéd?')) {
 			onDeleteFunction().then((result) => {
 				afterDeleteFunction(result);
+				setLoading(false);
 			});
+			setLoading(true);
 		}
 	}
 
@@ -20,7 +25,14 @@ export default function DeleteIcon({
 			className={'delete-icon text-danger ' + className}
 			onClick={onDelete}
 		>
-			<FontAwesomeIcon icon={faTrash} />
+			{loading ? (
+				<FontAwesomeIcon
+					icon={faCircleNotch}
+					spin={true}
+				/>
+			) : (
+				<FontAwesomeIcon icon={faTrash} />
+			)}
 		</span>
 	) : null;
 }

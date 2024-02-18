@@ -30,7 +30,6 @@ export default function App() {
 		}
 	}, [userData]);
 
-	//Todo: Implement loading screens where any sort of backend call happens
 	return (
 		<UserContext.Provider value={{ userData, setUserData }}>
 			<div

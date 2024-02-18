@@ -1,4 +1,6 @@
-import { useContext } from 'react';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext, useState } from 'react';
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import { UserContext } from '../../Contexts';
 import fileService from '../../Services/fileService';
@@ -8,6 +10,8 @@ export default function FileContainer({
 	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },
 	refresh = () => {},
 }) {
+	const [loading, setLoading] = useState(false);
+
 	const context = useContext(UserContext);
 
 	function onDownload(e, fileId, name, extension) {
@@ -20,7 +24,9 @@ export default function FileContainer({
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(document.body.lastChild);
+			setLoading(false);
 		});
+		setLoading(true);
 	}
 
 	return (
@@ -38,10 +44,18 @@ export default function FileContainer({
 				}
 			>
 				<div className='file-icon'>
-					<FileIcon
-						extension={file.Extension}
-						{...defaultStyles[file.Extension]}
-					/>
+					{loading ? (
+						<FontAwesomeIcon
+							icon={faCircleNotch}
+							spin={true}
+							fontSize={40}
+						/>
+					) : (
+						<FileIcon
+							extension={file.Extension}
+							{...defaultStyles[file.Extension]}
+						/>
+					)}
 				</div>
 				<span>
 					{file.Name}.{file.Extension}

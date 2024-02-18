@@ -1,6 +1,6 @@
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function PopupBase({
 	popupDetail = {
@@ -10,6 +10,8 @@ export default function PopupBase({
 	onSubmitFunction = (e) => {},
 	onCancel = (e) => {},
 }) {
+	const [loading, setLoading] = useState(false);
+
 	useEffect(() => {
 		function handleKeyDown(e) {
 			//console.log(e.keyCode);
@@ -46,6 +48,11 @@ export default function PopupBase({
 		);
 	}
 
+	function onSubmit(e) {
+		onSubmitFunction(e);
+		setLoading(true);
+	}
+
 	return (
 		<div
 			className='gray-cover'
@@ -62,7 +69,7 @@ export default function PopupBase({
 					>
 						<FontAwesomeIcon icon={faX} />
 					</span>
-					<form onSubmit={onSubmitFunction}>
+					<form onSubmit={onSubmit}>
 						{popupDetail.inputs &&
 							popupDetail.inputs.map((input, ind) => {
 								return (
@@ -79,13 +86,21 @@ export default function PopupBase({
 									</div>
 								);
 							})}
-						<button
-							className='mt-4	'
-							type='submit'
-							key={popupDetail.buttonLabel}
-						>
-							{popupDetail.buttonLabel}
-						</button>
+						{loading ? (
+							<FontAwesomeIcon
+								icon={faCircleNotch}
+								spin={true}
+								fontSize={30}
+							/>
+						) : (
+							<button
+								className='mt-4	'
+								type='submit'
+								key={popupDetail.buttonLabel}
+							>
+								{popupDetail.buttonLabel}
+							</button>
+						)}
 					</form>
 				</div>
 			</div>
