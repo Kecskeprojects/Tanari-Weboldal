@@ -71,7 +71,7 @@ export default class LinkController extends BaseController {
 				})
 				.then(async () => {
 					this.handleResponse(res, {
-						result: 'Link added to database.',
+						result: 'Link added to database',
 					});
 				})
 				.catch(async (e) => {
@@ -99,7 +99,7 @@ export default class LinkController extends BaseController {
 				.delete({ where: { LinkId: id } })
 				.then(async () => {
 					this.handleResponse(res, {
-						result: 'Link removed from database.',
+						result: 'Link removed from database',
 					});
 				})
 				.catch(async (e) => {

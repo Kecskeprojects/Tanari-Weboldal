@@ -83,7 +83,7 @@ export default class FileController extends BaseController {
 		const prisma = Prisma.getPrisma();
 		try {
 			if (!req.files) {
-				this.handleResponse(res, { result: 'No files attached.' }, 500);
+				this.handleResponse(res, { result: 'No files attached' }, 500);
 				return;
 			}
 
@@ -94,7 +94,21 @@ export default class FileController extends BaseController {
 			}
 
 			const fileNameParts = req.files.mainfile.name.split('.');
-			const extension = fileNameParts[fileNameParts.length - 1];
+
+			if (fileNameParts.length === 0) {
+				this.handleError(
+					res,
+					null,
+					500,
+					'File name is empty/incorrect'
+				);
+				return;
+			}
+
+			const extension = '';
+			if (fileNameParts.length > 1) {
+				extension = fileNameParts[fileNameParts.length - 1];
+			}
 			const name = req.files.mainfile.name.replace('.' + extension, '');
 
 			prisma.file
@@ -109,7 +123,7 @@ export default class FileController extends BaseController {
 				})
 				.then(async () => {
 					this.handleResponse(res, {
-						result: 'File added to database.',
+						result: 'File added to database',
 					});
 				})
 				.catch(async (e) => {
@@ -137,7 +151,7 @@ export default class FileController extends BaseController {
 				.delete({ where: { FileId: id } })
 				.then(async () => {
 					this.handleResponse(res, {
-						result: 'File removed from database.',
+						result: 'File removed from database',
 					});
 				})
 				.catch(async (e) => {

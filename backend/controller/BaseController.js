@@ -29,7 +29,7 @@ export default class BaseController {
 		res,
 		err = null,
 		status = 500,
-		message = 'Database error occurred.'
+		message = 'Database error occurred'
 	) {
 		if (err) {
 			console.log(err);

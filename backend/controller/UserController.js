@@ -15,7 +15,7 @@ export default class UserController extends BaseController {
 				process.env.ENCRYPTED_USERNAME
 			);
 			if (!userMatches) {
-				this.handleError(res, null, 401, 'Incorrect user.');
+				this.handleError(res, null, 401, 'Incorrect user');
 				return;
 			}
 
@@ -29,7 +29,7 @@ export default class UserController extends BaseController {
 				expiresOn: DateHelper.addDays(new Date(), 7),
 			});
 		} catch (err) {
-			this.handleError(res, err, 500, 'Internal error occured.');
+			this.handleError(res, err, 500, 'Internal error occured');
 		}
 	};
 }

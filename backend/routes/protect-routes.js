@@ -14,7 +14,7 @@ export const checkUser = expressjwt({
 export function handleAuthorizationError(err, req, res, next) {
 	if (err.name === 'UnauthorizedError') {
 		res.status(401).send({
-			error: 'Authentication is required for this operation.',
+			error: 'Authentication is required for this operation',
 		});
 	} else {
 		next(err);

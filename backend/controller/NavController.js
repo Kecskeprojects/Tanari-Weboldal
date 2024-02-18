@@ -99,7 +99,7 @@ export default class NavController extends BaseController {
 				})
 				.then(async () => {
 					this.handleResponse(res, {
-						result: 'Nav added to database.',
+						result: 'Nav added to database',
 					});
 				})
 				.catch(async (e) => {
@@ -127,7 +127,7 @@ export default class NavController extends BaseController {
 				.delete({ where: { NavId: id } })
 				.then(async () => {
 					this.handleResponse(res, {
-						result: 'Nav removed from database.',
+						result: 'Nav removed from database',
 					});
 				})
 				.catch(async (e) => {
