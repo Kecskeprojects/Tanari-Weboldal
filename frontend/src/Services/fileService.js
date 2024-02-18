@@ -1,6 +1,10 @@
 import BaseService from './BaseService';
 
 export default class fileService extends BaseService {
+	/**
+	 * @param {Number} navId
+	 * @returns {Array}
+	 */
 	static async GetAll(navId) {
 		var fileList = null;
 		try {
@@ -18,6 +22,9 @@ export default class fileService extends BaseService {
 		return fileList;
 	}
 
+	/**
+	 * @param {Number} id
+	 */
 	static async GetById(id) {
 		var file = null;
 		try {
@@ -31,6 +38,11 @@ export default class fileService extends BaseService {
 		return file;
 	}
 
+	/**
+	 * @param {FormData} formData
+	 * @param {String} token
+	 * @returns {Object}
+	 */
 	static async Create(formData, token) {
 		var result = null;
 		try {
@@ -44,6 +56,11 @@ export default class fileService extends BaseService {
 		return result;
 	}
 
+	/**
+	 * @param {Number} id
+	 * @param {String} token
+	 * @returns {Object}
+	 */
 	static async Remove(id, token) {
 		var result = null;
 		try {

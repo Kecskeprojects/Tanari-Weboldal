@@ -2,6 +2,9 @@ import LocationData from '../Models/LocationData';
 import BaseService from './BaseService';
 
 export default class navService extends BaseService {
+	/**
+	 * @returns {Array}
+	 */
 	static async GetAllForNavbar() {
 		var navList = null;
 		try {
@@ -15,6 +18,10 @@ export default class navService extends BaseService {
 		return navList;
 	}
 
+	/**
+	 * @param {String} url
+	 * @returns {Object}
+	 */
 	static async GetByUrl(url) {
 		var nav = new LocationData();
 		try {
@@ -28,6 +35,11 @@ export default class navService extends BaseService {
 		return nav;
 	}
 
+	/**
+	 * @param {FormData} formData
+	 * @param {String} token
+	 * @returns {Object}
+	 */
 	static async Create(formData, token) {
 		var result = null;
 		try {
@@ -41,6 +53,11 @@ export default class navService extends BaseService {
 		return result;
 	}
 
+	/**
+	 * @param {Number} id
+	 * @param {String} token
+	 * @returns {Object}
+	 */
 	static async Remove(id, token) {
 		var result = null;
 		try {

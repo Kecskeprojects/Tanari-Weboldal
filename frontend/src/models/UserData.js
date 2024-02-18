@@ -11,10 +11,16 @@ export default class UserData {
 		this.id = null;
 	}
 
+	/**
+	 * @returns {Boolean}
+	 */
 	isLoggedIn() {
 		return this.token && this.expiresOn && this.expiresOn > new Date();
 	}
 
+	/**
+	 * @returns {Boolean}
+	 */
 	isEmpty() {
 		return !this.token;
 	}

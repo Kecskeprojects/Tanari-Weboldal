@@ -1,6 +1,9 @@
 import localStorageHelper from '../Helpers/localStorageHelper';
 
 export default class BaseService {
+	/**
+	 * @param {String} route
+	 */
 	static async Get(route, additionalHeaders = {}) {
 		return fetch(`${process.env.REACT_APP_BACKEND_URL}${route}`, {
 			method: 'GET',
@@ -10,6 +13,10 @@ export default class BaseService {
 		});
 	}
 
+	/**
+	 * @param {String} route
+	 * @param {String} token
+	 */
 	static async Post(route, token, body = {}, additionalHeaders = {}) {
 		return fetch(`${process.env.REACT_APP_BACKEND_URL}${route}`, {
 			body: body,
@@ -26,6 +33,10 @@ export default class BaseService {
 		});
 	}
 
+	/**
+	 * @param {String} route
+	 * @param {String} token
+	 */
 	static async Put(route, token = '', body = {}, additionalHeaders = {}) {
 		return fetch(`${process.env.REACT_APP_BACKEND_URL}${route}`, {
 			body: body,
@@ -42,6 +53,10 @@ export default class BaseService {
 		});
 	}
 
+	/**
+	 * @param {String} route
+	 * @param {String} token
+	 */
 	static async Delete(route, token, body = {}, additionalHeaders = {}) {
 		return fetch(`${process.env.REACT_APP_BACKEND_URL}${route}`, {
 			body: body,
@@ -58,6 +73,10 @@ export default class BaseService {
 		});
 	}
 
+	/**
+	 * @param {String} route
+	 * @param {String} username
+	 */
 	static async BaseLogin(route, username) {
 		return fetch(`${process.env.REACT_APP_BACKEND_URL}${route}`, {
 			body: JSON.stringify({ username: username }),

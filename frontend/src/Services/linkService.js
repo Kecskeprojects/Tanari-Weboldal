@@ -1,6 +1,10 @@
 import BaseService from './BaseService';
 
 export default class linkService extends BaseService {
+	/**
+	 * @param {Number} navId
+	 * @returns {Array}
+	 */
 	static async GetAll(navId) {
 		var linkList = null;
 		try {
@@ -18,6 +22,11 @@ export default class linkService extends BaseService {
 		return linkList;
 	}
 
+	/**
+	 * @param {FormData} formData
+	 * @param {String} token
+	 * @returns {Object}
+	 */
 	static async Create(formData, token) {
 		var result = null;
 		try {
@@ -31,6 +40,11 @@ export default class linkService extends BaseService {
 		return result;
 	}
 
+	/**
+	 * @param {Number} id
+	 * @param {String} token
+	 * @returns {Object}
+	 */
 	static async Remove(id, token) {
 		var result = null;
 		try {

@@ -1,6 +1,6 @@
 export default class DateHelper {
 	/**
-	 * @param {Date|string} date
+	 * @param {Date|String} date
 	 * @param {Number} days
 	 * @returns {Date}
 	 */

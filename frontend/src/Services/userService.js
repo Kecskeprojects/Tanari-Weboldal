@@ -3,6 +3,9 @@ import UserData from '../Models/UserData';
 import BaseService from './BaseService';
 
 export default class UserService extends BaseService {
+	/**
+	 * @param {String} username
+	 */
 	static async Login(username) {
 		var userData = new UserData();
 		try {
