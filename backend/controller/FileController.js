@@ -1,5 +1,5 @@
-import BaseController from './BaseController.js';
 import { Prisma } from '../prisma/PrismaClient.js';
+import BaseController from './BaseController.js';
 
 export default class FileController extends BaseController {
 	/**

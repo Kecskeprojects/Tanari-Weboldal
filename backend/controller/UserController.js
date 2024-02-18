@@ -1,7 +1,7 @@
-import BaseController from './BaseController.js';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import DateHelper from '../helpers/DateHelper.js';
+import BaseController from './BaseController.js';
 
 export default class UserController extends BaseController {
 	/**

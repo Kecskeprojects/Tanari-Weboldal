@@ -1,10 +1,10 @@
-import express from 'express';
-import { handleAuthorizationError } from './routes/protect-routes.js';
-import getRoutes from './routes/routes.js';
 import cors from 'cors';
+import express from 'express';
 import fileUpload from 'express-fileupload';
 import fs from 'fs';
 import util from 'util';
+import { handleAuthorizationError } from './routes/protect-routes.js';
+import getRoutes from './routes/routes.js';
 
 //Overwriting console log to also log into debug.log
 const __dirname = new URL('.', import.meta.url).pathname;

@@ -1,10 +1,10 @@
 import express from 'express';
-import { checkUser } from './protect-routes.js';
 import FileController from '../controller/FileController.js';
-import UserController from '../controller/UserController.js';
-import NavController from '../controller/NavController.js';
 import LinkController from '../controller/LinkController.js';
+import NavController from '../controller/NavController.js';
+import UserController from '../controller/UserController.js';
 import VisitController from '../controller/VisitController.js';
+import { checkUser } from './protect-routes.js';
 
 export default function getRoutes() {
 	const routers = express.Router();
