@@ -24,3 +24,8 @@ header {
 	width: 25vw;
 	max-width: 180px;
 }
+
+.login-loading {
+	display: inline-block;
+	padding-right: 5px;
+}

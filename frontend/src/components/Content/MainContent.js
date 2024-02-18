@@ -17,11 +17,13 @@ export default function MainContent() {
 			if (locationData.Url !== newLocation) {
 				//console.log(newLocation);
 				if (newLocation) {
-					navService.GetByUrl(newLocation).then((locationData) => {
-						if (locationData.NavId) {
-							setLocationData(locationData);
-						}
-					});
+					navService
+						.GetByUrl(newLocation) /*No loading*/
+						.then((locationData) => {
+							if (locationData.NavId) {
+								setLocationData(locationData);
+							}
+						});
 				} else {
 					setLocationData(new LocationData());
 				}

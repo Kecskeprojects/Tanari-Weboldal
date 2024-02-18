@@ -34,7 +34,7 @@ export default function App() {
 		<UserContext.Provider value={{ userData, setUserData }}>
 			<div
 				className='container-box'
-				onLoad={(e) => visitService.Update()}
+				onLoad={(e) => visitService.Update() /*No loading*/}
 			>
 				<MainHeader />
 				<MainNavBar />

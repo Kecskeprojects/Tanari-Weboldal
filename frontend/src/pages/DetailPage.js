@@ -21,13 +21,17 @@ export default function DetailPage() {
 
 	useEffect(() => {
 		if (context.locationData?.Url) {
-			fileService.GetAll(context.locationData.NavId).then((files) => {
-				setFiles(files);
-			});
+			fileService
+				.GetAll(context.locationData.NavId) /*No loading*/
+				.then((files) => {
+					setFiles(files);
+				});
 
-			linkService.GetAll(context.locationData.NavId).then((links) => {
-				setLinks(links);
-			});
+			linkService
+				.GetAll(context.locationData.NavId) /*No loading*/
+				.then((links) => {
+					setLinks(links);
+				});
 		}
 	}, [context]);
 

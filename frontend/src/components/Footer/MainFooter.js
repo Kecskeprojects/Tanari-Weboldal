@@ -8,9 +8,11 @@ export default function MainFooter() {
 	const [visitCount, setVisitCount] = useState(0n);
 
 	useEffect(() => {
-		visitService.GetVisits().then((result) => {
-			setVisitCount(result ?? 0);
-		});
+		visitService
+			.GetVisits() /*No loading*/
+			.then((result) => {
+				setVisitCount(result ?? 0);
+			});
 	}, []);
 
 	return (

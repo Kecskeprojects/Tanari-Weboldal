@@ -1,10 +1,14 @@
-import { useContext } from 'react';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../Contexts';
 import localStorageHelper from '../../Helpers/localStorageHelper';
 import UserData from '../../Models/UserData';
 import UserService from '../../Services/userService';
 
 export default function LoginElement() {
+	const [loading, setLoading] = useState(false);
+
 	const context = useContext(UserContext);
 
 	const handleEnter = (e) => {
@@ -27,7 +31,9 @@ export default function LoginElement() {
 	const Login = (username) => {
 		UserService.Login(username).then((userData) => {
 			context.setUserData(userData);
+			setLoading(false);
 		});
+		setLoading(true);
 	};
 
 	return !context.userData.isLoggedIn() ? (
@@ -47,13 +53,22 @@ export default function LoginElement() {
 				aria-label='Username'
 				title='Username'
 			/>
-			<button
-				className='me-2'
-				type='button'
-				onClick={(e) => onLogin(e)}
-			>
-				Belépés
-			</button>
+			{loading ? (
+				<span className='login-loading'>
+					<FontAwesomeIcon
+						icon={faCircleNotch}
+						spin={true}
+					/>
+				</span>
+			) : (
+				<button
+					className='me-2'
+					type='button'
+					onClick={(e) => onLogin(e)}
+				>
+					Belépés
+				</button>
+			)}
 		</div>
 	) : (
 		<button

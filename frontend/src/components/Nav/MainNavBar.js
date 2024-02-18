@@ -7,9 +7,11 @@ export default function MainNavBar() {
 	const [navJSON, setNavJSON] = useState(null);
 
 	useEffect(() => {
-		navService.GetAllForNavbar().then((nav) => {
-			setNavJSON(nav);
-		});
+		navService
+			.GetAllForNavbar() /*No loading*/
+			.then((nav) => {
+				setNavJSON(nav);
+			});
 	}, []);
 	//Todo: Create inserts for already known navs in sql script
 	return (
