@@ -5,6 +5,8 @@ export default class BaseController {
 	 * @param {Number} status
 	 */
 	static handleResponse(res, content, status = 200) {
+		res.setHeader('pragma', 'no-cache');
+		res.setHeader('cache-control', 'no-cache');
 		res.status(status).json({ ...content });
 	}
 
@@ -34,6 +36,8 @@ export default class BaseController {
 		if (err) {
 			console.log(err);
 		}
+		res.setHeader('pragma', 'no-cache');
+		res.setHeader('cache-control', 'no-cache');
 		res.status(status).json({ error: message });
 	}
 }
