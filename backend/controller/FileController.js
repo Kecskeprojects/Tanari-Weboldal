@@ -93,8 +93,9 @@ export default class FileController extends BaseController {
 				return;
 			}
 
-			const name = req.files.mainfile.name.split('.')[0];
-			const extension = req.files.mainfile.name.split('.')[1];
+			const fileNameParts = req.files.mainfile.name.split('.');
+			const extension = fileNameParts[fileNameParts.length - 1];
+			const name = req.files.mainfile.name.replace('.' + extension, '');
 
 			prisma.file
 				.create({

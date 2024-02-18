@@ -57,7 +57,7 @@ export default function FileContainer({
 						/>
 					)}
 				</div>
-				<span>
+				<span className='container-label'>
 					{file.Name}.{file.Extension}
 				</span>
 			</div>

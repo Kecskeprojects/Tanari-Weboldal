@@ -21,6 +21,7 @@ export default function LinkContainer({
 				href={link.Url}
 				target={link.OpenNewTab === true ? '_blank' : '_self'}
 				rel='noreferrer'
+				className='container-label'
 			>
 				{link.Title}
 			</a>
