@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { pushStateWithEvent } from '../../Helpers/pushStateHelper';
 import { UserContext } from '../../Contexts';
+import { pushStateWithEvent } from '../../Helpers/pushStateHelper';
 import navService from '../../Services/navService';
 import DeleteIcon from '../DeleteIcon';
 

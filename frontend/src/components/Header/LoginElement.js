@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import UserService from '../../Services/userService';
+import { UserContext } from '../../Contexts';
 import localStorageHelper from '../../Helpers/localStorageHelper';
 import UserData from '../../Models/UserData';
-import { UserContext } from '../../Contexts';
+import UserService from '../../Services/userService';
 
 export default function LoginElement() {
 	const context = useContext(UserContext);

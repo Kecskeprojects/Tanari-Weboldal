@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
+import { LocationContext } from '../../Contexts';
+import LocationData from '../../Models/LocationData';
 import DetailPage from '../../Pages/DetailPage';
 import HomePage from '../../Pages/HomePage';
 import navService from '../../Services/navService';
-import { LocationContext } from '../../Contexts';
-import LocationData from '../../Models/LocationData';
 
 export default function MainContent() {
 	const [locationData, setLocationData] = useState(new LocationData());

@@ -1,8 +1,8 @@
+import { useContext } from 'react';
 import { FileIcon, defaultStyles } from 'react-file-icon';
+import { UserContext } from '../../Contexts';
 import fileService from '../../Services/fileService';
 import DeleteIcon from '../DeleteIcon';
-import { useContext } from 'react';
-import { UserContext } from '../../Contexts';
 
 export default function FileContainer({
 	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },

@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import MainHeader from './components/Header/MainHeader';
-import './css/App.css';
-import MainContent from './components/Content/MainContent';
+import { useEffect, useState } from 'react';
+import { UserContext } from './Contexts';
 import localStorageHelper from './Helpers/localStorageHelper';
 import UserData from './Models/UserData';
-import MainNavBar from './components/Nav/MainNavBar';
-import MainFooter from './components/Footer/MainFooter';
-import { UserContext } from './Contexts';
 import visitService from './Services/visitService';
+import MainContent from './components/Content/MainContent';
+import MainFooter from './components/Footer/MainFooter';
+import MainHeader from './components/Header/MainHeader';
+import MainNavBar from './components/Nav/MainNavBar';
+import './css/App.css';
 
 export default function App() {
 	const [userData, setUserData] = useState(new UserData());

@@ -1,15 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
-import '../css/DetailPage.css';
+import { useContext, useEffect, useState } from 'react';
+import { LocationContext, UserContext } from '../Contexts';
+import PopupTypeEnum from '../Enum/PopupTypeEnum';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
-import FileContainer from '../components/Content/FileContainer';
-import PopupBase from '../components/PopupBase';
-import LinkContainer from '../components/Content/LinkContainer';
-import { LocationContext, UserContext } from '../Contexts';
-import FilePopupDetail from '../components/Content/FilePopupDetail';
-import LinkPopupDetail from '../components/Content/LinkPopupDetail';
-import PopupTypeEnum from '../Enum/PopupTypeEnum';
 import Button from '../components/Button';
+import FileContainer from '../components/Content/FileContainer';
+import FilePopupDetail from '../components/Content/FilePopupDetail';
+import LinkContainer from '../components/Content/LinkContainer';
+import LinkPopupDetail from '../components/Content/LinkPopupDetail';
+import PopupBase from '../components/PopupBase';
+import '../css/DetailPage.css';
 
 export default function DetailPage() {
 	const [files, setFiles] = useState([]);

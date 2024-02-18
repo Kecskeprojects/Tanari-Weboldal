@@ -1,8 +1,8 @@
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
-import '../../css/Footer.css';
-import FooterLinkRow from './FooterLinkRow';
 import { useEffect, useState } from 'react';
 import visitService from '../../Services/visitService';
+import '../../css/Footer.css';
+import FooterLinkRow from './FooterLinkRow';
 
 export default function MainFooter() {
 	const [visitCount, setVisitCount] = useState(0n);

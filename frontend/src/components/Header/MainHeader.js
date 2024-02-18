@@ -1,13 +1,13 @@
 import { useContext, useState } from 'react';
-import '../../css/Header.css';
+import { UserContext } from '../../Contexts';
 import PopupTypeEnum from '../../Enum/PopupTypeEnum';
+import navService from '../../Services/navService';
+import '../../css/Header.css';
 import Button from '../Button';
+import PopupBase from '../PopupBase';
 import HomeLink from './HomeLink';
 import LoginElement from './LoginElement';
 import NavPopupDetail from './NavPopupDetail';
-import PopupBase from '../PopupBase';
-import navService from '../../Services/navService';
-import { UserContext } from '../../Contexts';
 
 export default function MainHeader() {
 	const [panel, setPanel] = useState(PopupTypeEnum.None);
