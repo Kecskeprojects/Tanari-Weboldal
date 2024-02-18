@@ -28,7 +28,7 @@
 	background-color: var(--main-background-color);
 	position: absolute !important;
 	left: calc(100%);
-	top: calc(-0.5rem - 32px);
+	top: calc(-0.5rem - 34px);
 	min-width: 5vw;
 	max-width: 25vw;
 }
@@ -37,6 +37,10 @@
 .nav-link {
 	padding-right: 30px;
 	position: relative;
+	min-width: max-content;
+	width: -webkit-fill-available;
+	text-wrap: pretty;
+	word-break: break-all;
 }
 
 .navbar-nav li:hover > div > ul.dropdown-menu {

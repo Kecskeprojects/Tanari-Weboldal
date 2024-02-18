@@ -4,11 +4,6 @@
 	height: 100%;
 }
 
-.spinner-border {
-	width: 3rem;
-	height: 3rem;
-}
-
 .delete-icon {
 	position: absolute;
 	right: 4px;
@@ -28,7 +23,7 @@
 	height: 100%;
 	left: 0;
 	top: 0;
-	z-index: 20;
+	z-index: 2000;
 }
 
 .popup-base {
