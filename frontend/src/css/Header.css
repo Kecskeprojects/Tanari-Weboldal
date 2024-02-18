@@ -1,4 +1,5 @@
 header {
+	min-height: 80px;
 	height: 30vh;
 	width: 100%;
 	background-color: var(--main-background-color);

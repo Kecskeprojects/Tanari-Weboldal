@@ -43,7 +43,7 @@ export default function DetailPage() {
 		if (data.has('openNewTab')) {
 			data.set('openNewTab', 'true');
 		} else {
-			data.append('openNewTab', 'true');
+			data.append('openNewTab', 'false');
 		}
 		linkService.Create(data, userContext.userData.token).then(() => {
 			refresh();
