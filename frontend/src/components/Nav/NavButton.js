@@ -23,6 +23,15 @@ export default function NavButton({
 				}
 				key={nav.Name + index}
 			>
+				{dropdown ? (
+					<div className='relative-container'>
+						<ul className='dropdown-menu'>
+							{nav.other_Nav.map((inner_nav, inner_index) =>
+								renderButton(inner_nav, inner_index, true)
+							)}
+						</ul>
+					</div>
+				) : null}
 				<a
 					className={
 						(isInner ? 'dropdown-item' : 'nav-link') +
@@ -53,15 +62,6 @@ export default function NavButton({
 					/>
 					{nav.Name}
 				</a>
-				{dropdown ? (
-					<div className='relative-container'>
-						<ul className='dropdown-menu'>
-							{nav.other_Nav.map((inner_nav, inner_index) =>
-								renderButton(inner_nav, inner_index, true)
-							)}
-						</ul>
-					</div>
-				) : null}
 			</li>
 		);
 	}

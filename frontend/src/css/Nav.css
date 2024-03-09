@@ -28,7 +28,7 @@
 	background-color: var(--main-background-color);
 	position: absolute !important;
 	left: calc(100%);
-	top: calc(-0.5rem - 34px);
+	top: -0.5rem;
 	min-width: 5vw;
 	width: max-content;
 	max-width: 25vw;
