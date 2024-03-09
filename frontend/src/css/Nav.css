@@ -30,6 +30,7 @@
 	left: calc(100%);
 	top: calc(-0.5rem - 34px);
 	min-width: 5vw;
+	width: max-content;
 	max-width: 25vw;
 }
 
@@ -37,7 +38,6 @@
 .nav-link {
 	padding-right: 30px;
 	position: relative;
-	min-width: max-content;
 	width: -webkit-fill-available;
 	text-wrap: pretty;
 	word-break: break-all;
