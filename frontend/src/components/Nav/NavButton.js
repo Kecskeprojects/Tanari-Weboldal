@@ -48,7 +48,7 @@ export default function NavButton({
 							}
 							window.location.reload();
 						}}
-						className='mt-1'
+						className='mt-1 me-1'
 						show={!isDropdown(nav) && context.userData.isLoggedIn()}
 					/>
 					{nav.Name}
