@@ -12,7 +12,7 @@ export default class UserController extends BaseController {
 		try {
 			const userMatches = bcrypt.compareSync(
 				req.body.username,
-				process.env.ENCRYPTED_USERNAME
+				process.env.ENCRYPTED_USERNAME //Todo: Create a more complex login name
 			);
 			if (!userMatches) {
 				this.handleError(res, null, 401, 'Incorrect user');
@@ -22,7 +22,7 @@ export default class UserController extends BaseController {
 			const uuid = crypto.randomUUID();
 			const token = jwt.sign({ id: uuid }, process.env.SECRET, {
 				expiresIn: '7d',
-			});
+			}); //Todo: Create a more complex Secret Key
 			this.handleResponse(res, {
 				accessToken: token,
 				id: uuid,
