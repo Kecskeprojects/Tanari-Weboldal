@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { UserContext } from '../../Contexts';
+import LinkData from '../../Models/LinkData';
 import linkService from '../../Services/linkService';
 import DeleteIcon from '../DeleteIcon';
 
 export default function LinkContainer({
-	link = { LinkId: 0, Url: 'unknown', Title: 'txt', OpenNewTab: false },
+	link = new LinkData(),
 	refresh = () => {},
 	showDelete = true,
 	className = '',

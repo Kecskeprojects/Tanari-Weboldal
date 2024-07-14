@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { LocationContext, UserContext } from '../Contexts';
 import PopupTypeEnum from '../Enum/PopupTypeEnum';
+import FileData from '../Models/FileData';
+import LinkData from '../Models/LinkData';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
 import Button from '../components/Button';
@@ -12,8 +14,8 @@ import PopupBase from '../components/PopupBase';
 import '../css/DetailPage.css';
 
 export default function DetailPage() {
-	const [files, setFiles] = useState([]);
-	const [links, setLinks] = useState([]);
+	const [files, setFiles] = useState([new FileData()]);
+	const [links, setLinks] = useState([new LinkData()]);
 	const [panel, setPanel] = useState(PopupTypeEnum.None);
 
 	const context = useContext(LocationContext);
@@ -49,18 +51,14 @@ export default function DetailPage() {
 		} else {
 			data.append('openNewTab', 'false');
 		}
-		linkService.Create(data, userContext.userData.token).then(() => {
-			refresh();
-		});
+		linkService.Create(data, userContext.userData.token).then(refresh);
 	}
 
 	function fileOnSubmit(e) {
 		e.preventDefault();
 		const data = new FormData(e.target);
 		data.append('navId', context.locationData.NavId);
-		fileService.Create(data, userContext.userData.token).then(() => {
-			refresh();
-		});
+		fileService.Create(data, userContext.userData.token).then(refresh);
 	}
 
 	function renderPopups() {

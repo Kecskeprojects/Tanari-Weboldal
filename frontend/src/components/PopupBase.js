@@ -38,16 +38,26 @@ export default function PopupBase({
 		}
 	}
 
-	function renderInput(input) {
+	function renderInput(input, ind) {
 		return (
-			<input
-				id={input.name}
-				type={input.type}
-				className='form-input'
-				aria-label={input.label ? input.label : input.name}
-				title={input.label ? input.label : input.name}
-				name={input.name}
-			/>
+			<div key={input.name + ind}>
+				{input.label ? (
+					<label
+						className='form-label'
+						htmlFor={input.name}
+					>
+						{input.label}:
+					</label>
+				) : null}
+				<input
+					id={input.name}
+					type={input.type}
+					className='form-input'
+					aria-label={input.label ? input.label : input.name}
+					title={input.label ? input.label : input.name}
+					name={input.name}
+				/>
+			</div>
 		);
 	}
 
@@ -74,21 +84,9 @@ export default function PopupBase({
 					</span>
 					<form onSubmit={onSubmit}>
 						{popupDetail.inputs &&
-							popupDetail.inputs.map((input, ind) => {
-								return (
-									<div key={input.name + ind}>
-										{input.label ? (
-											<label
-												className='form-label'
-												htmlFor={input.name}
-											>
-												{input.label}:
-											</label>
-										) : null}
-										{renderInput(input)}
-									</div>
-								);
-							})}
+							popupDetail.inputs.map((input, ind) =>
+								renderInput(input, ind)
+							)}
 						{loading ? (
 							<FontAwesomeIcon
 								icon={faCircleNotch}

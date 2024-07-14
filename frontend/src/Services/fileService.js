@@ -1,9 +1,10 @@
+import FileData from '../Models/FileData';
 import BaseService from './BaseService';
 
 export default class fileService extends BaseService {
 	/**
 	 * @param {Number} navId
-	 * @returns {Array}
+	 * @returns {Promise<FileData[]>}
 	 */
 	static async GetAll(navId) {
 		var fileList = null;
@@ -19,7 +20,7 @@ export default class fileService extends BaseService {
 				console.log(body);
 			}
 
-			fileList = body[0];
+			fileList = fileService.MapItems(body[0]);
 		} catch (e) {
 			console.log(e);
 		}
@@ -27,7 +28,7 @@ export default class fileService extends BaseService {
 	}
 
 	/**
-	 * @returns {Array}
+	 * @returns {Promise<FileData[]>}
 	 */
 	static async GetRecent() {
 		var fileList = null;
@@ -39,7 +40,7 @@ export default class fileService extends BaseService {
 				console.log(body);
 			}
 
-			fileList = body[0];
+			fileList = fileService.MapItems(body[0]);
 		} catch (e) {
 			console.log(e);
 		}
@@ -108,5 +109,17 @@ export default class fileService extends BaseService {
 			console.log(e);
 		}
 		return result;
+	}
+
+	/**
+	 * @param {Array} itemList
+	 * @returns {Array}
+	 */
+	static MapItems(itemList) {
+		const items = [];
+		itemList.forEach((element) => {
+			items.push(new FileData(element));
+		});
+		return items;
 	}
 }

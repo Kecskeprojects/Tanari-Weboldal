@@ -1,9 +1,10 @@
+import LinkData from '../Models/LinkData';
 import BaseService from './BaseService';
 
 export default class linkService extends BaseService {
 	/**
 	 * @param {Number} navId
-	 * @returns {Array}
+	 * @returns {Promise<FileData[]>}
 	 */
 	static async GetAll(navId) {
 		var linkList = null;
@@ -19,7 +20,7 @@ export default class linkService extends BaseService {
 				console.log(body);
 			}
 
-			linkList = body[0];
+			linkList = linkService.MapItems(body[0]);
 		} catch (e) {
 			console.log(e);
 		}
@@ -27,7 +28,7 @@ export default class linkService extends BaseService {
 	}
 
 	/**
-	 * @returns {Array}
+	 * @returns {Promise<FileData[]>}
 	 */
 	static async GetRecent() {
 		var linkList = null;
@@ -39,7 +40,7 @@ export default class linkService extends BaseService {
 				console.log(body);
 			}
 
-			linkList = body[0];
+			linkList = linkService.MapItems(body[0]);
 		} catch (e) {
 			console.log(e);
 		}
@@ -88,5 +89,17 @@ export default class linkService extends BaseService {
 			console.log(e);
 		}
 		return result;
+	}
+
+	/**
+	 * @param {Array} itemList
+	 * @returns {Array}
+	 */
+	static MapItems(itemList) {
+		const items = [];
+		itemList.forEach((element) => {
+			items.push(new LinkData(element));
+		});
+		return items;
 	}
 }

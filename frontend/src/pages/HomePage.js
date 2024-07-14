@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import FileData from '../Models/FileData';
+import LinkData from '../Models/LinkData';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
 import FileContainer from '../components/Content/FileContainer';
@@ -6,8 +8,8 @@ import LinkContainer from '../components/Content/LinkContainer';
 import '../css/HomePage.css';
 
 export default function HomePage() {
-	const [files, setFiles] = useState([]);
-	const [links, setLinks] = useState([]);
+	const [files, setFiles] = useState([new FileData()]);
+	const [links, setLinks] = useState([new LinkData()]);
 
 	useEffect(() => {
 		fileService

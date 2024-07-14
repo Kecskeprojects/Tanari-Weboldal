@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState } from 'react';
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import { UserContext } from '../../Contexts';
+import FileData from '../../Models/FileData';
 import fileService from '../../Services/fileService';
 import DeleteIcon from '../DeleteIcon';
 
 export default function FileContainer({
-	file = { FileId: 0, Name: 'unknown', Extension: 'txt' },
+	file = new FileData(),
 	refresh = () => {},
 	showDelete = true,
 	className = '',
