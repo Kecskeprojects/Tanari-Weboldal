@@ -9,6 +9,7 @@ import MainHeader from './components/Header/MainHeader';
 import MainNavBar from './components/Nav/MainNavBar';
 import './css/App.css';
 
+//Todo: Make db folder like in work project and separate the TanariDB.sql script into tables, with one base-install script to run all the files
 export default function App() {
 	const [userData, setUserData] = useState(new UserData());
 
