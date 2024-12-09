@@ -13,14 +13,9 @@ import LinkData from '../Models/LinkData';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
 
-const fileArray = [new FileData()];
-fileArray.pop();
-const linkArray = [new LinkData()];
-linkArray.pop();
-
 export default function DetailPage() {
-	const [files, setFiles] = useState(fileArray);
-	const [links, setLinks] = useState(linkArray);
+	const [files, setFiles] = useState([new FileData()].splice(0, 1));
+	const [links, setLinks] = useState([new LinkData()].splice(0, 1));
 	const [panel, setPanel] = useState(PopupTypeEnum.None);
 
 	const context = useContext(LocationContext);

@@ -7,14 +7,9 @@ import FileContainer from '../components/Content/FileContainer';
 import LinkContainer from '../components/Content/LinkContainer';
 import '../css/HomePage.css';
 
-const fileArray = [new FileData()];
-fileArray.pop();
-const linkArray = [new LinkData()];
-linkArray.pop();
-
 export default function HomePage() {
-	const [files, setFiles] = useState(fileArray);
-	const [links, setLinks] = useState(linkArray);
+	const [files, setFiles] = useState([new FileData()].splice(0, 1));
+	const [links, setLinks] = useState([new LinkData()].splice(0, 1));
 
 	useEffect(() => {
 		fileService
