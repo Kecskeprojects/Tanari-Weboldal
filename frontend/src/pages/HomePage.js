@@ -8,8 +8,8 @@ import LinkContainer from '../components/Content/LinkContainer';
 import '../css/HomePage.css';
 
 export default function HomePage() {
-	const [files, setFiles] = useState([new FileData()].splice(0, 1));
-	const [links, setLinks] = useState([new LinkData()].splice(0, 1));
+	const [files, setFiles] = useState([new FileData()].splice(0));
+	const [links, setLinks] = useState([new LinkData()].splice(0));
 
 	useEffect(() => {
 		fileService
