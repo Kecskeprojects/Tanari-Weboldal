@@ -14,8 +14,8 @@ import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
 
 export default function DetailPage() {
-	const [files, setFiles] = useState([new FileData()].splice(0));
-	const [links, setLinks] = useState([new LinkData()].splice(0));
+	const [files, setFiles] = useState([new FileData()].filter((x) => false));
+	const [links, setLinks] = useState([new LinkData()].filter((x) => false));
 	const [panel, setPanel] = useState(PopupTypeEnum.None);
 
 	const context = useContext(LocationContext);
