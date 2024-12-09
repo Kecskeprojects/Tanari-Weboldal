@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { LocationContext, UserContext } from '../Contexts';
 import PopupTypeEnum from '../Enum/PopupTypeEnum';
-import FileData from '../Models/FileData';
-import LinkData from '../Models/LinkData';
 import fileService from '../Services/fileService';
 import linkService from '../Services/linkService';
 import Button from '../components/Button';
@@ -14,8 +12,8 @@ import PopupBase from '../components/PopupBase';
 import '../css/DetailPage.css';
 
 export default function DetailPage() {
-	const [files, setFiles] = useState([new FileData()]);
-	const [links, setLinks] = useState([new LinkData()]);
+	const [files, setFiles] = useState([]);
+	const [links, setLinks] = useState([]);
 	const [panel, setPanel] = useState(PopupTypeEnum.None);
 
 	const context = useContext(LocationContext);
