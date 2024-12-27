@@ -15,14 +15,17 @@ export default function getRoutes() {
 		);
 	});
 
+	//Todo: Rewrite Controllers, so that database processes happen in new classes, on the Repository level
 	routers.get('/File/GetAll/', FileController.getAll);
 	routers.get('/File/GetRecent/', FileController.getRecent);
+	routers.get('/File/GetBySearchResult/', FileController.getBySearchResult);
 	routers.get('/File/GetById/:id', FileController.getById);
 	routers.post('/File/Create/', checkUser, FileController.create);
 	routers.delete('/File/Delete/:id', checkUser, FileController.delete);
 
 	routers.get('/Link/GetAll/', LinkController.getAll);
 	routers.get('/Link/GetRecent/', LinkController.getRecent);
+	routers.get('/Link/GetBySearchResult/', LinkController.getBySearchResult);
 	routers.post('/Link/Create/', checkUser, LinkController.create);
 	routers.delete('/Link/Delete/:id', checkUser, LinkController.delete);
 

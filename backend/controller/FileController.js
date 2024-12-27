@@ -82,6 +82,44 @@ export default class FileController extends BaseController {
 	 * @param {Request} req
 	 * @param {Response} res
 	 */
+	static getBySearchResult = async (req, res) => {
+		const prisma = Prisma.getPrisma();
+		try {
+			prisma.file
+				.findMany({
+					select: {
+						FileId: true,
+						Name: true,
+						Extension: true,
+						NavId: true,
+					},
+					orderBy: [{ CreatedOn: 'desc' }, { Name: 'asc' }],
+					where: {
+						OR: [
+							{ Name: { contains: req.query.keyword } },
+							{ Extension: { contains: req.query.keyword } },
+						],
+					},
+				})
+				.then(async (result) => {
+					const completeList = [];
+					if (result) {
+						completeList.push(result);
+					}
+					this.handleResponse(res, completeList);
+				})
+				.catch(async (e) => {
+					this.handleError(res, e);
+				});
+		} catch (e) {
+			this.handleError(res, e);
+		}
+	};
+
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static getById = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {

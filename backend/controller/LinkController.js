@@ -84,6 +84,47 @@ export default class LinkController extends BaseController {
 	 * @param {Request} req
 	 * @param {Response} res
 	 */
+	static getBySearchResult = async (req, res) => {
+		const prisma = Prisma.getPrisma();
+		try {
+			prisma.link
+				.findMany({
+					select: {
+						LinkId: true,
+						Url: true,
+						Title: true,
+						OpenNewTab: true,
+						NavId: true,
+					},
+					orderBy: [{ CreatedOn: 'desc' }, { Title: 'asc' }],
+					where: {
+						OR: [
+							{
+								Url: { contains: req.query.keyword },
+							},
+							{ Title: { contains: req.query.keyword } },
+						],
+					},
+				})
+				.then(async (result) => {
+					const completeList = [];
+					if (result) {
+						completeList.push(result);
+					}
+					this.handleResponse(res, completeList);
+				})
+				.catch(async (e) => {
+					this.handleError(res, e);
+				});
+		} catch (e) {
+			this.handleError(res, e);
+		}
+	};
+
+	/**
+	 * @param {Request} req
+	 * @param {Response} res
+	 */
 	static create = async (req, res) => {
 		const prisma = Prisma.getPrisma();
 		try {
