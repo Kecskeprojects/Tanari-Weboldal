@@ -11,3 +11,8 @@ export const LocationContext = createContext({
 	locationData: new LocationData(),
 	setLocationData: (newLocation = new LocationData()) => {},
 });
+
+export const SearchContext = createContext({
+	searchKeyword: '',
+	setSearchKeyword: (newKeyword = '') => {},
+});

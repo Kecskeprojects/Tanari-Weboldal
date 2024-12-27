@@ -8,6 +8,7 @@ import PopupBase from '../PopupBase';
 import HomeLink from './HomeLink';
 import LoginElement from './LoginElement';
 import NavPopupDetail from './NavPopupDetail';
+import SearchComponent from './SearchComponent';
 
 export default function MainHeader() {
 	const [panel, setPanel] = useState(PopupTypeEnum.None);
@@ -47,6 +48,7 @@ export default function MainHeader() {
 			{renderPopups()}
 			<HomeLink />
 			<div className='text-end'>
+				<SearchComponent />
 				<LoginElement />
 				<br />
 				<Button

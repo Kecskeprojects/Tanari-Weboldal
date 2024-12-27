@@ -13,7 +13,7 @@ export default function MainNavBar() {
 				setNavJSON(nav);
 			});
 	}, []);
-	//Todo: Create inserts for already known navs in sql script
+
 	return (
 		<div className='nav-container'>
 			<ul className='navbar-nav'>

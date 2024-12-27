@@ -1,12 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
-import { LocationContext } from '../../Contexts';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { LocationContext, SearchContext } from '../../Contexts';
 import LocationData from '../../Models/LocationData';
 import DetailPage from '../../Pages/DetailPage';
 import HomePage from '../../Pages/HomePage';
+import SearchPage from '../../Pages/SearchPage';
 import navService from '../../Services/navService';
 
 export default function MainContent() {
 	const [locationData, setLocationData] = useState(new LocationData());
+	const context = useContext(SearchContext);
 
 	const onNavigation = useCallback(
 		(e = {}) => {
@@ -50,9 +52,16 @@ export default function MainContent() {
 	}, [locationData, onNavigation]);
 
 	return (
-		<LocationContext.Provider value={{ locationData, setLocationData }}>
+		<LocationContext.Provider
+			value={{
+				locationData,
+				setLocationData,
+			}}
+		>
 			<div className='content-container'>
-				{window.location.pathname.replace('/', '') ? (
+				{context.searchKeyword ? (
+					<SearchPage />
+				) : window.location.pathname.replace('/', '') ? (
 					<DetailPage />
 				) : (
 					<HomePage />

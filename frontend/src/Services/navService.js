@@ -3,7 +3,7 @@ import BaseService from './BaseService';
 
 export default class navService extends BaseService {
 	/**
-	 * @returns {Array}
+	 * @returns {Promise<Array>}
 	 */
 	static async GetAllForNavbar() {
 		var navList = null;

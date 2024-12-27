@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { UserContext } from '../../Contexts';
+import { SearchContext, UserContext } from '../../Contexts';
 import { pushStateWithEvent } from '../../Helpers/pushStateHelper';
 import navService from '../../Services/navService';
 import DeleteIcon from '../DeleteIcon';
@@ -8,10 +8,20 @@ export default function NavButton({
 	nav = { Name: 'unknown', Url: 'unknown', other_Nav: [] },
 	index = 0,
 }) {
-	const context = useContext(UserContext);
+	const userContext = useContext(UserContext);
+	const searchContext = useContext(SearchContext);
 
 	function isDropdown(nav) {
 		return nav.other_Nav && nav.other_Nav.length > 0;
+	}
+
+	function navigate(e) {
+		if (e.target.tagName.toLowerCase() == 'a') {
+			searchContext.setSearchKeyword('');
+			pushStateWithEvent(e, null, nav.Name, nav.Url);
+			return;
+		}
+		e.preventDefault();
 	}
 
 	function renderButton(nav, index, isInner = false) {
@@ -38,17 +48,14 @@ export default function NavButton({
 						(dropdown ? ' dropdown-toggle' : '')
 					}
 					href={nav.Url}
-					onClick={(e) => {
-						if (e.target.tagName.toLowerCase() == 'a') {
-							pushStateWithEvent(e, null, nav.Name, nav.Url);
-							return;
-						}
-						e.preventDefault();
-					}}
+					onClick={navigate}
 				>
 					<DeleteIcon
 						onDeleteFunction={() =>
-							navService.Remove(nav.NavId, context.userData.token)
+							navService.Remove(
+								nav.NavId,
+								userContext.userData.token
+							)
 						}
 						afterDeleteFunction={(result) => {
 							if (result?.error) {
@@ -58,7 +65,10 @@ export default function NavButton({
 							window.location.reload();
 						}}
 						className='mt-1'
-						show={!isDropdown(nav) && context.userData.isLoggedIn()}
+						show={
+							!isDropdown(nav) &&
+							userContext.userData.isLoggedIn()
+						}
 					/>
 					{nav.Name}
 				</a>

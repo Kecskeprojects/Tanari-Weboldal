@@ -48,6 +48,29 @@ export default class fileService extends BaseService {
 	}
 
 	/**
+	 * @returns {Promise<FileData[]>}
+	 */
+	static async GetBySearchResult(keyword) {
+		var fileList = null;
+		try {
+			const keywordEscaped = JSON.stringify(keyword).slice(1, -1);
+			const res = await this.Get(
+				`/File/GetBySearchResult/?keyword=${keywordEscaped}`
+			);
+			const body = await res.json();
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
+			fileList = fileService.MapItems(body[0]);
+		} catch (e) {
+			console.log(e);
+		}
+		return fileList;
+	}
+
+	/**
 	 * @param {Number} id
 	 */
 	static async GetById(id) {

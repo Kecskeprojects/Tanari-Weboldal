@@ -29,3 +29,49 @@ header {
 	display: inline-block;
 	padding-right: 5px;
 }
+
+.search-container {
+	transition: width 1.5s, padding 0.2s, border 1s;
+	height: 46px;
+	width: 46px;
+	padding: 5px 8px;
+	background-color: #fff;
+	border: #aaa solid 3px;
+	border-radius: 30px;
+	display: inline-block;
+}
+
+.search-container:hover,
+.search-container:focus-within {
+	padding: 5px;
+	width: 196px;
+	border-color: #356de6;
+}
+
+.search-input {
+	transition: width 1.5s;
+	width: 0;
+	border: none;
+	margin: 0;
+	padding: 0;
+	height: 30px;
+}
+
+.search-input:focus {
+	outline: 0;
+}
+
+.search-container:hover > .search-input,
+.search-container:focus-within > .search-input {
+	width: 150px;
+}
+
+.search-icon:hover {
+	cursor: pointer;
+}
+
+.search-container:hover > .search-icon,
+.search-container:focus-within > .search-icon {
+	transition: color 0.1s;
+	color: #356de6;
+}

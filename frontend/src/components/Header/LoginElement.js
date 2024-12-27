@@ -10,7 +10,7 @@ export default function LoginElement() {
 	const [loading, setLoading] = useState(false);
 
 	const context = useContext(UserContext);
-	//Todo: Add a search input that, if interacted with, changes the page to a searchPage with results
+
 	const handleEnter = (e) => {
 		//13 is the key code for Enter
 		if (e.keyCode === 13) {

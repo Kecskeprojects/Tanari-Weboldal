@@ -4,7 +4,7 @@ import BaseService from './BaseService';
 export default class linkService extends BaseService {
 	/**
 	 * @param {Number} navId
-	 * @returns {Promise<FileData[]>}
+	 * @returns {Promise<LinkData[]>}
 	 */
 	static async GetAll(navId) {
 		var linkList = null;
@@ -28,12 +28,35 @@ export default class linkService extends BaseService {
 	}
 
 	/**
-	 * @returns {Promise<FileData[]>}
+	 * @returns {Promise<LinkData[]>}
 	 */
 	static async GetRecent() {
 		var linkList = null;
 		try {
 			const res = await this.Get('/Link/GetRecent/');
+			const body = await res.json();
+
+			if (process.env.NODE_ENV !== 'production') {
+				console.log(body);
+			}
+
+			linkList = linkService.MapItems(body[0]);
+		} catch (e) {
+			console.log(e);
+		}
+		return linkList;
+	}
+
+	/**
+	 * @returns {Promise<LinkData[]>}
+	 */
+	static async GetBySearchResult(keyword) {
+		var linkList = null;
+		try {
+			const keywordEscaped = JSON.stringify(keyword).slice(1, -1);
+			const res = await this.Get(
+				`/Link/GetBySearchResult/?keyword=${keywordEscaped}`
+			);
 			const body = await res.json();
 
 			if (process.env.NODE_ENV !== 'production') {

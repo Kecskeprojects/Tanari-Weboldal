@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { UserContext } from './Contexts';
+import { SearchContext, UserContext } from './Contexts';
 import localStorageHelper from './Helpers/localStorageHelper';
 import UserData from './Models/UserData';
 import visitService from './Services/visitService';
@@ -11,6 +11,7 @@ import './css/App.css';
 
 export default function App() {
 	const [userData, setUserData] = useState(new UserData());
+	const [searchKeyword, setSearchKeyword] = useState('');
 
 	useEffect(() => {
 		//Load user from local storage if it exists and nothing is currently stored in state
@@ -32,15 +33,17 @@ export default function App() {
 
 	return (
 		<UserContext.Provider value={{ userData, setUserData }}>
-			<div
-				className='container-box'
-				onLoad={(e) => visitService.Update() /*No loading*/}
-			>
-				<MainHeader />
-				<MainNavBar />
-				<MainContent />
-				<MainFooter />
-			</div>
+			<SearchContext.Provider value={{ searchKeyword, setSearchKeyword }}>
+				<div
+					className='container-box'
+					onLoad={(e) => visitService.Update() /*No loading*/}
+				>
+					<MainHeader />
+					<MainNavBar />
+					<MainContent />
+					<MainFooter />
+				</div>
+			</SearchContext.Provider>
 		</UserContext.Provider>
 	);
 }
