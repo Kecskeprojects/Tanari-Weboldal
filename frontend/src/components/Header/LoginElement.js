@@ -6,6 +6,7 @@ import localStorageHelper from '../../Helpers/localStorageHelper';
 import UserData from '../../Models/UserData';
 import UserService from '../../Services/userService';
 
+//Todo: Rewrite this so that it is an icon that opens up a popup below the icon, if it is hovered or focused
 export default function LoginElement() {
 	const [loading, setLoading] = useState(false);
 
