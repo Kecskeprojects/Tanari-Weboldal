@@ -20,7 +20,7 @@ export default class linkService extends BaseService {
 				console.log(body);
 			}
 
-			linkList = linkService.MapItems(body[0]);
+			linkList = linkService.MapItems(body);
 		} catch (e) {
 			console.log(e);
 		}
@@ -40,7 +40,7 @@ export default class linkService extends BaseService {
 				console.log(body);
 			}
 
-			linkList = linkService.MapItems(body[0]);
+			linkList = linkService.MapItems(body);
 		} catch (e) {
 			console.log(e);
 		}
@@ -63,7 +63,7 @@ export default class linkService extends BaseService {
 				console.log(body);
 			}
 
-			linkList = linkService.MapItems(body[0]);
+			linkList = linkService.MapItems(body);
 		} catch (e) {
 			console.log(e);
 		}

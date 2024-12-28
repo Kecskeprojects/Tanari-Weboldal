@@ -10,6 +10,12 @@ export default class BaseController {
 		res.status(status).json({ ...content });
 	}
 
+	static handleListResponse(res, content, status = 200) {
+		res.setHeader('pragma', 'no-cache');
+		res.setHeader('cache-control', 'no-cache');
+		res.status(status).json([...content]);
+	}
+
 	/**
 	 * @param {Response} res
 	 * @param {ArrayBuffer} content

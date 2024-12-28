@@ -15,7 +15,7 @@ export default class navService extends BaseService {
 				console.log(body);
 			}
 
-			navList = body[0];
+			navList = body;
 		} catch (e) {
 			console.log(e);
 		}

@@ -15,7 +15,6 @@ export default function getRoutes() {
 		);
 	});
 
-	//Todo: Rewrite Controllers, so that database processes happen in new classes, on the Repository level
 	//Todo: Figure out https in IIS and make it work for the site in localhost
 	routers.get('/File/GetAll/', FileController.getAll);
 	routers.get('/File/GetRecent/', FileController.getRecent);

@@ -1,4 +1,4 @@
-import { Prisma } from '../prisma/PrismaClient.js';
+import LinkService from '../database/services/LinkService.js';
 import BaseController from './BaseController.js';
 
 export default class LinkController extends BaseController {
@@ -7,40 +7,12 @@ export default class LinkController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getAll = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			var where;
-			if (req.query.navId) {
-				const id = parseInt(req.query.navId);
-				if (!id || Number.isNaN(id)) {
-					this.handleError(res, null, 500, 'Id is not a number');
-					return;
-				}
-				where = { NavId: id };
+			const response = await LinkService.getAll(req.query.navId);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.link
-				.findMany({
-					where: where,
-					select: {
-						LinkId: true,
-						Url: true,
-						Title: true,
-						OpenNewTab: true,
-						NavId: true,
-					},
-					orderBy: [{ CreatedOn: 'desc' }, { Title: 'asc' }],
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -51,30 +23,9 @@ export default class LinkController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getRecent = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			prisma.link
-				.findMany({
-					select: {
-						LinkId: true,
-						Url: true,
-						Title: true,
-						OpenNewTab: true,
-						NavId: true,
-					},
-					orderBy: [{ CreatedOn: 'desc' }, { Title: 'asc' }],
-					take: 5,
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			const response = await LinkService.getRecent();
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -85,37 +36,14 @@ export default class LinkController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getBySearchResult = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			prisma.link
-				.findMany({
-					select: {
-						LinkId: true,
-						Url: true,
-						Title: true,
-						OpenNewTab: true,
-						NavId: true,
-					},
-					orderBy: [{ CreatedOn: 'desc' }, { Title: 'asc' }],
-					where: {
-						OR: [
-							{
-								Url: { contains: req.query.keyword },
-							},
-							{ Title: { contains: req.query.keyword } },
-						],
-					},
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			const response = await LinkService.getBySearchResult(
+				req.query.keyword
+			);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
+			}
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -126,32 +54,17 @@ export default class LinkController extends BaseController {
 	 * @param {Response} res
 	 */
 	static create = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			const navId = parseInt(req.body.navId);
-			if (!navId || Number.isNaN(navId)) {
-				this.handleError(res, null, 500, 'Id is not a number');
-				return;
+			const response = await LinkService.create(
+				req.body.navId,
+				req.body.url,
+				req.body.title,
+				req.body.openNewTab
+			);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.link
-				.create({
-					data: {
-						Url: req.body.url,
-						Title: req.body.title,
-						OpenNewTab: req.body.openNewTab === 'true',
-						NavId: navId,
-						CreatedOn: new Date(),
-					},
-				})
-				.then(async () => {
-					this.handleResponse(res, {
-						result: 'Link added to database',
-					});
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -162,24 +75,12 @@ export default class LinkController extends BaseController {
 	 * @param {Response} res
 	 */
 	static delete = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			const id = parseInt(req.params.id);
-			if (!id || Number.isNaN(id)) {
-				this.handleError(res, null, 500, 'Id is not a number');
-				return;
+			const response = await LinkService.delete(req.params.id);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.link
-				.delete({ where: { LinkId: id } })
-				.then(async () => {
-					this.handleResponse(res, {
-						result: 'Link removed from database',
-					});
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}

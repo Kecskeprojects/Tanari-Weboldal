@@ -1,4 +1,4 @@
-import { Prisma } from '../prisma/PrismaClient.js';
+import NavService from '../database/services/NavService.js';
 import BaseController from './BaseController.js';
 
 export default class NavController extends BaseController {
@@ -7,45 +7,9 @@ export default class NavController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getAllForNav = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			prisma.nav
-				.findMany({
-					where: { ParentNavId: null },
-					include: {
-						other_Nav: {
-							include: {
-								other_Nav: {
-									include: {
-										other_Nav: {
-											include: {
-												other_Nav: {
-													include: {
-														other_Nav: {
-															include: {
-																other_Nav: true,
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-					},
-				}) //Pandora
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			const response = await NavService.getAllForNav();
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -56,19 +20,12 @@ export default class NavController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getByUrl = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			prisma.nav
-				.findFirst({
-					where: { Url: req.params.url },
-					select: { NavId: true, Url: true, Name: true },
-				})
-				.then(async (result) => {
-					this.handleResponse(res, result);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			const response = await NavService.getByUrl(req.params.url);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
+			}
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -79,32 +36,16 @@ export default class NavController extends BaseController {
 	 * @param {Response} res
 	 */
 	static create = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			var nav = null;
-			if (req.body.parentNavUrl) {
-				nav = await prisma.nav.findFirst({
-					where: { Url: req.body.parentNavUrl },
-				});
+			const response = await NavService.create(
+				req.body.parentNavUrl,
+				req.body.name,
+				req.body.url
+			);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.nav
-				.create({
-					data: {
-						ParentNavId: nav?.NavId,
-						Name: req.body.name,
-						Url: req.body.url,
-						CreatedOn: new Date(),
-					},
-				})
-				.then(async () => {
-					this.handleResponse(res, {
-						result: 'Nav added to database',
-					});
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -115,24 +56,12 @@ export default class NavController extends BaseController {
 	 * @param {Response} res
 	 */
 	static delete = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			const id = parseInt(req.params.id);
-			if (!id || Number.isNaN(id)) {
-				this.handleError(res, null, 500, 'Id is not a number');
-				return;
+			const response = await NavService.delete(req.params.id);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.nav
-				.delete({ where: { NavId: id } })
-				.then(async () => {
-					this.handleResponse(res, {
-						result: 'Nav removed from database',
-					});
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}

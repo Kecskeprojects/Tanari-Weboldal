@@ -20,7 +20,7 @@ export default class fileService extends BaseService {
 				console.log(body);
 			}
 
-			fileList = fileService.MapItems(body[0]);
+			fileList = fileService.MapItems(body);
 		} catch (e) {
 			console.log(e);
 		}
@@ -40,7 +40,7 @@ export default class fileService extends BaseService {
 				console.log(body);
 			}
 
-			fileList = fileService.MapItems(body[0]);
+			fileList = fileService.MapItems(body);
 		} catch (e) {
 			console.log(e);
 		}
@@ -63,7 +63,7 @@ export default class fileService extends BaseService {
 				console.log(body);
 			}
 
-			fileList = fileService.MapItems(body[0]);
+			fileList = fileService.MapItems(body);
 		} catch (e) {
 			console.log(e);
 		}

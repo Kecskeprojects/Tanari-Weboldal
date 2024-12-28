@@ -1,4 +1,4 @@
-import { Prisma } from '../prisma/PrismaClient.js';
+import FileService from '../database/services/FileService.js';
 import BaseController from './BaseController.js';
 
 export default class FileController extends BaseController {
@@ -7,39 +7,12 @@ export default class FileController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getAll = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			var where;
-			if (req.query.navId) {
-				const id = parseInt(req.query.navId);
-				if (!id || Number.isNaN(id)) {
-					this.handleError(res, null, 500, 'Id is not a number');
-					return;
-				}
-				where = { NavId: id };
+			const response = await FileService.getAll(req.query.navId);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.file
-				.findMany({
-					where: where,
-					select: {
-						FileId: true,
-						Name: true,
-						Extension: true,
-						NavId: true,
-					},
-					orderBy: [{ CreatedOn: 'desc' }, { Name: 'asc' }],
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -50,29 +23,9 @@ export default class FileController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getRecent = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			prisma.file
-				.findMany({
-					select: {
-						FileId: true,
-						Name: true,
-						Extension: true,
-						NavId: true,
-					},
-					orderBy: [{ CreatedOn: 'desc' }, { Name: 'asc' }],
-					take: 5,
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			const response = await FileService.getRecent();
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -83,34 +36,14 @@ export default class FileController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getBySearchResult = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			prisma.file
-				.findMany({
-					select: {
-						FileId: true,
-						Name: true,
-						Extension: true,
-						NavId: true,
-					},
-					orderBy: [{ CreatedOn: 'desc' }, { Name: 'asc' }],
-					where: {
-						OR: [
-							{ Name: { contains: req.query.keyword } },
-							{ Extension: { contains: req.query.keyword } },
-						],
-					},
-				})
-				.then(async (result) => {
-					const completeList = [];
-					if (result) {
-						completeList.push(result);
-					}
-					this.handleResponse(res, completeList);
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			const response = await FileService.getBySearchResult(
+				req.query.keyword
+			);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
+			}
+			this.handleListResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -121,26 +54,12 @@ export default class FileController extends BaseController {
 	 * @param {Response} res
 	 */
 	static getById = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			const id = parseInt(req.params.id);
-			if (!id || Number.isNaN(id)) {
-				this.handleError(res, null, 500, 'Id is not a number');
-				return;
+			const response = await FileService.getById(req.params.id);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.file
-				.findFirst({ where: { FileId: id }, select: { Content: true } })
-				.then(async (result) => {
-					if (result) {
-						this.handleFileResponse(res, result.Content);
-						return;
-					}
-					this.handleError(res, null, 500, 'File not found');
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleFileResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -151,55 +70,15 @@ export default class FileController extends BaseController {
 	 * @param {Response} res
 	 */
 	static create = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			if (!req.files) {
-				this.handleResponse(res, { result: 'No files attached' }, 500);
-				return;
+			const response = await FileService.create(
+				req.files?.mainfile,
+				req.body.navId
+			);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			const navId = parseInt(req.body.navId);
-			if (!navId || Number.isNaN(navId)) {
-				this.handleError(res, null, 500, 'Id is not a number');
-				return;
-			}
-
-			const fileNameParts = req.files.mainfile.name.split('.');
-
-			if (fileNameParts.length === 0) {
-				this.handleError(
-					res,
-					null,
-					500,
-					'File name is empty/incorrect'
-				);
-				return;
-			}
-
-			var extension = '';
-			if (fileNameParts.length > 1) {
-				extension = fileNameParts[fileNameParts.length - 1];
-			}
-			const name = req.files.mainfile.name.replace('.' + extension, '');
-
-			prisma.file
-				.create({
-					data: {
-						Content: req.files.mainfile.data,
-						Name: name,
-						Extension: extension,
-						NavId: navId,
-						CreatedOn: new Date(),
-					},
-				})
-				.then(async () => {
-					this.handleResponse(res, {
-						result: 'File added to database',
-					});
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
@@ -210,24 +89,12 @@ export default class FileController extends BaseController {
 	 * @param {Response} res
 	 */
 	static delete = async (req, res) => {
-		const prisma = Prisma.getPrisma();
 		try {
-			const id = parseInt(req.params.id);
-			if (!id || Number.isNaN(id)) {
-				this.handleError(res, null, 500, 'Id is not a number');
-				return;
+			const response = await FileService.delete(req.params.id);
+			if (response.Error) {
+				this.handleError(res, null, 500, response.Error);
 			}
-
-			prisma.file
-				.delete({ where: { FileId: id } })
-				.then(async () => {
-					this.handleResponse(res, {
-						result: 'File removed from database',
-					});
-				})
-				.catch(async (e) => {
-					this.handleError(res, e);
-				});
+			this.handleResponse(res, response.Data);
 		} catch (e) {
 			this.handleError(res, e);
 		}
