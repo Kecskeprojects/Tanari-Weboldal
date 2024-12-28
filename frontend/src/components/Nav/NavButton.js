@@ -15,10 +15,10 @@ export default function NavButton({
 		return nav.other_Nav && nav.other_Nav.length > 0;
 	}
 
-	function navigate(e) {
+	function navigate(e, currNav) {
 		if (e.target.tagName.toLowerCase() == 'a') {
 			searchContext.setSearchKeyword('');
-			pushStateWithEvent(e, null, nav.Name, nav.Url);
+			pushStateWithEvent(e, null, currNav.Name, currNav.Url);
 			return;
 		}
 		e.preventDefault();
@@ -48,7 +48,7 @@ export default function NavButton({
 						(dropdown ? ' dropdown-toggle' : '')
 					}
 					href={nav.Url}
-					onClick={navigate}
+					onClick={(e) => navigate(e, nav)}
 				>
 					<DeleteIcon
 						onDeleteFunction={() =>
