@@ -5,7 +5,15 @@ import { useEffect, useState } from 'react';
 export default function PopupBase({
 	popupDetail = {
 		title: null,
-		inputs: [{ name: 'test', type: 'text', label: 'test label' }],
+		description: null,
+		inputs: [
+			{
+				name: 'test',
+				type: 'text',
+				label: 'test label',
+				description: 'test description',
+			},
+		],
 	},
 	onSubmitFunction = (e) => {},
 	onCancel = (e) => {},
@@ -40,7 +48,10 @@ export default function PopupBase({
 
 	function renderInput(input, ind) {
 		return (
-			<div key={input.name + ind}>
+			<div
+				key={input.name + ind}
+				className='input-base'
+			>
 				{input.label ? (
 					<label
 						className='form-label'
@@ -57,6 +68,12 @@ export default function PopupBase({
 					title={input.label ? input.label : input.name}
 					name={input.name}
 				/>
+				{input.description ? (
+					<div
+						className='form-description'
+						dangerouslySetInnerHTML={{ __html: input.description }}
+					/>
+				) : null}
 			</div>
 		);
 	}
@@ -75,6 +92,9 @@ export default function PopupBase({
 				<div className='px-4 py-3 position-relative'>
 					{popupDetail.title ? (
 						<h2 className='mb-4'>{popupDetail.title}</h2>
+					) : null}
+					{popupDetail.description ? (
+						<h6 className='mb-4'>{popupDetail.description}</h6>
 					) : null}
 					<span
 						className={'delete-icon m-2 h5'}

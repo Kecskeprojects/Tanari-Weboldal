@@ -39,6 +39,10 @@
 	z-index: 21;
 }
 
+.input-base {
+	padding-bottom: 10px;
+}
+
 .form-input {
 	width: min-content;
 }
@@ -46,6 +50,11 @@
 .form-label {
 	text-transform: uppercase;
 	margin-right: 15px;
+	margin-bottom: 0;
+}
+
+.form-description {
+	font-style: italic;
 }
 
 .create-button {
