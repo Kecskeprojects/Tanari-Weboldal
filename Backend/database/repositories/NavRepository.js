@@ -44,7 +44,30 @@ export default class NavRepository {
 
 		return await prisma.nav.findFirst({
 			where: filter,
-			select: { NavId: true, Url: true, Name: true },
+			//Pandora
+			include: {
+				Nav: {
+					include: {
+						Nav: {
+							include: {
+								Nav: {
+									include: {
+										Nav: {
+											include: {
+												Nav: {
+													include: {
+														Nav: true,
+													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 		});
 	}
 

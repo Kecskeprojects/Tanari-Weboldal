@@ -26,37 +26,40 @@ export default function HomePage() {
 	}, []);
 
 	return (
-		<div className='vertical-list'>
-			{links && links.length > 0 ? (
-				<>
-					<div>Legújabb linkek:</div>
-					<div className='overflow-hidden'>
-						{links.map((link, index) => (
-							<LinkContainer
-								link={link}
-								showDelete={false}
-								key={'link' + index}
-								className='float-right'
-							/>
-						))}
-					</div>
-				</>
-			) : null}
-			{files && files.length > 0 ? (
-				<>
-					<div>Legújabb fájlok:</div>
-					<div className='overflow-hidden'>
-						{files.map((file, index) => (
-							<FileContainer
-								file={file}
-								showDelete={false}
-								key={'file' + index}
-								className='float-right'
-							/>
-						))}
-					</div>
-				</>
-			) : null}
-		</div>
+		<>
+			<h3>Főoldal</h3>
+			<div className='vertical-list'>
+				{links && links.length > 0 ? (
+					<>
+						<div>Legújabb linkek:</div>
+						<div className='overflow-hidden'>
+							{links.map((link, index) => (
+								<LinkContainer
+									link={link}
+									showDelete={false}
+									key={'link' + index}
+									className='float-right'
+								/>
+							))}
+						</div>
+					</>
+				) : null}
+				{files && files.length > 0 ? (
+					<>
+						<div>Legújabb fájlok:</div>
+						<div className='overflow-hidden'>
+							{files.map((file, index) => (
+								<FileContainer
+									file={file}
+									showDelete={false}
+									key={'file' + index}
+									className='float-right'
+								/>
+							))}
+						</div>
+					</>
+				) : null}
+			</div>
+		</>
 	);
 }

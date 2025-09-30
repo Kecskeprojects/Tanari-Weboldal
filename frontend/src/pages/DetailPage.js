@@ -103,6 +103,7 @@ export default function DetailPage() {
 
 	return (
 		<>
+			<h3>{context.locationData.Label}</h3>
 			{renderPopups()}
 			{renderButtons()}
 			{links && links.length > 0 ? (

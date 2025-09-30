@@ -1,4 +1,5 @@
 import ResponseWithInfo from '../../communication/ResponseWithInfo.js';
+import CurrentNavResource from '../../resources/CurrentNavResource.js';
 import NavRepository from '../repositories/NavRepository.js';
 
 export default class NavService {
@@ -16,7 +17,8 @@ export default class NavService {
 		}
 
 		const nav = await NavRepository.getByUrl({ Url: url });
-		return new ResponseWithInfo(nav);
+		const navResource = new CurrentNavResource(nav);
+		return new ResponseWithInfo(navResource);
 	}
 
 	static async create(parentNavUrl, name, url) {
