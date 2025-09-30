@@ -20,13 +20,7 @@ export default class NavService {
 	}
 
 	static async create(parentNavUrl, name, url) {
-		if (!parentNavUrl) {
-			return new ResponseWithInfo(
-				[],
-				'No page data was received for creation'
-			);
-		}
-		var nav = await NavRepository.getById({ Url: parentNavUrl });
+		var nav = await NavRepository.getById({ Url: parentNavUrl ?? null });
 
 		const result = await NavRepository.create({
 			ParentNavId: nav?.NavId,
