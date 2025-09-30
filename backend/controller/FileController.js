@@ -11,6 +11,7 @@ export default class FileController extends BaseController {
 			const response = await FileService.getAll(req.query.navId);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleListResponse(res, response.Data);
 		} catch (e) {
@@ -42,6 +43,7 @@ export default class FileController extends BaseController {
 			);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleListResponse(res, response.Data);
 		} catch (e) {
@@ -58,6 +60,7 @@ export default class FileController extends BaseController {
 			const response = await FileService.getById(req.params.id);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleFileResponse(res, response.Data);
 		} catch (e) {
@@ -77,6 +80,7 @@ export default class FileController extends BaseController {
 			);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {
@@ -93,6 +97,7 @@ export default class FileController extends BaseController {
 			const response = await FileService.delete(req.params.id);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {

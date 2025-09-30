@@ -24,6 +24,7 @@ export default class NavController extends BaseController {
 			const response = await NavService.getByUrl(req.params.url);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {
@@ -44,6 +45,7 @@ export default class NavController extends BaseController {
 			);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {
@@ -60,6 +62,7 @@ export default class NavController extends BaseController {
 			const response = await NavService.delete(req.params.id);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {

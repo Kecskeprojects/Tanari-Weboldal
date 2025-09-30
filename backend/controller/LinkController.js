@@ -42,6 +42,7 @@ export default class LinkController extends BaseController {
 			);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleListResponse(res, response.Data);
 		} catch (e) {
@@ -63,6 +64,7 @@ export default class LinkController extends BaseController {
 			);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {
@@ -79,6 +81,7 @@ export default class LinkController extends BaseController {
 			const response = await LinkService.delete(req.params.id);
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {

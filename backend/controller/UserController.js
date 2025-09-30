@@ -16,6 +16,7 @@ export default class UserController extends BaseController {
 					response.Error === 'Incorrect user' ? 401 : 500,
 					response.Error
 				);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {

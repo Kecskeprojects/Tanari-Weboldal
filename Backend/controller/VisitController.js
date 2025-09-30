@@ -24,6 +24,7 @@ export default class VisitController extends BaseController {
 			const response = await VisitService.update();
 			if (response.Error) {
 				this.handleError(res, null, 500, response.Error);
+				return;
 			}
 			this.handleResponse(res, response.Data);
 		} catch (e) {
