@@ -60,7 +60,6 @@ export default function NavButton({
 						afterDeleteFunction={(result) => {
 							if (result?.error) {
 								window.alert(result.error);
-								return;
 							}
 							window.location.reload();
 						}}

@@ -13,7 +13,7 @@ export default class UserController extends BaseController {
 				this.handleError(
 					res,
 					null,
-					response.Error === 'Incorrect user' ? 401 : 500,
+					response.Error === 'Ismeretlen felhasználó' ? 401 : 500,
 					response.Error
 				);
 				return;

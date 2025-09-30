@@ -58,7 +58,11 @@ export default class navService extends BaseService {
 				console.log(body);
 			}
 
-			result = body.result;
+			if (body.error) {
+				result = body;
+			} else {
+				result = body.result;
+			}
 		} catch (e) {
 			console.log(e);
 		}

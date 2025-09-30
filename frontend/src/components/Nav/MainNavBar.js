@@ -4,7 +4,9 @@ import PopupTypeEnum from '../../Enum/PopupTypeEnum';
 import navService from '../../Services/navService';
 import '../../css/Nav.css';
 import Button from '../Button';
+import PopupBase from '../PopupBase';
 import NavButton from './NavButton';
+import NavPopupDetail from './NavPopupDetail';
 
 export default function MainNavBar() {
 	const [navJSON, setNavJSON] = useState(null);
@@ -19,7 +21,10 @@ export default function MainNavBar() {
 		if (parentNavName) {
 			data.append('parentNavUrl', parentNavName);
 		}
-		navService.Create(data, context.userData.token).then(() => {
+		navService.Create(data, context.userData.token).then((result) => {
+			if (result?.error) {
+				window.alert(result.error);
+			}
 			window.location.reload();
 		});
 	}
@@ -64,13 +69,6 @@ export default function MainNavBar() {
 				<Button
 					label='Navigáció Hozzáadás'
 					onClickFunction={() => setPanel(PopupTypeEnum.CreateNav)}
-					afterDeleteFunction={(result) => {
-						if (result?.error) {
-							window.alert(result.error);
-							return;
-						}
-						window.location.reload();
-					}}
 					className='me-3'
 				/>
 			</ul>

@@ -20,6 +20,18 @@ export default class NavService {
 	}
 
 	static async create(parentNavUrl, name, url) {
+		//internal navigation is not supposed to have dots
+		if (!url.includes('.')) {
+			var navExists = await NavRepository.getById({ Url: url ?? null });
+
+			if (navExists) {
+				return new ResponseWithInfo(
+					[],
+					'Már létezik navigáció ezzel az elérési úttal a Feladatkerten belül'
+				);
+			}
+		}
+
 		var nav = await NavRepository.getById({ Url: parentNavUrl ?? null });
 
 		const result = await NavRepository.create({

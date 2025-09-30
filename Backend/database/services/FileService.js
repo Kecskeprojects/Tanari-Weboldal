@@ -21,7 +21,7 @@ export default class FileService {
 		if (!keyword) {
 			return new ResponseWithInfo(
 				[],
-				'No keyword was received for search'
+				'Kulcsszó nélkül nem lehet keresni'
 			);
 		}
 

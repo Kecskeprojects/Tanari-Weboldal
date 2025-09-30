@@ -10,7 +10,7 @@ export default class UserService {
 			process.env.ENCRYPTED_USERNAME //Todo: Create a more complex login name
 		);
 		if (!userMatches) {
-			return new ResponseWithInfo([], 'Incorrect user');
+			return new ResponseWithInfo([], 'Ismeretlen felhasználó');
 		}
 
 		const uuid = crypto.randomUUID();
