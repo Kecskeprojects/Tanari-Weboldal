@@ -34,9 +34,11 @@
 	margin-right: auto;
 	width: max-content;
 	height: max-content;
+	max-height: 70vh;
 	border-radius: 10px;
 	max-width: 80vw;
 	z-index: 21;
+	overflow-y: auto;
 }
 
 .input-base {
