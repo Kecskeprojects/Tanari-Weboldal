@@ -1,11 +1,17 @@
 {
-	"short_name": "Website",
-	"name": "React App Website",
+	"short_name": "Feladatkert",
+	"name": "Feladatkert",
 	"icons": [
 		{
 			"src": "img/favicon.ico",
 			"sizes": "64x64 32x32 24x24 16x16",
 			"type": "image/x-icon"
+		},
+		{
+			"src": "img/logo64.png",
+			"type": "image/png",
+			"sizes": "64x64",
+			"purpose": "maskable"
 		},
 		{
 			"src": "img/logo192.png",

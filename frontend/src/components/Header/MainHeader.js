@@ -44,7 +44,7 @@ export default function MainHeader() {
 	}
 
 	return (
-		<header style={{ backgroundImage: 'url(./img/header-img.jpg)' }}>
+		<header style={{ backgroundImage: 'url(./img/header-img.png)' }}>
 			{renderPopups()}
 			<HomeLink />
 			<div className='text-end'>
