@@ -8,16 +8,27 @@ header {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	background-position: bottom;
-	background-size: contain;
+	background-position-x: left;
+	background-position-y: top;
+	background-size: cover;
 	padding-top: 10px;
 }
 
+@media (max-width: 480px) {
+	header {
+		background-position-x: -160px;
+	}
+}
+
 .main-link {
-	color: var(--main-color);
+	color: var(--secondary-color);
 	text-decoration: none;
 	font-size: 30px;
 	display: inline-block;
+}
+
+.main-link:hover {
+	text-shadow: -2px 2px 2px #000;
 }
 
 #username {
@@ -35,7 +46,7 @@ header {
 	height: 46px;
 	width: 46px;
 	padding: 5px 8px;
-	background-color: #fff;
+	background-color: var(--secondary-background-color);
 	border: #aaa solid 3px;
 	border-radius: 30px;
 	display: inline-block;

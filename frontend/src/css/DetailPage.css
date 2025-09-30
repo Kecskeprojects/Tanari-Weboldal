@@ -22,7 +22,7 @@
 	text-align: center;
 	float: left;
 	cursor: pointer;
-	background-color: white;
+	background-color: var(--secondary-background-color);
 	position: relative;
 }
 
@@ -49,7 +49,7 @@
 	border-radius: 6px;
 	text-align: center;
 	float: left;
-	background-color: white;
+	background-color: var(--secondary-background-color);
 	position: relative;
 }
 
