@@ -72,12 +72,14 @@ export default function LoginElement() {
 			)}
 		</div>
 	) : (
-		<button
-			className='me-2'
-			type='button'
-			onClick={(e) => onLogOut(e)}
-		>
-			Kilépés
-		</button>
+		<div>
+			<button
+				className='me-2'
+				type='button'
+				onClick={(e) => onLogOut(e)}
+			>
+				Kilépés
+			</button>
+		</div>
 	);
 }
