@@ -16,7 +16,7 @@ export default class UserService {
 		const uuid = crypto.randomUUID();
 		const token = jwt.sign({ id: uuid }, process.env.SECRET, {
 			expiresIn: '7d',
-		}); //Todo: Create a more complex Secret Key
+		});
 		return new ResponseWithInfo({
 			accessToken: token,
 			id: uuid,
