@@ -39,7 +39,7 @@ export default class NavController extends BaseController {
 	static create = async (req, res) => {
 		try {
 			const response = await NavService.create(
-				req.body.parentNavUrl,
+				decodeURI(req.body.parentNavUrl),
 				req.body.name,
 				req.body.url
 			);
