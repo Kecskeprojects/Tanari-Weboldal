@@ -7,7 +7,7 @@ export default class UserService {
 	static login(username) {
 		const userMatches = bcrypt.compareSync(
 			username,
-			process.env.ENCRYPTED_USERNAME //Todo: Create a more complex login name
+			process.env.ENCRYPTED_USERNAME
 		);
 		if (!userMatches) {
 			return new ResponseWithInfo([], 'Ismeretlen felhasználó');
