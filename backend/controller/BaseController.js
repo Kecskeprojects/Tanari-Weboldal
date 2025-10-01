@@ -1,3 +1,5 @@
+import { Readable } from 'stream';
+
 export default class BaseController {
 	/**
 	 * @param {Response} res
@@ -18,13 +20,20 @@ export default class BaseController {
 
 	/**
 	 * @param {Response} res
-	 * @param {ArrayBuffer} content
+	 * @param {Uint8Array} content
 	 * @param {Number} status
 	 */
 	static handleFileResponse(res, content, status = 200) {
 		res.setHeader('content-disposition', `attachment`);
 		res.setHeader('content-type', 'application/octet-stream');
-		res.status(status).send(content);
+
+		const buffer = Buffer.from(content);
+		const stream = new Readable();
+		stream.push(buffer);
+		stream.push(null);
+
+		res.status(status);
+		stream.pipe(res, { end: true });
 	}
 
 	/**

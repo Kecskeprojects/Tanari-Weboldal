@@ -62,7 +62,7 @@ export default class FileController extends BaseController {
 				this.handleError(res, null, 500, response.Error);
 				return;
 			}
-			this.handleFileResponse(res, response.Data);
+			this.handleFileResponse(res, response.Data.Content);
 		} catch (e) {
 			this.handleError(res, e);
 		}
