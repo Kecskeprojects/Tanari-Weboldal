@@ -37,7 +37,7 @@ header {
 }
 
 .search-container {
-	transition: width 1.5s, padding 0.2s, border 1s;
+	transition: width 1.5s, padding 0.7s, border 1s;
 	height: 46px;
 	width: 46px;
 	padding: 5px 8px;
