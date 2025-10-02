@@ -63,3 +63,15 @@
 	float: right;
 	margin: 5px;
 }
+
+.page-label {
+	font-style: italic;
+	font-size: medium;
+	color: gray;
+}
+
+@media (max-width: 480px) {
+	.create-button {
+		overflow: auto;
+	}
+}

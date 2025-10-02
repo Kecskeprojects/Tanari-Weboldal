@@ -12,7 +12,7 @@ export default function HomeLink() {
 
 	return (
 		<a
-			className='main-link ms-4'
+			className='main-link'
 			href='/'
 			onClick={navigateHome}
 		>

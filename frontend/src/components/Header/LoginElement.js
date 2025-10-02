@@ -38,7 +38,7 @@ export default function LoginElement() {
 	};
 
 	return !context.userData.isLoggedIn() ? (
-		<div>
+		<div className='login-container'>
 			<label
 				htmlFor='username'
 				hidden={true}
@@ -72,7 +72,7 @@ export default function LoginElement() {
 			)}
 		</div>
 	) : (
-		<div>
+		<div className='login-container'>
 			<button
 				className='me-2'
 				type='button'

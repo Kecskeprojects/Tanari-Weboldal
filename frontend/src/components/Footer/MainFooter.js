@@ -21,10 +21,10 @@ export default function MainFooter() {
 				<FooterLinkRow //Todo: Get the right footer links
 					itemList={[
 						{ title: 'Home', url: '/', icon: faHouse },
-						{ title: 'Features', url: '/', icon: faHouse },
-						{ title: 'Pricing', url: '/', icon: faHouse },
-						{ title: 'FAQs', url: '/', icon: faHouse },
-						{ title: 'About', url: '/', icon: faHouse },
+						{ title: 'Home', url: '/', icon: faHouse },
+						{ title: 'Home', url: '/', icon: faHouse },
+						{ title: 'Home', url: '/', icon: faHouse },
+						{ title: 'Home', url: '/', icon: faHouse },
 					]}
 				/>
 			</ul>

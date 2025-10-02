@@ -14,7 +14,7 @@ export default class CurrentNavResource {
 
 		while (currNav?.Nav) {
 			currNav = currNav.Nav;
-			label = currNav.Name + '→' + label;
+			label = currNav.Name + ' → ' + label;
 		}
 
 		return label;

@@ -39,10 +39,20 @@
 	padding-right: calc(2px + 14px + 0.25rem + 4px);
 	position: relative;
 	width: -webkit-fill-available;
-	text-wrap: pretty;
-	word-break: break-all;
+	text-wrap-mode: wrap;
+	text-wrap-style: pretty;
+	word-break: break-word;
 }
 
 .navbar-nav li:hover > div > ul.dropdown-menu {
 	display: block;
+}
+
+@media (max-width: 480px) {
+	.dropdown-item,
+	.nav-link {
+		text-wrap: nowrap;
+		word-break: keep-all;
+		overflow: auto;
+	}
 }

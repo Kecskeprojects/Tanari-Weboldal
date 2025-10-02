@@ -14,17 +14,12 @@ header {
 	padding-top: 10px;
 }
 
-@media (max-width: 480px) {
-	header {
-		background-position-x: -160px;
-	}
-}
-
 .main-link {
 	color: var(--secondary-color);
 	text-decoration: none;
 	font-size: 40px;
 	display: inline-block;
+	margin-left: 1.5rem;
 }
 
 .main-link:hover {
@@ -50,6 +45,9 @@ header {
 	border: #aaa solid 3px;
 	border-radius: 30px;
 	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 .search-container:hover,
@@ -85,4 +83,19 @@ header {
 .search-container:focus-within > .search-icon {
 	transition: color 0.1s;
 	color: #356de6;
+}
+
+.login-container {
+	margin-top: 41px;
+}
+
+@media (max-width: 480px) {
+	header {
+		background-position-x: -160px;
+	}
+
+	.main-link {
+		margin-left: 0;
+		font-size: 30px;
+	}
 }
