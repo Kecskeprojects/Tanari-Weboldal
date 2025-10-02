@@ -27,7 +27,7 @@ export default function HomePage() {
 
 	return (
 		<>
-			<div className='page-label'>Főoldal</div>
+			<div className='home-label'>Főoldal</div>
 			<div className='vertical-list'>
 				{links && links.length > 0 ? (
 					<>

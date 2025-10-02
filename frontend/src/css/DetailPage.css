@@ -62,3 +62,9 @@
 	word-break: break-all;
 	text-wrap: pretty;
 }
+
+.page-label {
+	font-style: italic;
+	font-size: medium;
+	color: gray;
+}
