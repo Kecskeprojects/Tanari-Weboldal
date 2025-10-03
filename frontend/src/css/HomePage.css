@@ -2,7 +2,6 @@
 	height: max-content;
 	max-width: 200px;
 	text-align: right;
-	margin-left: auto;
 }
 
 .float-right {
@@ -13,4 +12,11 @@
 	font-style: italic;
 	font-weight: bold;
 	font-size: 30px;
+	margin-bottom: 100px;
+}
+
+.home-container {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
 }

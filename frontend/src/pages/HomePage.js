@@ -26,8 +26,27 @@ export default function HomePage() {
 	}, []);
 
 	return (
-		<>
-			<div className='home-label'>Főoldal</div>
+		<div className='home-container'>
+			<div className='ms-3'>
+				<div className='home-label'>Főoldal</div>
+				<span>
+					Köszöntelek Kedves Látogató!
+					<br />
+					<br />
+					Az oldalon Környezetismeret tanításához találsz:
+					<br />
+					<ul className='ms-3'>
+						<li>Tankocka linkek</li>
+						<li>Szerkeszthető feladatlapok</li>
+						<li>Szerkeszthető dolgozatok</li>
+						<li>Egyéb hasznás tartalmak</li>
+					</ul>
+					<br />
+					Jó böngészést, keresgélést kívánok!
+					<br />
+					<i>Kirschné Bódi Judit</i>
+				</span>
+			</div>
 			<div className='vertical-list'>
 				{links && links.length > 0 ? (
 					<>
@@ -60,6 +79,6 @@ export default function HomePage() {
 					</>
 				) : null}
 			</div>
-		</>
+		</div>
 	);
 }

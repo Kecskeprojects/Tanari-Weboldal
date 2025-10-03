@@ -64,6 +64,32 @@
 	margin: 5px;
 }
 
+.container-label {
+	word-break: break-word;
+	text-wrap-mode: wrap;
+	text-wrap-style: balance;
+}
+
+.link-container {
+	max-width: 200px;
+	padding: 0 30px;
+	margin: 8px;
+	border: 1px solid gray;
+	border-radius: 6px;
+	text-align: center;
+	float: left;
+	background-color: var(--secondary-background-color);
+	position: relative;
+	word-break: break-word;
+	text-wrap-mode: wrap;
+	text-wrap-style: balance;
+}
+
+.link-container:hover {
+	filter: brightness(85%);
+	box-shadow: 3px 4px 6px 0px grey;
+}
+
 @media (max-width: 480px) {
 	.create-button {
 		overflow: auto;
