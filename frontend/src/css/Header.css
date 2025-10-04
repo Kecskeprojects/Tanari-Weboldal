@@ -111,10 +111,10 @@ header {
 	transition: display 1.5s;
 	display: none;
 	position: absolute;
-	right: 8px;
-	top: 55px;
+	right: 9px;
+	top: 53px;
 	background-color: var(--secondary-background-color);
-	padding: 10px 10px 5px 10px;
+	padding: 12px;
 }
 
 .login-container:hover {
@@ -126,22 +126,15 @@ header {
 	display: block;
 }
 
-.login-inner input,
-.login-inner button {
-	z-index: 3;
-	position: relative;
-	margin-bottom: 5px;
-}
-
 .login-inner::before {
 	background-color: var(--secondary-background-color);
 	content: '\00a0';
 	display: block;
-	height: 16px;
-	width: 16px;
+	height: 14px;
+	width: 14px;
 	position: absolute;
-	top: -7.5px;
-	right: 7.5px;
+	top: -7px;
+	right: 7px;
 	transform: rotate(47deg) skew(5deg);
 	-moz-transform: rotate(47deg) skew(5deg);
 	-ms-transform: rotate(47deg) skew(5deg);
