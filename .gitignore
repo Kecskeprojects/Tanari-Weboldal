@@ -133,3 +133,4 @@ dist
 */build/manifest.json
 */build/robots.txt
 /sample website
+frontend/build/web.config
