@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head prefix="og: https://ogp.me/ns#">
+		<!--Rich Embedding Metadata-->
 		<meta
 			property="og:title"
 			content="Feladatkert"
 		/>
 		<meta
 			property="og:type"
-			content="image"
+			content="website"
 		/>
 		<meta
 			property="og:url"
@@ -21,15 +22,13 @@
 			name="og:description"
 			content="Környezetismeret tanításához és gyakorlásához Tankocka linkek, feladatlapok, dolgozatok, egyéb hasznos tartalmak"
 		/>
-		<meta charset="utf-8" />
 		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1"
+			property="og:locale"
+			content="hu_HU"
 		/>
-		<meta
-			name="theme-color"
-			content="#000000"
-		/>
+
+		<!--General Metadata-->
+		<title>Feladatkert</title>
 		<meta
 			name="description"
 			content="Környezetismeret tanításához és gyakorlásához Tankocka linkek, feladatlapok, dolgozatok, egyéb hasznos tartalmak"
@@ -42,6 +41,17 @@
 			name="author"
 			content="Kirschné Bódi Judit"
 		/>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+		<meta
+			name="theme-color"
+			content="#000000"
+		/>
+
+		<!--Links for efficient loading-->
 		<link
 			rel="icon"
 			href="%PUBLIC_URL%/img/favicon.ico"
@@ -63,6 +73,8 @@
 			rel="preconnect"
 			href="%REACT_APP_BACKEND_URL%"
 		/>
+
+		<!--Bootstrap-->
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -74,7 +86,6 @@
 			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 			crossorigin="anonymous"
 		></script>
-		<title>Feladatkert</title>
 	</head>
 	<body>
 		<div id="root"></div>
