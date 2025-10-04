@@ -36,10 +36,10 @@ export default function HomePage() {
 					Az oldalon Környezetismeret tanításához találsz:
 					<br />
 					<ul className='ms-3'>
-						<li>Tankocka linkek</li>
-						<li>Szerkeszthető feladatlapok</li>
-						<li>Szerkeszthető dolgozatok</li>
-						<li>Egyéb hasznás tartalmak</li>
+						<li>Tankocka linkeket</li>
+						<li>Szerkeszthető feladatlapokat</li>
+						<li>Szerkeszthető dolgozatokat</li>
+						<li>Egyéb hasznos tartalmakat</li>
 					</ul>
 					<br />
 					Jó böngészést, keresgélést kívánok!
