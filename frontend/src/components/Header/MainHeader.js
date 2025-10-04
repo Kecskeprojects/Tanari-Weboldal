@@ -5,7 +5,7 @@ import SearchComponent from './SearchComponent';
 
 export default function MainHeader() {
 	return (
-		<header style={{ backgroundImage: 'url(./img/header-img.png)' }}>
+		<header style={{ backgroundImage: 'url(./img/header-img.webp)' }}>
 			<HomeLink />
 			<div className='text-end'>
 				<SearchComponent />
