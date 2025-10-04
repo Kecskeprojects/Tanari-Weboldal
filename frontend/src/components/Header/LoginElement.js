@@ -1,4 +1,4 @@
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState } from 'react';
 import { UserContext } from '../../Contexts';
@@ -37,49 +37,62 @@ export default function LoginElement() {
 		setLoading(true);
 	};
 
-	return !context.userData.isLoggedIn() ? (
-		<div className='login-container'>
-			<label
-				htmlFor='username'
-				hidden={true}
-			>
-				Username
-			</label>
-			<input
-				className='me-2'
-				type='password'
-				id='username'
-				autoComplete='username'
-				onKeyUp={(e) => handleEnter(e)}
-				aria-label='Username'
-				title='Username'
-			/>
-			{loading ? (
-				<span className='login-loading'>
-					<FontAwesomeIcon
-						icon={faCircleNotch}
-						spin={true}
-					/>
-				</span>
-			) : (
-				<button
-					className='me-2'
-					type='button'
-					onClick={(e) => onLogin(e)}
+	function renderLoginInputs() {
+		return (
+			<>
+				<label
+					htmlFor='username'
+					hidden={true}
 				>
-					Belépés
-				</button>
-			)}
-		</div>
-	) : (
+					Username
+				</label>
+				<input
+					type='password'
+					id='username'
+					autoComplete='username'
+					onKeyUp={(e) => handleEnter(e)}
+					aria-label='Username'
+					title='Username'
+				/>
+				{loading ? (
+					<span className='login-loading'>
+						<FontAwesomeIcon
+							icon={faCircleNotch}
+							spin={true}
+						/>
+					</span>
+				) : (
+					<button
+						type='button'
+						onClick={(e) => onLogin(e)}
+					>
+						Belépés
+					</button>
+				)}
+			</>
+		);
+	}
+
+	return (
 		<div className='login-container'>
-			<button
-				className='me-2'
-				type='button'
-				onClick={(e) => onLogOut(e)}
-			>
-				Kilépés
-			</button>
+			<FontAwesomeIcon
+				className='user-icon'
+				icon={faUser}
+				size='xl'
+			/>
+
+			<div className='login-inner'>
+				{!context.userData.isLoggedIn() ? (
+					renderLoginInputs()
+				) : (
+					<button
+						type='button'
+						onClick={(e) => onLogOut(e)}
+					>
+						Kilépés
+					</button>
+				)}
+			</div>
 		</div>
 	);
 }

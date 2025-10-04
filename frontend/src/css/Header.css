@@ -26,6 +26,10 @@ header {
 	text-shadow: -2px 2px 2px #000;
 }
 
+.main-link-text {
+	position: absolute;
+}
+
 #username {
 	width: 25vw;
 	max-width: 180px;
@@ -87,6 +91,62 @@ header {
 
 .login-container {
 	margin-top: 41px;
+	position: relative;
+}
+
+.user-icon {
+	padding: 5px;
+	height: 30px;
+	width: 30px;
+	background-color: var(--secondary-background-color);
+	border: #aaa solid 3px;
+	border-radius: 30px;
+}
+
+.user-icon:hover {
+	cursor: pointer;
+}
+
+.login-inner {
+	transition: display 1.5s;
+	display: none;
+	position: absolute;
+	right: 8px;
+	top: 55px;
+	background-color: var(--secondary-background-color);
+	padding: 10px 10px 5px 10px;
+}
+
+.login-container:hover {
+	width: 210px;
+	height: 140px;
+}
+
+.login-container:hover .login-inner {
+	display: block;
+}
+
+.login-inner input,
+.login-inner button {
+	z-index: 3;
+	position: relative;
+	margin-bottom: 5px;
+}
+
+.login-inner::before {
+	background-color: var(--secondary-background-color);
+	content: '\00a0';
+	display: block;
+	height: 16px;
+	width: 16px;
+	position: absolute;
+	top: -7.5px;
+	right: 7.5px;
+	transform: rotate(47deg) skew(5deg);
+	-moz-transform: rotate(47deg) skew(5deg);
+	-ms-transform: rotate(47deg) skew(5deg);
+	-o-transform: rotate(47deg) skew(5deg);
+	-webkit-transform: rotate(47deg) skew(5deg);
 }
 
 @media (max-width: 480px) {

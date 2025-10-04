@@ -17,13 +17,12 @@ export default function HomeLink() {
 			onClick={navigateHome}
 		>
 			<img
-				className='me-2'
 				src='.\img\logo64.png'
 				alt='profile'
 				width='64'
 				height='64'
 			/>
-			Feladatkert
+			<span className='main-link-text'>Feladatkert</span>
 		</a>
 	);
 }
