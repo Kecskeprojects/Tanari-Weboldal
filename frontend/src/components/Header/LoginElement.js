@@ -53,6 +53,7 @@ export default function LoginElement() {
 					aria-label='Username'
 					title='Username'
 				/>
+				<br />
 				{loading ? (
 					<span className='login-loading'>
 						<FontAwesomeIcon
