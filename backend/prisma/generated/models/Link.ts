@@ -283,8 +283,8 @@ export type LinkScalarWhereWithAggregatesInput = {
 export type LinkCreateInput = {
   Url: string
   Title: string
-  OpenNewTab?: boolean
-  CreatedOn?: Date | string
+  OpenNewTab: boolean
+  CreatedOn: Date | string
   Nav: Prisma.NavCreateNestedOneWithoutLinkInput
 }
 
@@ -292,9 +292,9 @@ export type LinkUncheckedCreateInput = {
   LinkId?: number
   Url: string
   Title: string
-  OpenNewTab?: boolean
+  OpenNewTab: boolean
   NavId: number
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type LinkUpdateInput = {
@@ -317,9 +317,9 @@ export type LinkUncheckedUpdateInput = {
 export type LinkCreateManyInput = {
   Url: string
   Title: string
-  OpenNewTab?: boolean
+  OpenNewTab: boolean
   NavId: number
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type LinkUpdateManyMutationInput = {
@@ -434,16 +434,16 @@ export type LinkUncheckedUpdateManyWithoutNavNestedInput = {
 export type LinkCreateWithoutNavInput = {
   Url: string
   Title: string
-  OpenNewTab?: boolean
-  CreatedOn?: Date | string
+  OpenNewTab: boolean
+  CreatedOn: Date | string
 }
 
 export type LinkUncheckedCreateWithoutNavInput = {
   LinkId?: number
   Url: string
   Title: string
-  OpenNewTab?: boolean
-  CreatedOn?: Date | string
+  OpenNewTab: boolean
+  CreatedOn: Date | string
 }
 
 export type LinkCreateOrConnectWithoutNavInput = {
@@ -486,8 +486,8 @@ export type LinkScalarWhereInput = {
 export type LinkCreateManyNavInput = {
   Url: string
   Title: string
-  OpenNewTab?: boolean
-  CreatedOn?: Date | string
+  OpenNewTab: boolean
+  CreatedOn: Date | string
 }
 
 export type LinkUpdateWithoutNavInput = {

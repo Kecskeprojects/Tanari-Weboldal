@@ -13,7 +13,7 @@ model File {
   Extension String   @db.NVarChar(10)
   Content   Bytes
   NavId     Int
-  CreatedOn DateTime @default(now(), map: "DF_File_CreatedOn") @db.DateTime
+  CreatedOn DateTime @db.DateTime
   Nav       Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_FileNavId_Nav")
 }
 
@@ -21,9 +21,9 @@ model Link {
   LinkId     Int      @id(map: "PK_LinkId") @default(autoincrement())
   Url        String   @db.NVarChar(500)
   Title      String   @db.NVarChar(100)
-  OpenNewTab Boolean  @default(false, map: "DF_Link_OpenNewTab")
+  OpenNewTab Boolean
   NavId      Int
-  CreatedOn  DateTime @default(now(), map: "DF_Link_CreatedOn") @db.DateTime
+  CreatedOn  DateTime @db.DateTime
   Nav        Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
 }
 
@@ -32,7 +32,7 @@ model Nav {
   Name        String   @db.NVarChar(50)
   Url         String?  @db.NVarChar(500)
   ParentNavId Int?
-  CreatedOn   DateTime @default(now(), map: "DF_Nav_CreatedOn") @db.DateTime
+  CreatedOn   DateTime @db.DateTime
   File        File[]
   Link        Link[]
   Nav         Nav?     @relation("NavToNav", fields: [ParentNavId], references: [NavId], onDelete: NoAction, onUpdate: NoAction, map: "FK_ParentNavId_NavId")
@@ -41,7 +41,7 @@ model Nav {
 
 model Visit {
   VisitorId  Int      @id(map: "PK_VisitorId") @default(autoincrement())
-  VisitCount BigInt   @default(0, map: "DF_Visit_VisitCount")
-  CreatedOn  DateTime @default(now(), map: "DF_Visit_CreatedOn") @db.DateTime
-  ModifiedOn DateTime @default(now(), map: "DF_Visit_ModifiedOn") @db.DateTime
+  VisitCount BigInt
+  CreatedOn  DateTime @db.DateTime
+  ModifiedOn DateTime @db.DateTime
 }

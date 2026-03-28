@@ -284,7 +284,7 @@ export type FileCreateInput = {
   Name: string
   Extension: string
   Content: runtime.Bytes
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   Nav: Prisma.NavCreateNestedOneWithoutFileInput
 }
 
@@ -294,7 +294,7 @@ export type FileUncheckedCreateInput = {
   Extension: string
   Content: runtime.Bytes
   NavId: number
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type FileUpdateInput = {
@@ -319,7 +319,7 @@ export type FileCreateManyInput = {
   Extension: string
   Content: runtime.Bytes
   NavId: number
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type FileUpdateManyMutationInput = {
@@ -451,7 +451,7 @@ export type FileCreateWithoutNavInput = {
   Name: string
   Extension: string
   Content: runtime.Bytes
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type FileUncheckedCreateWithoutNavInput = {
@@ -459,7 +459,7 @@ export type FileUncheckedCreateWithoutNavInput = {
   Name: string
   Extension: string
   Content: runtime.Bytes
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type FileCreateOrConnectWithoutNavInput = {
@@ -503,7 +503,7 @@ export type FileCreateManyNavInput = {
   Name: string
   Extension: string
   Content: runtime.Bytes
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type FileUpdateWithoutNavInput = {

@@ -280,7 +280,7 @@ export type NavScalarWhereWithAggregatesInput = {
 export type NavCreateInput = {
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileCreateNestedManyWithoutNavInput
   Link?: Prisma.LinkCreateNestedManyWithoutNavInput
   Nav?: Prisma.NavCreateNestedOneWithoutOther_NavInput
@@ -292,7 +292,7 @@ export type NavUncheckedCreateInput = {
   Name: string
   Url?: string | null
   ParentNavId?: number | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileUncheckedCreateNestedManyWithoutNavInput
   Link?: Prisma.LinkUncheckedCreateNestedManyWithoutNavInput
   other_Nav?: Prisma.NavUncheckedCreateNestedManyWithoutNavInput
@@ -323,7 +323,7 @@ export type NavCreateManyInput = {
   Name: string
   Url?: string | null
   ParentNavId?: number | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type NavUpdateManyMutationInput = {
@@ -495,7 +495,7 @@ export type NavUncheckedUpdateManyWithoutNavNestedInput = {
 export type NavCreateWithoutFileInput = {
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   Link?: Prisma.LinkCreateNestedManyWithoutNavInput
   Nav?: Prisma.NavCreateNestedOneWithoutOther_NavInput
   other_Nav?: Prisma.NavCreateNestedManyWithoutNavInput
@@ -506,7 +506,7 @@ export type NavUncheckedCreateWithoutFileInput = {
   Name: string
   Url?: string | null
   ParentNavId?: number | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   Link?: Prisma.LinkUncheckedCreateNestedManyWithoutNavInput
   other_Nav?: Prisma.NavUncheckedCreateNestedManyWithoutNavInput
 }
@@ -549,7 +549,7 @@ export type NavUncheckedUpdateWithoutFileInput = {
 export type NavCreateWithoutLinkInput = {
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileCreateNestedManyWithoutNavInput
   Nav?: Prisma.NavCreateNestedOneWithoutOther_NavInput
   other_Nav?: Prisma.NavCreateNestedManyWithoutNavInput
@@ -560,7 +560,7 @@ export type NavUncheckedCreateWithoutLinkInput = {
   Name: string
   Url?: string | null
   ParentNavId?: number | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileUncheckedCreateNestedManyWithoutNavInput
   other_Nav?: Prisma.NavUncheckedCreateNestedManyWithoutNavInput
 }
@@ -603,7 +603,7 @@ export type NavUncheckedUpdateWithoutLinkInput = {
 export type NavCreateWithoutOther_NavInput = {
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileCreateNestedManyWithoutNavInput
   Link?: Prisma.LinkCreateNestedManyWithoutNavInput
   Nav?: Prisma.NavCreateNestedOneWithoutOther_NavInput
@@ -614,7 +614,7 @@ export type NavUncheckedCreateWithoutOther_NavInput = {
   Name: string
   Url?: string | null
   ParentNavId?: number | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileUncheckedCreateNestedManyWithoutNavInput
   Link?: Prisma.LinkUncheckedCreateNestedManyWithoutNavInput
 }
@@ -627,7 +627,7 @@ export type NavCreateOrConnectWithoutOther_NavInput = {
 export type NavCreateWithoutNavInput = {
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileCreateNestedManyWithoutNavInput
   Link?: Prisma.LinkCreateNestedManyWithoutNavInput
   other_Nav?: Prisma.NavCreateNestedManyWithoutNavInput
@@ -637,7 +637,7 @@ export type NavUncheckedCreateWithoutNavInput = {
   NavId?: number
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
   File?: Prisma.FileUncheckedCreateNestedManyWithoutNavInput
   Link?: Prisma.LinkUncheckedCreateNestedManyWithoutNavInput
   other_Nav?: Prisma.NavUncheckedCreateNestedManyWithoutNavInput
@@ -712,7 +712,7 @@ export type NavScalarWhereInput = {
 export type NavCreateManyNavInput = {
   Name: string
   Url?: string | null
-  CreatedOn?: Date | string
+  CreatedOn: Date | string
 }
 
 export type NavUpdateWithoutNavInput = {

@@ -254,16 +254,16 @@ export type VisitScalarWhereWithAggregatesInput = {
 }
 
 export type VisitCreateInput = {
-  VisitCount?: bigint | number
-  CreatedOn?: Date | string
-  ModifiedOn?: Date | string
+  VisitCount: bigint | number
+  CreatedOn: Date | string
+  ModifiedOn: Date | string
 }
 
 export type VisitUncheckedCreateInput = {
   VisitorId?: number
-  VisitCount?: bigint | number
-  CreatedOn?: Date | string
-  ModifiedOn?: Date | string
+  VisitCount: bigint | number
+  CreatedOn: Date | string
+  ModifiedOn: Date | string
 }
 
 export type VisitUpdateInput = {
@@ -280,9 +280,9 @@ export type VisitUncheckedUpdateInput = {
 }
 
 export type VisitCreateManyInput = {
-  VisitCount?: bigint | number
-  CreatedOn?: Date | string
-  ModifiedOn?: Date | string
+  VisitCount: bigint | number
+  CreatedOn: Date | string
+  ModifiedOn: Date | string
 }
 
 export type VisitUpdateManyMutationInput = {
@@ -937,7 +937,7 @@ export type VisitCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   /**
    * The data needed to create a Visit.
    */
-  data?: Prisma.XOR<Prisma.VisitCreateInput, Prisma.VisitUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.VisitCreateInput, Prisma.VisitUncheckedCreateInput>
 }
 
 /**
