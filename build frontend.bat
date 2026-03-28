@@ -1,3 +1,3 @@
 cd C:\Github_Repos\Tanari-Weboldal\frontend
-npm run build
+npm ci && npm run build
 pause
