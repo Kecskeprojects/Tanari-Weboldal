@@ -1,10 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "./generated"
 }
 
 datasource db {
   provider = "sqlserver"
-  url      = env("DATABASE_URL")
 }
 
 model File {
@@ -17,6 +17,16 @@ model File {
   Nav       Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_FileNavId_Nav")
 }
 
+model Link {
+  LinkId     Int      @id(map: "PK_LinkId") @default(autoincrement())
+  Url        String   @db.NVarChar(500)
+  Title      String   @db.NVarChar(100)
+  OpenNewTab Boolean  @default(false, map: "DF_Link_OpenNewTab")
+  NavId      Int
+  CreatedOn  DateTime @default(now(), map: "DF_Link_CreatedOn") @db.DateTime
+  Nav        Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
+}
+
 model Nav {
   NavId       Int      @id(map: "PK_NavId") @default(autoincrement())
   Name        String   @db.NVarChar(50)
@@ -27,16 +37,6 @@ model Nav {
   Link        Link[]
   Nav         Nav?     @relation("NavToNav", fields: [ParentNavId], references: [NavId], onDelete: NoAction, onUpdate: NoAction, map: "FK_ParentNavId_NavId")
   other_Nav   Nav[]    @relation("NavToNav")
-}
-
-model Link {
-  LinkId     Int      @id(map: "PK_LinkId") @default(autoincrement())
-  Url        String   @db.NVarChar(500)
-  Title      String   @db.NVarChar(100)
-  OpenNewTab Boolean  @default(false, map: "DF_Link_OpenNewTab")
-  NavId      Int
-  CreatedOn  DateTime @default(now(), map: "DF_Link_CreatedOn") @db.DateTime
-  Nav        Nav      @relation(fields: [NavId], references: [NavId], onDelete: Cascade, onUpdate: NoAction, map: "FK_LinkNavId_Nav")
 }
 
 model Visit {

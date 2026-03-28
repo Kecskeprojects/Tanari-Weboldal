@@ -41,10 +41,13 @@ header {
 }
 
 .search-container {
-	transition: width 1.5s, padding 0.7s, border 1s;
+	transition:
+		width 1.5s,
+		padding 0.7s,
+		border 1s;
 	height: 46px;
 	width: 46px;
-	padding: 5px 8px;
+	padding: 8px 5px;
 	background-color: var(--secondary-background-color);
 	border: #aaa solid 3px;
 	border-radius: 30px;
@@ -56,7 +59,6 @@ header {
 
 .search-container:hover,
 .search-container:focus-within {
-	padding: 5px;
 	width: 196px;
 	border-color: #356de6;
 }
@@ -67,7 +69,7 @@ header {
 	border: none;
 	margin: 0;
 	padding: 0;
-	height: 30px;
+	height: 24px;
 }
 
 .search-input:focus {

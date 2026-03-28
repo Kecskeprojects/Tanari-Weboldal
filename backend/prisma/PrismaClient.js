@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaMssql } from '@prisma/adapter-mssql';
+import { PrismaClient } from './generated/client.ts';
 import PrismaLogger from './PrismaLogger.js';
 
 export class Prisma {
@@ -18,7 +19,12 @@ export class Prisma {
 			return this.PrismaClient;
 		}
 
-		this.PrismaClient = new PrismaClient(PrismaLogger.ClientOptions);
+		const adapter = new PrismaMssql(process.env.DATABASE_URL);
+
+		this.PrismaClient = new PrismaClient({
+			...PrismaLogger.ClientOptions,
+			adapter: adapter,
+		});
 
 		this.PrismaClient.$on('query', PrismaLogger.LogQuery);
 		this.PrismaClient.$on('info', PrismaLogger.LogInfo);

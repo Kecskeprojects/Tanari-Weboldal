@@ -134,3 +134,4 @@ dist
 */build/robots.txt
 /sample website
 frontend/build/web.config
+backend/prisma/generated
